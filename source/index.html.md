@@ -1,7 +1,7 @@
 ﻿---
 title: API Reference:
 
-language_tabs: # must be one of https://git.io/vQNgJ
+language_tabs: # 
   - java
   - javascript
 
@@ -52,7 +52,7 @@ Stateless: a API não controla os estados, toda informação necessária é envi
 
 **Gamas de IP para comunicacões**: Quando seja feito um envio de informação desde a plataforma de TRUSTHUB a os seus servidores (por exemplo desde  Webhooks), esse envío será feito desde alguma das IPs compreendidas nas seguintes gamas:
 	 - 000.000.00.0 - 000.000.00.000  (Pendente Checagem do nosso IP de saida)
-	 - 
+	  
 **Requisitos** : Para utilizar API é necessário que se tenha familiaridade conceitos básicos utilizados no desenvolvimento de web services REST. É possível desenvolver a integração com as diferentes linguagens de programação web disponíveis  atualmente.
 			Além do conhecimento técnico exigido, conhecer os conceitos básicos de negociações utilziadas na TRUSTHUB como "Nota Fiscal" ,  "XML" . O artigo abaixo sobre as entidades ásicas ajudará você a entender quais são e como se relacionam.
 			
@@ -203,7 +203,8 @@ Accept-Encoding: gzip, deflate
 						}
 					]
 
-> Retorno JSON conforme estrutura abaixo:
+```
+> Envio JSON conforme estrutura abaixo:
 
 ```json
 HTTP/1.1 200 OK
