@@ -55,7 +55,7 @@ Stateless: a API não controla os estados, toda informação necessária é envi
 			
 **Padrões** Nossa API segue os padrões de design e diretrizes o PAYPAL e especificação do protocolo HTTPS conforme referências abaixo.
 
- -   https://github.com/paypal/api-standards/blob/master/patterns.md
+ - https://github.com/paypal/api-standards/blob/master/patterns.md
  - https://www.w3.org/Protocols/rfc2616/rfc2616.html
 
 # Autenticação 
@@ -135,7 +135,7 @@ Para tratativas com notas fiscais o recurso a ser utilizado deverá ser :  /invo
 			 - Modo  : Escrita
 		 - **status** : Chave de Identificação da nota 
 			 - Tipo de Dado : String(UUID)
-			 - Modo : Leitura / Escrita
+			 - Modo : Leitura 
 		 - **installments**  : Lista de  parcelas da nota fiscal.
 			 - Tipo de Dado : Arrray(Object)
 			 - Modo : Leitura / Escrita
