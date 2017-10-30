@@ -1,11 +1,9 @@
-﻿---
+---
 title: API Reference:
 
-language_tabs: # 
+language_tabs: # must be one of https://git.io/vQNgJ
   - java
   - javascript
-
-toc_footers:
 
 includes:
   - errors
