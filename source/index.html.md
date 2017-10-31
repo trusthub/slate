@@ -32,27 +32,27 @@ Fique a vontade para nos conectar no caso de qualquer dificuldade em [desenvolvi
 
  - Stateless: a API não controla os estados, toda informação necessária é enviada pelo cliente.
  - URLs : cada recurso tem a sua própria e única URL, seguindo uma
-   hierarquia lógica. Por exemplo: URL de um antecipacao negociada:
-   https://api.trusthub.com.br/invoices/:id 
+   hierarquia lógica. Por exemplo: URL de notas fiscais:
+   [https://api.trusthub.com.br/invoices/](https://api.trusthub.com.br/invoices/) 
  - Métodos HTTP: todas as operações são realizadas usando os métodos HTTP corretos para cada
    caso, por exemplo:
    	 - GET: para consultar e ler recursos.
    	 - POST: para criar recursos.
    	 - PUT: para editar recursos.
    	 - DELETE: para eliminar recursos.
-  	
   
-**URL base da API**: A URL base da API, a partir da qual pode acessar todos os recursos disponíveis, é a seguinte: https://api.trusthub.com.br
+**URL base da API**: A URL base da API, a partir da qual pode acessar todos os recursos disponíveis, é a seguinte: [https://api.trusthub.com.br](https://api.trusthub.com.br)
 
 **Dados em formato JSON** : Os dados são enviados e recebidos em formato JSON (JavaScript Object Notation), que é um formato baseado em texto, simples e facilmente utilizado em diferentes plataformas e linguagens
 
-**Codificação** UTF-8 (PENDENTE ALISSON REVISAR) : Todas as solicitações (requests) e respostas (responses) utilizam codificação UTF-8.
+**Codificação** UTF-8  : Todas as solicitações (requests) e respostas (responses) utilizam codificação UTF-8.
 
-**Formato da data e hora ISO-8601** : Todos os campos de data/hora utilizam a norma ISO-8601. Exemplo: 2014-04-24T16:37:22.032-04:00
+**Formato da data e hora ISO-8601** : Todos os campos de data/hora utilizam a norma ISO-8601. Exemplo: 2017-04-24T16:37:22.032-04:00
 
-**Gamas de IP para comunicacões**: Quando seja feito um envio de informação desde a plataforma de TRUSTHUB a os seus servidores (por exemplo desde  Webhooks), esse envío será feito desde alguma das IPs compreendidas nas seguintes gamas:
-	 - 000.000.00.0 - 000.000.00.000  (Pendente Checagem do nosso IP de saida)
-	  
+**Gamas de IP para comunicacões**: Quando for feito envio de informação desde a plataforma de TRUSTHUB a os seus servidores (por exemplo caso de Webhooks), esse envio será feito desde alguma das IPs compreendidas nas seguintes gamas:
+
+	   189.125.22.110  
+
 **Requisitos** : Para utilizar API é necessário que se tenha familiaridade conceitos básicos utilizados no desenvolvimento de web services REST. É possível desenvolver a integração com as diferentes linguagens de programação web disponíveis  atualmente.
 			Além do conhecimento técnico exigido, conhecer os conceitos básicos de negociações utilziadas na TRUSTHUB como "Nota Fiscal" ,  "XML" . O artigo abaixo sobre as entidades ásicas ajudará você a entender quais são e como se relacionam.
 			
@@ -67,19 +67,18 @@ Fique a vontade para nos conectar no caso de qualquer dificuldade em [desenvolvi
 
 ```javascript
 const trusthub = require('trusthub');
-
 let api = trusthub .authorize('trusthub');
 ```
 
 ![enter image description here](https://raw.githubusercontent.com/maikelwgo/slate/master/source/images/IMG_01.png)
 
 
-Usando as suas credenciais, você garante que os seus dados só estejam disponíveis para a sua aplicação
+Usando as suas credenciais, você garante que os seus dados só estejam disponíveis para a sua aplicação.
 
 **Como funciona?**
 
- - Envie as suas credenciais preenchendo [este formulário](formulario) e receba o seu token de acesso.  Use o seu access_token para operar com as APIs.
- Este código é único chamado access_token. Ele deverá ser utilizado para todas as operações que realizar com as APIs, enviando com atributo do Header da solicitação. (Pedente Alisson Request  de exemplo)
+ - Envie as suas credenciais solicitando através da nossa área comercial [comercial@srmasset.com.br](comercial@srmasset.com.br) o cadastramento de sua plataforma  e receba o seu token de acesso.  Use o seu access_token para operar com as APIs.
+Ele deverá ser utilizado para todas as operações que realizar com as APIs, enviando com atributo do Header da solicitação.
 		
  - **Referências** 
 	 - Referência Outh2.0  https://oauth.net/2/
