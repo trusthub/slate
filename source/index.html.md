@@ -115,9 +115,9 @@ PRONTO !  A partir deste momento todo e qualquer acesso através do nosso link i
 
 Para tratativas com notas fiscais o recurso a ser utilizado deverá ser :  /invoices   
 
- - POST/trusthub/invoices   : 
- - GET/trusthub/invoices ?invoice_key =
- - GET/trusthub/invoices ?client_key =
+ - POST  https://api.trusthub.com.br/invoices/v1/
+ - GET  https://api.trusthub.com.br/invoices/v1/{identifier}/{begin}/{end}
+ - GET https://api.trusthub.com.br/invoices/v1/{identifier} 
 						
 **trusthub/invoices   :**  Use este recurso para ações relacionadas e envio e busca dos dados de de notas fiscais. Como este serviço recebe o xml da nota e pode ser custoso o trafego, o mesmo deve ser compactado e será processado de forma assíncrona e em lote (BULK).
 
@@ -162,7 +162,7 @@ Para tratativas com notas fiscais o recurso a ser utilizado deverá ser :  /invo
 
 ### HTTP Request
 
-`POST/trusthub/invoices`
+`POST https://api.trusthub.com.br/invoices/v1/`
 
 Use este recurso com esta ação para envio de notas fiscais. Como este serviço recebe o xml da nota e pode ser custoso o trafego, o mesmo deve ser compactado e será processado de forma assíncrona e em lote (BULK),
 
