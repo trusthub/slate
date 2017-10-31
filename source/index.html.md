@@ -81,9 +81,8 @@ Usando as suas credenciais, você garante que os seus dados só estejam disponí
 Ele deverá ser utilizado para todas as operações que realizar com as APIs, enviando com atributo do Header da solicitação.
 		
  - **Referências** 
-	 - Referência Outh2.0  https://oauth.net/2/
-	 - Bearer Token https://tools.ietf.org/html/rfc6750
-
+	 - Referência Outh2.0  [https://oauth.net/2/](https://oauth.net/2/)
+	 - Bearer Token [https://tools.ietf.org/html/rfc6750](https://tools.ietf.org/html/rfc6750)
 
 
 
@@ -93,12 +92,12 @@ Ele deverá ser utilizado para todas as operações que realizar com as APIs, en
 
 ![enter image description here](https://raw.githubusercontent.com/maikelwgo/slate/master/source/images/IMG_02.png)
 
- - Este é o único serviço necessário para integrar seus clientes a TRUSTHUB.
+ - Este é o único serviço necessário para integrar seus clientes para antecipação na TRUSTHUB.
  - Através deste serviço é possível enviar de forma muito simples as notas fiscais de seus clientes de onde será efetuado o pré cadastramento dos mesmos e de imediato já disponibilizado acesso para negociação das notas fiscais.
- - Após o envio das notas basta disponibilizar os links de acesso na nossa plataforma conforme _este exemplo_ passando seu TOKEN e identificação do cliente para que o mesmo possa negociar as notas com a TRUSTHUB de forma simples, ágil e segura.
+ - Após o envio das notas basta disponibilizar os links de acesso na nossa plataforma conforme conforme scripts que serão encaminhados pós cadastramento,  passando seu TOKEN e identificação do cliente para que o mesmo possa negociar as notas com a TRUSTHUB de forma simples, ágil e segura.
  - Dependendo do formato mais adequado para sua solução e o relacionamento que tem que seu cliente você pode utilizar os dois processos abaixo para integração 
-	 - Enviar as notas para TRUTHUB antecipadamente para todos os clientes que tem na sua aplicação agilizando o processo de abertura ou 
-	 - Através de uma função de CALLBACK conforme  [este exemplo](w) identificar o aceite do cliente para com os termos de uso da TRUSTHUB no nosso link e passar a enviar as  notas.
+	 - Enviar as notas para TRUTHUB antecipadamente para todos os clientes que tem na sua aplicação agilizando o processo de abertura de conta do mesmo.
+	 - Encaminhar as notas no momento do acionamento do link. Neste caso o usuário será direcionado porém terá que aguardar o carregamento das notas.
 
 <aside class="warning">Para uma melhor experiência do usuário e o mesmo já ser direcionado logado na nossa plataforma é importante na segunda opção que seja enviada pelo menos uma nota fiscal do mesmo de imediato. Caso contrário teremos que solicitar o cadastramento do mesmo o que não é muito legal !
 </aside>			
@@ -127,12 +126,6 @@ Para tratativas com notas fiscais o recurso a ser utilizado deverá ser :  /invo
  - **invoices**  : Lista de chaves de notas fiscais 
 	 - Tipo de Dado : Arrray(Object)
 	 - Modo : Leitura / Escrita
-		 - **client_key** : Chave de Identificação do cliente (Caso brasileiro CNPJ)
-			 - Tipo de Dado : String(UUID)
-			 - Modo : Leitura / Escrita
-		 - **key** : Chave de Identificação da nota 
-			 - Tipo de Dado : String(UUID)
-			 - Modo : Leitura / Escrita
 		 - **file**
 			 - Tipo : Content-Type : text/xml 
 			 - Modo  : Escrita
@@ -176,32 +169,13 @@ Use este recurso com esta ação para envio de notas fiscais. Como este serviço
 > Envio JSON conforme estrutura abaixo:
 ```json
 POST /invoices
-Host: api.foo.com
+Host: XXX
 Content-Type: multipart/mixed; boundary=--invoice_file
 Authorization: Bearer oauth2_token
 Content-Length: total_content_length
 Accept-Encoding: gzip, deflate
 
-					[
-"invoices": [
-	{
-		"cliente_key": "12345678000109",
-		"invoice_key": "110000000000000000000000000000000000000000001",
-		"invoice_file": Binary 
-	},
- 	{
-		"cliente_key": "12345678000109",
-		"invoice_key": "110000000000000000000000000000000000000000002",
-		"invoice_file": Binary 
-							}
-							},
- 	{
-		"cliente_key": "12345678000109",
-		"invoice_key": "110000000000000000000000000000000000000000003",
-		"invoice_file": Binary 
-							}
-						}
-					]
+
 
 ```
 > Envio JSON conforme estrutura abaixo:
@@ -215,33 +189,5 @@ Cache-Control: private, max-age=0
 Content-Length: 5000
 
 ```
-
-This endpoint retrieves all kittens.
-
-
-
-
-
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
 
 
