@@ -2,7 +2,6 @@
 title: API Reference
 
 language_tabs: 
-  - javascript
   - java
 
 toc_footers:
@@ -19,24 +18,23 @@ search: true
 
 Bem vindo a  API da TRUSTHUB !
 
-Aqui você poderá obter todas as informações que precisa para conectar nas nossas soluções.
-Você pode ver exemplos na area escura a diretira, e pode alterar  e pode alterar entre os tipos de linguagem pré definidas para integração.
+Aqui você poderá obter todas as informações que precisa para de conectar nas nossas soluções.
+Você pode ver exemplos na área escura a direita e pode alternar os exemplos entre os tipos de linguagem pré definidas para integração.
 
-Fique a vontade para nos conectar no caso de qualquer dificuldade.
-.
+Fique a vontade para nos conectar no caso de qualquer dificuldade em [desenvolvimento@trusthub.com.br](desenvolvimento@trusthub.com.br)
+
 
 # Conceitos básicos  
 
-**API**  : API é o acrônimo de application programming interface,  especificação de interface para integração entre sistemas
-			API tem como objetivo oferecer a possibilidade de estender funcionalidades básicas da plataforma, de forma a integrar com nossas soluções .
+**API**  : API é o acrônimo de application programming interface,  especificação de interface para integração entre sistemas. Tem como objetivo oferecer a possibilidade de estender funcionalidades básicas da plataforma, de forma a integrar com nossas soluções.
 			
 **Arquitetura REST** Utilizamos uma arquitetura REST, baseada 100% nos padrões HTTP
-Stateless: a API não controla os estados, toda informação necessária é enviada pelo cliente.
 
-**URLs**: cada recurso tem a sua própria e única URL, seguindo uma
+ - Stateless: a API não controla os estados, toda informação necessária é enviada pelo cliente.
+ - URLs : cada recurso tem a sua própria e única URL, seguindo uma
    hierarquia lógica. Por exemplo: URL de um antecipacao negociada:
-   https://api.trusthub.com.br/invoices/:id Métodos HTTP: todas as
-   operações são realizadas usando os métodos HTTP corretos para cada
+   https://api.trusthub.com.br/invoices/:id 
+ - Métodos HTTP: todas as operações são realizadas usando os métodos HTTP corretos para cada
    caso, por exemplo:
    	 - GET: para consultar e ler recursos.
    	 - POST: para criar recursos.
