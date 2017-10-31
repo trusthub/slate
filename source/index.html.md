@@ -210,7 +210,7 @@ curl "http://example.com/api/kittens/2"
 ```
 
 ```javascript
-const kittn = require('kittn');
+const kittn = require('kittn'); 
 
 let api = kittn.authorize('meowmeowmeow');
 let max = api.kittens.delete(2);
