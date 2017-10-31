@@ -12,7 +12,7 @@ search: true
 
 # Introdução
 
-Bem vindo a  API da TRUSTHUB !
+Bem vindo a  API da TRUSTHUB !!!!!!
 
 Aqui você poderá obter todas as informações que você precisa para conectar nas nossas soluções.
 Você pode ver exemplos na area escura a diretira, e pode alterar  e pode alterar entre os tipos de linguagem pré definidas para integração.
