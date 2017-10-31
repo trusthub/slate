@@ -127,11 +127,8 @@ Para tratativas com notas fiscais o recurso a ser utilizado deverá ser :  /invo
 	 - Tipo de Dado : Arrray(Object)
 	 - Modo : Leitura / Escrita
 	 -  **file**
-	 
-
- - List item
- - Tipo : Content-Type : text/xml 
-			 - Modo  : Escrita
+		 - Tipo : Content-Type : text/xml 
+		 - Modo  : Escrita
 		 - **status** : Status de Identificação da nota 
 			 - Tipo de Dado : String(UUID)
 			 - Modo : Leitura 
