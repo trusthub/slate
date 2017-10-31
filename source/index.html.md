@@ -4,6 +4,9 @@ title: API Reference
 language_tabs: 
   - java
 
+toc_footers:
+  - <a href='#'>Sign Up for a Developer Key</a>
+  - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
 includes:
   - errors
@@ -124,11 +127,14 @@ Para tratativas com notas fiscais o recurso a ser utilizado deverá ser :  /invo
 	 - Tipo de Dado : Arrray(Object)
 	 - Modo : Leitura / Escrita
 	 -  **file**
-		 -  Tipo : Content-Type : text/xml 
-		 - Modo  : Escrita
-	 - **status** : Chave de Identificação da nota 
-		 - Tipo de Dado : String(UUID)
-		 -  Modo : Leitura 
+	 
+
+ - List item
+ - Tipo : Content-Type : text/xml 
+			 - Modo  : Escrita
+		 - **status** : Status de Identificação da nota 
+			 - Tipo de Dado : String(UUID)
+			 - Modo : Leitura 
 		 - **installments**  : Lista de  parcelas da nota fiscal.
 			 - Tipo de Dado : Arrray(Object)
 			 - Modo : Leitura / Escrita
@@ -150,9 +156,7 @@ Para tratativas com notas fiscais o recurso a ser utilizado deverá ser :  /invo
 
 ```javascript
 
-const trusthub = require('trusthub');
-let api = trusthub .authorize('trusthub');
-let kittens = api.invoices.post();
+;
 ```
 
 
@@ -186,4 +190,5 @@ Cache-Control: private, max-age=0
 Content-Length: 5000
 
 ```
+
 
