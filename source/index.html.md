@@ -17,9 +17,9 @@ search: true
 
 # Introdução
 
-Bem vindo a  API da TRUSTHUB !!!!!!
+Bem vindo a  API da TRUSTHUB !
 
-Aqui você poderá obter todas as informações que você precisa para conectar nas nossas soluções.
+Aqui você poderá obter todas as informações que precisa para conectar nas nossas soluções.
 Você pode ver exemplos na area escura a diretira, e pode alterar  e pode alterar entre os tipos de linguagem pré definidas para integração.
 
 Fique a vontade para nos conectar no caso de qualquer dificuldade.
@@ -73,7 +73,8 @@ const trusthub = require('trusthub');
 let api = trusthub .authorize('trusthub');
 ```
 
-![enter image description here](https://lh3.googleusercontent.com/-0QUCYoWz6sM/WfXMRd5cnaI/AAAAAAAAAAM/MVQenGq7upEGN93LgHUSnL4wtEPIiyBZACLcBGAs/s0/IMG_01.png "IMG_01.png")
+![enter image description here](https://raw.githubusercontent.com/maikelwgo/slate/master/source/images/IMG_01.png)
+
 
 Usando as suas credenciais, você garante que os seus dados só estejam disponíveis para a sua aplicação
 
@@ -93,7 +94,7 @@ Usando as suas credenciais, você garante que os seus dados só estejam disponí
 
 ## Notas Fiscais 
 
-![enter image description here](https://lh3.googleusercontent.com/-Z7BoziXRnxg/WfXTD_SnhQI/AAAAAAAAAAc/32XHaN4OjykotEXx3N4i_dxdOg_KCTdFACLcBGAs/s0/IMG_02.png "IMG_02.png")
+![enter image description here](https://raw.githubusercontent.com/maikelwgo/slate/master/source/images/IMG_02.png)
 
  - Este é o único serviço necessário para integrar seus clientes a TRUSTHUB.
  - Através deste serviço é possível enviar de forma muito simples as notas fiscais de seus clientes de onde será efetuado o pré cadastramento dos mesmos e de imediato já disponibilizado acesso para negociação das notas fiscais.
