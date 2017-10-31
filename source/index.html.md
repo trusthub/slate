@@ -105,12 +105,12 @@ Ele deverá ser utilizado para todas as operações que realizar com as APIs, en
 					
 
  - **Vamos explicar um pouco do processo que ocorre quando recebemos as notas**
-	- Assim que recebemos a nota do seu cliente iremos efetuar pré cadastramento e quando o mesmo  acionar a TRUSTHUB a partir do nosso link presentes na sua plataforma iremos direciona-lo diretamente para área de negociações onde poderá serem já simuladas antecipações conforme _[este video](A)_. 
-	- Por isso que é importante já enviar as notas de imediato quando identificar que seu cliente quer antecipar conosco.
-	- Já no primeiro acesso do cliente iremos dar as boas vindas e notifica-lo na nossa plataforma e por email que o mesmo esta utilizando um login provisório e que deve ter sua senha alterada para posteriores acessos.
+	- Assim que recebemos a nota do seu cliente iremos efetuar pré cadastramento e quando o mesmo  acionar a TRUSTHUB a partir do nosso link presentes na sua plataforma iremos direciona-lo diretamente para área de negociações onde poderá serem já simuladas antecipações.
+	- Por isso que é importante já enviar as notas de imediato quando identificar que seu cliente deseja antecipar conosco ou antes mesmo.
+	- Já no primeiro acesso do cliente iremos dar as boas vindas e notifica-lo na nossa plataforma e por email, caso seja identificado,  que o mesmo esta utilizando um login provisório e que deve ter sua senha alterada para posteriores acessos.
 		
 <aside class="success">
-PRONTO !  A partir deste momento todo e qualquer acesso através do nosso link irá direcionar o cliente diretamente para fluxo de  negociações. ;)
+PRONTO !  A partir deste momento todo e qualquer acesso através do nosso link irá direcionar o cliente diretamente para fluxo de  negociações. ;) 
 </aside>
 
 Para tratativas com notas fiscais o recurso a ser utilizado deverá ser :  /invoices   
@@ -126,12 +126,12 @@ Para tratativas com notas fiscais o recurso a ser utilizado deverá ser :  /invo
  - **invoices**  : Lista de chaves de notas fiscais 
 	 - Tipo de Dado : Arrray(Object)
 	 - Modo : Leitura / Escrita
-		 - **file**
-			 - Tipo : Content-Type : text/xml 
-			 - Modo  : Escrita
-		 - **status** : Chave de Identificação da nota 
-			 - Tipo de Dado : String(UUID)
-			 - Modo : Leitura 
+	 -  **file**
+		 -  Tipo : Content-Type : text/xml 
+		 - Modo  : Escrita
+	 - **status** : Chave de Identificação da nota 
+		 - Tipo de Dado : String(UUID)
+		 -  Modo : Leitura 
 		 - **installments**  : Lista de  parcelas da nota fiscal.
 			 - Tipo de Dado : Arrray(Object)
 			 - Modo : Leitura / Escrita
@@ -189,5 +189,4 @@ Cache-Control: private, max-age=0
 Content-Length: 5000
 
 ```
-
 
