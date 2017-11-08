@@ -58,7 +58,7 @@ html, body {
   left: 0;
   bottom: 0;
   width: $nav-width;
-  background-color: $nav-bg;
+  background-color: #29417c;
   font-size: 13px;
   font-weight: bold;
 
@@ -81,7 +81,7 @@ html, body {
     position: relative;
 
     input {
-      background: $nav-bg;
+      background: #FFF;
       border-width: 0 0 1px 0;
       border-color: $search-box-border-color;
       padding: 6px 0 6px 20px;
@@ -96,14 +96,18 @@ html, body {
     &:before {
       position: absolute;
       top: 17px;
-      left: $nav-padding;
-      color: $nav-text;
+      left: 20px;
+      color: #4db04e;
       @extend %icon-search;
     }
   }
 
   .logo {
-    margin-bottom: $logo-margin;
+    margin-bottom: 0px;
+    max-width: 62%;
+    padding-top: 8%;
+    padding-left: 4%;
+    padding-bottom: 6%;
   }
 
   .search-results {
@@ -157,7 +161,8 @@ html, body {
   // This is the currently selected ToC entry
   .toc-link.active {
     background-color: $nav-active-bg;
-    color: $nav-active-text;
+    color: #fff;
+    border-bottom: 5px solid #4db04e;
   }
 
   // this is parent links of the currently selected ToC entry
@@ -175,6 +180,7 @@ html, body {
   .toc-h2 {
     padding-left: $nav-padding + $nav-indent;
     font-size: 12px;
+	background: #4db04e;
   }
 
   .toc-footer {
@@ -356,7 +362,9 @@ html, body {
     margin-top: 2em;
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
-    background-color: #fdfdfd;
+    background-color: #4db04e;
+	color: #FFF;
+    text-transform: uppercase;
   }
 
   h1:first-child, div:first-child + h1 {
