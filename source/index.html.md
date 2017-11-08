@@ -16,7 +16,7 @@ search: true
 
 # Introdução
 
-Bem vindo a  API da TRUSTHUB !
+Bem vindo a  API da TRUSTHUB ! Devvv
 
 Aqui você poderá obter todas as informações que precisa para de conectar nas nossas soluções.
 Você pode ver exemplos na área escura a direita e pode alternar os exemplos entre os tipos de linguagem pré definidas para integração.
