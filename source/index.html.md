@@ -5,8 +5,7 @@ language_tabs:
   - java
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
+  - <a href='https://www.trusthub.com.br'>www.trusthub.com.br</a>
 
 includes:
   - errors
@@ -16,12 +15,14 @@ search: true
 
 # Introdução
 
-Bem vindo a  API da TRUSTHUB ! Devvv
+Bem vindo a  API da TRUSTHUB ! 
 
 Aqui você poderá obter todas as informações que precisa para de conectar nas nossas soluções.
 Você pode ver exemplos na área escura a direita e pode alternar os exemplos entre os tipos de linguagem pré definidas para integração.
 
 Fique a vontade para nos conectar no caso de qualquer dificuldade em [desenvolvimento@trusthub.com.br](desenvolvimento@trusthub.com.br)
+
+Se pretende se tornar um parceiro por favor entrar em contato com [contato@trusthub.com.br](contato@trusthub.com.br)
 
 
 # Conceitos básicos  
