@@ -152,15 +152,6 @@ HttpResponse response = client.execute(request);
 
 ## Consulta de Notas Fiscais por Chave
 
- Este EndPoint retorna informações de notas fiscais de uma determinada chave.
-
-
-### HTTP Request
-
-Consulta de notas fiscais por Chave 
-
-`GET  https://api.hom.trusthub.com.br/invoices/v1/999999`
-
 ```java
 //Requisição
 request.addHeader("charset", charset);
@@ -194,32 +185,20 @@ HttpResponse response = client.execute(request);
 
 ```
 
-
-
-## Consulta de Notas Fiscais Por Parâmetros
-
- Este EndPoint retorna informações de notas fiscais de uma ou mais notas de acordo com parâmetros informados.
+ Este EndPoint retorna informaç
+ ões de notas fiscais de uma determinada chave.
 
 
 ### HTTP Request
 
 Consulta de notas fiscais por Chave 
 
-`GET  https://api.hom.trusthub.com.br/invoices/v1/1/1`
+`GET  https://api.hom.trusthub.com.br/invoices/v1/999999`
 
 
 
-Consulta de notas fiscais por Parametros
 
-`GET  https://api.hom.trusthub.com.br/invoices/v1`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-client_id | Id do cliente das notas em questão. No caso de notas brasileiras informar o CNPJ do cliente.
-expire_date | Data de vencimento da duplicata da nota fiscal.
-status | Status de negociação da duplicata da nota fiscal.
+## Consulta de Notas Fiscais Por Parâmetros
 
 
 ```java
@@ -275,3 +254,27 @@ HttpResponse response = client.execute(request);
 
 
 ```
+ Este EndPoint retorna informações de notas fiscais 
+ de uma ou mais notas de acordo com parâmetros informados.
+
+
+### HTTP Request
+
+Consulta de notas fiscais por Chave 
+
+`GET  https://api.hom.trusthub.com.br/invoices/v1/1/1`
+
+
+
+Consulta de notas fiscais por Parametros
+
+`GET  https://api.hom.trusthub.com.br/invoices/v1`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+client_id | Id do cliente das notas em questão. No caso de notas brasileiras informar o CNPJ do cliente.
+expire_date | Data de vencimento da duplicata da nota fiscal.
+status | Status de negociação da duplicata da nota fiscal.
+
