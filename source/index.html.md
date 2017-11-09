@@ -126,7 +126,7 @@ Para tratativas de envio de invoices deve ser utilizado recurso conforme URL e e
 
 `POST  https://api.hom.trusthub.com.br/invoices/v1/`
 
-> Requisição 
+> Sample Request
 
 ```java
 
@@ -156,7 +156,7 @@ HttpResponse response = client.execute(request);
 
 ## Consulta de Notas Fiscais por Chave
 
-> Requisição 
+> Sample Request
 
 ```java
 HttpClient client = HttpClientBuilder.create().build();
@@ -169,7 +169,7 @@ request.addHeader("Authorization", "Bearer " + "99f0e2361ccbf5dca644e78ba6038316
 HttpResponse response = client.execute(request);
 ```
 
-> Retorno
+> Sample Response
 
 ```java
 {
@@ -208,7 +208,7 @@ Consulta de notas fiscais por Chave
 
 ## Consulta de Notas Fiscais Por Parâmetros
 
-> Requisição 
+> Sample Request
 
 ```java
 //Requisição
@@ -222,7 +222,7 @@ request.addHeader("Authorization", "Bearer " + "99f0e2361ccbf5dca644e78ba6038316
 HttpResponse response = client.execute(request);
 ```
 
-> Retorno
+> Sample Response
 
 ```java
 [
