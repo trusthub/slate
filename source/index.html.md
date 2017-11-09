@@ -131,7 +131,6 @@ Para tratativas de envio de invoices deve ser utilizado recurso conforme URL e e
 
 HttpClient client = HttpClientBuilder.create().build();
 HttpPost request = new HttpPost(url);
-
 File arquivo = new File("c:/srm-config/queue.properties");
 multipartEntity.addPart("file_name", new FileBody(arquivo, contentType, arquivo.getName()));
 multipartEntity.setContentType(contentType);
@@ -149,11 +148,18 @@ HttpResponse response = client.execute(request);
 
 ```
 
+ Através deste recurso é possível o envio das notas fiscais de clientes. 
+
+<aside class="warning">Importante salientar que os envios de arquivos de notas devem ser compactados através de padrão GZIP de forma a otimizar o envio de informações.
+</aside>		
+
 
 ## Consulta de Notas Fiscais por Chave
 
 ```java
 //Requisição
+HttpClient client = HttpClientBuilder.create().build();
+HttpPost request = new HttpPost(url);
 request.addHeader("charset", charset);
 request.addHeader("Content-Type", contentType.getMimeType() + ";boundary=" + boundary + "; charset=" + charset);
 request.addHeader("Accept", contentType.getMimeType());
@@ -185,8 +191,7 @@ HttpResponse response = client.execute(request);
 
 ```
 
- Este EndPoint retorna informaç
- ões de notas fiscais de uma determinada chave.
+ Este recurso retorna informações de notas fiscais de uma determinada chave.
 
 
 ### HTTP Request
@@ -202,8 +207,9 @@ Consulta de notas fiscais por Chave
 
 
 ```java
-// Requisicao 
 //Requisição
+HttpClient client = HttpClientBuilder.create().build();
+HttpPost request = new HttpPost(url);
 request.addHeader("charset", charset);
 request.addHeader("Content-Type", contentType.getMimeType() + ";boundary=" + boundary + "; charset=" + charset);
 request.addHeader("Accept", contentType.getMimeType());
