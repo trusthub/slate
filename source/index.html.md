@@ -126,29 +126,30 @@ Para tratativas de envio de invoices deve ser utilizado recurso conforme URL e e
 
 * POST  https://api.hom.trusthub.com.br/invoices/v1/
 
+
+```java
 **Requisição**
 
-```java
 HttpClient client = HttpClientBuilder.create().build();
-		HttpPost request = new HttpPost(url);
+HttpPost request = new HttpPost(url);
 
-	File arquivo = new File("c:/srm-config/queue.properties");
-		multipartEntity.addPart("file_name", new FileBody(arquivo, contentType, arquivo.getName()));
-		multipartEntity.setContentType(contentType);
-      multipartEntity.setCharset(Charset.forName(charset));
-		multipartEntity.setBoundary(boundary);
-		request.setEntity(multipartEntity.build());
-		request.addHeader("charset", charset);
-		request.addHeader("Content-Type", contentType.getMimeType() + ";boundary=" + boundary + "; charset=" + charset);
-		request.addHeader("Accept", contentType.getMimeType());
-		request.addHeader("enctype", contentType.getMimeType());
-		request.addHeader("Authorization", "Bearer " + "99f0e2361ccbf5dca644e78ba6038316");
-		HttpResponse response = client.execute(request);
-```
+File arquivo = new File("c:/srm-config/queue.properties");
+multipartEntity.addPart("file_name", new FileBody(arquivo, contentType, arquivo.getName()));
+multipartEntity.setContentType(contentType);
+multipartEntity.setCharset(Charset.forName(charset));
+multipartEntity.setBoundary(boundary);
+request.setEntity(multipartEntity.build());
+request.addHeader("charset", charset);
+request.addHeader("Content-Type", contentType.getMimeType() + ";boundary=" + boundary + "; charset=" + charset);
+request.addHeader("Accept", contentType.getMimeType());
+request.addHeader("enctype", contentType.getMimeType());
+request.addHeader("Authorization", "Bearer " + "99f0e2361ccbf5dca644e78ba6038316");
+HttpResponse response = client.execute(request);
+
 **Retorno**
-```java
 
 ```
+
 **JSON Padrão**
 
  - **invoices**  : Lista de chaves de notas fiscais 
