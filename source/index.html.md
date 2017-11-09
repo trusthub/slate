@@ -177,8 +177,6 @@ HttpClient client = HttpClientBuilder.create().build();
 					 - Tipo de Dado : String(UUID)
 					 - Modo : Leitura 
 
-
-
 ## Consulta de Notas Fiscais 
 
  - GET  https://api.hom.trusthub.com.br/invoices/v1/999999
