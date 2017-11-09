@@ -20,9 +20,9 @@ Bem vindo a  API da **TRUSTHUB** !
 Aqui você poderá obter todas as informações que precisa para de conectar nas nossas soluções.
 Você pode ver exemplos na área escura a direita e pode alternar os exemplos entre os tipos de linguagem pré definidas para integração.
 
-Fique a vontade para nos contactar no tenha qualquer dificuldade través do [desenvolvimento@trusthub.com.br](desenvolvimento@trusthub.com.br).
+Fique a vontade para nos contatar caso tenha qualquer dificuldade através do [desenvolvimento@trusthub.com.br](desenvolvimento@trusthub.com.br).
 
-Se pretende se tornar um parceiro por favor entrar em contato com [contato@trusthub.com.br](contato@trusthub.com.br) para mais informações.
+Se pretende se tornar um parceiro por favor e acessar nosso ambiente de produção favor, entrar em contato com [contato@trusthub.com.br](contato@trusthub.com.br) para mais informações.
 
 
 # Conceitos básicos  
@@ -42,7 +42,7 @@ Se pretende se tornar um parceiro por favor entrar em contato com [contato@trust
    	 - PUT: para editar recursos.
    	 - DELETE: para eliminar recursos.
   
-**URL base da API**: A URL base da API, a partir da qual pode acessar todos os recursos disponíveis, é a seguinte:  https://api.trusthub.com.br/integration
+**URL base da API**: A URL base da API, a partir da qual pode acessar todos os recursos disponíveis, é a seguinte:  [https://api.trusthub.com.br/integration](https://api.trusthub.com.br/integration)
 	
 **Dados em formato JSON** : Os dados são enviados e recebidos em formato JSON (JavaScript Object Notation), que é um formato baseado em texto, simples e facilmente utilizado em diferentes plataformas e linguagens
 
@@ -52,12 +52,12 @@ Se pretende se tornar um parceiro por favor entrar em contato com [contato@trust
 
 **Gamas de IP para comunicacões**: Quando for feito envio de informação desde a plataforma de TRUSTHUB a os seus servidores (por exemplo caso de Webhooks), esse envio será feito desde alguma das IPs compreendidas nas seguintes gamas:
 
-	   189.125.22.110  
+	 189.125.22.110  
 
 **Requisitos** : Para utilizar API é necessário que se tenha familiaridade conceitos básicos utilizados no desenvolvimento de web services REST. É possível desenvolver a integração com as diferentes linguagens de programação web disponíveis  atualmente.
-			Além do conhecimento técnico exigido, conhecer os conceitos básicos de negociações utilziadas na TRUSTHUB como "Nota Fiscal" ,  "XML" . O artigo abaixo sobre as entidades ásicas ajudará você a entender quais são e como se relacionam.
+			Além do conhecimento técnico exigido, conhecer os conceitos básicos de negociações utilizados na TRUSTHUB como "Nota Fiscal" ,  "XML" , "Duplicata", "Antecipação de recebíveis". 
 			
-**Padrões** Nossa API segue os padrões de design e diretrizes o PAYPAL e especificação do protocolo HTTPS conforme referências abaixo.
+**Padrões** Nossa API segue os padrões de design e diretrizes utilizados pelo PAYPAL e especificação do protocolo HTTPS conforme referências abaixo.
 
  - [https://github.com/paypal/api-standards/blob/master/patterns.md](https://github.com/paypal/api-standards/blob/master/patterns.md)
  - [https://www.w3.org/Protocols/rfc2616/rfc2616.html](https://www.w3.org/Protocols/rfc2616/rfc2616.html)
@@ -66,7 +66,7 @@ Se pretende se tornar um parceiro por favor entrar em contato com [contato@trust
 
 	https://api-hom.trusthub.com.br/integration/invoices/v1/
 
-Neste ambiente constam todos serviços que serão disponibilizados no ambiente de produção de homologação somente sendo restringido o volume de transações. Para este ambiente deve ser utilizado TOKEN publico abaixo:
+Neste ambiente de homologação constam todos serviços que serão disponibilizados em produção, somente sendo restringido o volume de transações. Para este ambiente deve ser utilizado TOKEN publico de homologações abaixo. 
 
 	99f0e2361ccbf5dca644e78ba6038316 
 
@@ -86,8 +86,8 @@ Usando as suas credenciais, você garante que os seus dados só estejam disponí
 
 **Como funciona?**
 
- - Para  credenciais no ambiente de produção entre em contato através da nossa área comercial [comercial@srmasset.com.br](comercial@srmasset.com.br) para cadastramento de sua plataforma  e receba o seu token de acesso.  Use o seu access_token para operar com as APIs.
-Ele deverá ser utilizado para todas as operações que realizar com as APIs, enviando com atributo do Header da solicitação.
+ - Para  credenciais no ambiente de produção entre em contato através da nossa área comercial [contato@srmasset.com.br](contato@srmasset.com.br) para cadastramento de sua plataforma  e receba o seu token de acesso.  Use o seu access_token para operar com nossas API´s.
+Ele deverá ser utilizado para todas as operações a serem realizadas, enviando com atributo do Header da solicitação.
 		
  - **Referências** 
 	 - Referência Outh2.0  [https://oauth.net/2/](https://oauth.net/2/)
@@ -103,18 +103,19 @@ Ele deverá ser utilizado para todas as operações que realizar com as APIs, en
 
  - Este é o único serviço necessário para integrar seus clientes para antecipação na TRUSTHUB.
  - Através deste serviço é possível enviar de forma muito simples as notas fiscais de seus clientes de onde será efetuado o pré cadastramento dos mesmos e de imediato já disponibilizando acesso para negociação das notas fiscais.
- - Após o envio das notas basta disponibilizar os links de acesso na nossa plataforma conforme conforme scripts que serão encaminhados pós cadastramento para que o mesmo possa negociar as notas com a TRUSTHUB de forma simples, ágil e segura.
+ - Após o envio das notas basta disponibilizar os links de acesso na nossa plataforma conforme scripts que serão encaminhados pós cadastramento para que o mesmo possa negociar as notas com a TRUSTHUB de forma simples, ágil e segura.
  - Dependendo do formato mais adequado para sua solução e o relacionamento que tem que seu cliente você pode utilizar os dois processos abaixo para integração 
 	 - Enviar as notas para TRUTHUB antecipadamente para todos os clientes que estão na sua plataforma agilizando o processo de abertura de conta do mesmo.
 	 - Encaminhar as notas no momento do acionamento do link. Neste caso o usuário será direcionado porém terá que aguardar o carregamento das notas.
 
-<aside class="warning">Para uma melhor experiência do usuário e o mesmo já ser direcionado logado na nossa plataforma é importante na segunda opção que seja enviada pelo menos uma nota fiscal do mesmo de imediato. Caso contrário teremos que solicitar o cadastramento do mesmo o que não é muito legal !
+<aside class="warning">Para uma melhor experiência do usuário e o mesmo já ser direcionado logado na nossa plataforma é importante na segunda opção que seja enviada pelo menos uma nota fiscal do mesmo de imediato. Caso contrário teremos que solicitar o cadastramento do mesmo o que não é muito legal ;)
+E lembre-se que só serão aceitas notas com vencimento superior a data atual.
 </aside>			
-	Após este primeiro aceite do cliente o deve ser mantido o envio rotineiro das demais notas e notas novas de seus clientes para que o mesmo as tenha para negociação na nossa plataforma.
+	Após este primeiro aceite do cliente deve ser mantido o envio rotineiro das demais notas e notas novas para que o mesmo as tenha para negociação na nossa plataforma.
 					
 
  - **Vamos explicar um pouco do processo que ocorre quando recebemos as notas**
-	- Assim que recebemos a nota do seu cliente iremos efetuar pré cadastramento e quando o mesmo  acionar a TRUSTHUB a partir do nosso link presentes na sua plataforma iremos direciona-lo diretamente para área de negociações onde poderá serem já simuladas antecipações.
+	- Assim que recebemos a nota do seu cliente iremos efetuar pré cadastramento e quando o mesmo  acionar a nossa plataforma a partir do link presentes na sua plataforma iremos direciona-lo diretamente para área de negociações onde poderá serem já simuladas antecipações.
 	- Por isso que é importante já enviar as notas de imediato quando identificar que seu cliente deseja antecipar conosco ou antes mesmo.
 	- Já no primeiro acesso do cliente iremos dar as boas vindas e notifica-lo na nossa plataforma e por e-mail que o mesmo esta utilizando um login provisório e que deve ter sua senha alterada para posteriores acessos.
 		
@@ -132,8 +133,16 @@ Para tratativas de envio de invoices deve ser utilizado recurso conforme URL e e
 
 HttpClient client = HttpClientBuilder.create().build();
 HttpPost request = new HttpPost(url);
-File arquivo = new File("c:/srm-config/queue.properties");
-multipartEntity.addPart("file_name", new FileBody(arquivo, contentType, arquivo.getName()));
+String charset = "UTF-8";
+ContentType contentType = ContentType.MULTIPART_FORM_DATA.withCharset(Charset.forName(charset));
+String boundary = UUID.randomUUID().toString();
+MultipartEntityBuilder multipartEntity = MultipartEntityBuilder.create();
+ByteArrayOutputStream baos = new ByteArrayOutputStream();
+ZipOutputStream zos = new ZipOutputStream(baos);
+ZipEntry ze = new ZipEntry("c:/temp/teste_api/Fatura_OK.xml");
+zos.putNextEntry(ze);
+zos.closeEntry();
+multipartEntity.addBinaryBody("teste.zip", baos.toByteArray(), contentType, "teste.zip");
 multipartEntity.setContentType(contentType);
 multipartEntity.setCharset(Charset.forName(charset));
 multipartEntity.setBoundary(boundary);
@@ -144,6 +153,7 @@ request.addHeader("Accept", contentType.getMimeType());
 request.addHeader("enctype", contentType.getMimeType());
 request.addHeader("Authorization", "Bearer " + "99f0e2361ccbf5dca644e78ba6038316");
 HttpResponse response = client.execute(request);
+
 
 
 ```
@@ -194,7 +204,7 @@ HttpResponse response = client.execute(request);
 
 ```
 
- Este recurso retorna informações de notas fiscais de uma determinada chave.
+ Através deste recurso é possível retornar informações de notas fiscais de uma determinada chave.
 
 
 ### HTTP Request
@@ -267,8 +277,8 @@ HttpResponse response = client.execute(request);
 
 
 ```
- Este EndPoint retorna informações de notas fiscais 
- de uma ou mais notas de acordo com parâmetros informados.
+ Através deste recurso é possível retornar informações de uma ou mais notas de acordo com parâmetros informados.
+ Importante salientar que este recurso trabalha com paginação no formato de *Path Parameter*  onde o primeiro parâmetro é o inicio do registro da paginação e o segundo o fim do registro da paginação desejada.
 
 
 ### HTTP Request
