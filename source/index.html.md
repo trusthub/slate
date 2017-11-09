@@ -34,7 +34,7 @@ Se pretende se tornar um parceiro por favor entrar em contato com [contato@trust
  - Stateless: a API não controla os estados, toda informação necessária é enviada pelo cliente.
  - URLs : cada recurso tem a sua própria e única URL, seguindo uma
    hierarquia lógica. Por exemplo: URL de notas fiscais:
-   [https://api.trusthub.com.br/invoices/](https://api.trusthub.com.br/invoices/) 
+   [https://api.trusthub.com.br/integration/invoices/](https://api.trusthub.com.br/integration/invoices/) 
  - Métodos HTTP: todas as operações são realizadas usando os métodos HTTP corretos para cada
    caso, por exemplo:
    	 - GET: para consultar e ler recursos.
@@ -42,7 +42,7 @@ Se pretende se tornar um parceiro por favor entrar em contato com [contato@trust
    	 - PUT: para editar recursos.
    	 - DELETE: para eliminar recursos.
   
-**URL base da API**: A URL base da API, a partir da qual pode acessar todos os recursos disponíveis, é a seguinte:  https://api.trusthub.com.br
+**URL base da API**: A URL base da API, a partir da qual pode acessar todos os recursos disponíveis, é a seguinte:  https://api.trusthub.com.br/integration
 	
 **Dados em formato JSON** : Os dados são enviados e recebidos em formato JSON (JavaScript Object Notation), que é um formato baseado em texto, simples e facilmente utilizado em diferentes plataformas e linguagens
 
@@ -59,8 +59,8 @@ Se pretende se tornar um parceiro por favor entrar em contato com [contato@trust
 			
 **Padrões** Nossa API segue os padrões de design e diretrizes o PAYPAL e especificação do protocolo HTTPS conforme referências abaixo.
 
- - https://github.com/paypal/api-standards/blob/master/patterns.md
- - https://www.w3.org/Protocols/rfc2616/rfc2616.html
+ - [https://github.com/paypal/api-standards/blob/master/patterns.md](https://github.com/paypal/api-standards/blob/master/patterns.md)
+ - [https://www.w3.org/Protocols/rfc2616/rfc2616.html](https://www.w3.org/Protocols/rfc2616/rfc2616.html)
 
 **Homlogações** Para ambiente de homologação use o sufixo "hom" na URL base conforme segue:   
 
