@@ -124,7 +124,7 @@ PRONTO !  A partir deste momento todo e qualquer acesso através do nosso link i
 
 Para tratativas de envio de invoices deve ser utilizado recurso conforme URL e exemplos como segue:	
 
-`POST  https://api.hom.trusthub.com.br/invoices/v1/`
+`POST  https://api-hom.trusthub.com.br/integration/invoices/v1/`
 
 > Sample Request
 
@@ -201,7 +201,7 @@ HttpResponse response = client.execute(request);
 
 Consulta de notas fiscais por Chave 
 
-`GET  https://api.hom.trusthub.com.br/invoices/v1/999999`
+`GET  https://apihom.trusthub.com.br/integration/invoices/v1/999999`
 
 
 
@@ -276,13 +276,13 @@ HttpResponse response = client.execute(request);
 
 Consulta de notas fiscais por Chave 
 
-`GET  https://api.hom.trusthub.com.br/invoices/v1/1/1`
+`GET  https://api-hom.trusthub.com.br/integration/invoices/v1/1/1`
 
 
 
 Consulta de notas fiscais por Parametros
 
-`GET  https://api.hom.trusthub.com.br/invoices/v1`
+`GET  https://api-hom.trusthub.com.br/integration/invoices/v1`
 
 ### URL Parameters
 
