@@ -17,7 +17,7 @@ search: true
 
 Bem vindo a  API da **TRUSTHUB** ! 
 
-Aqui você poderá obter todas as informações que precisa para de conectar nas nossas soluções.
+Aqui você poderá obter todas as informações que precisa para se conectar nas nossas soluções.
 Você pode ver exemplos na área escura a direita e pode alternar os exemplos entre os tipos de linguagem pré definidas para integração.
 
 Fique a vontade para nos contatar caso tenha qualquer dificuldade através do [desenvolvimento@trusthub.com.br](desenvolvimento@trusthub.com.br).
@@ -29,14 +29,13 @@ Se pretende se tornar um parceiro e acessar nosso ambiente de produção favor, 
 
 **API**  : API é o acrônimo de application programming interface,  especificação de interface para integração entre sistemas. Tem como objetivo oferecer a possibilidade de estender funcionalidades básicas da plataforma, de forma a integrar com nossas soluções.
 			
-**Arquitetura REST** Utilizamos uma arquitetura REST, baseada 100% nos padrões HTTP
+**Arquitetura REST** Utilizamos uma arquitetura REST, baseada 100% nos padrões HTTP.
 
  - Stateless: a API não controla os estados, toda informação necessária é enviada pelo cliente.
  - URLs : cada recurso tem a sua própria e única URL, seguindo uma
    hierarquia lógica. Por exemplo: URL de notas fiscais:
    [https://api.trusthub.com.br/integration/invoices/](https://api.trusthub.com.br/integration/invoices/) 
- - Métodos HTTP: todas as operações são realizadas usando os métodos HTTP corretos para cada
-   caso, por exemplo:
+ - Métodos HTTP: todas as operações são realizadas usando os métodos HTTP de acordo com cada intuito, por exemplo:
    	 - GET: para consultar e ler recursos.
    	 - POST: para criar recursos.
    	 - PUT: para editar recursos.
@@ -50,12 +49,12 @@ Se pretende se tornar um parceiro e acessar nosso ambiente de produção favor, 
 
 **Formato da data e hora ISO-8601** : Todos os campos de data/hora utilizam a norma ISO-8601. Exemplo: 2017-04-24T16:37:22.032-04:00
 
-**Gamas de IP para comunicacões**: Quando for feito envio de informação a partir da plataforma de TRUSTHUB a os seus servidores (por exemplo caso de Webhooks), esse envio será feito desde alguma das IPs compreendidas nas seguintes gamas:
+**Gamas de IP para comunicacões**: Quando for feito envio de informação a partir da plataforma de TRUSTHUB a os seus servidores (por exemplo caso de Webhooks), esse envio será feito desde alguma dos IPs compreendidas nas seguintes gamas:
 
 	 189.125.22.110  
 
 **Requisitos** : Para utilizar API é necessário que se tenha familiaridade conceitos básicos utilizados no desenvolvimento de web services REST. É possível desenvolver a integração com as diferentes linguagens de programação web disponíveis  atualmente.
-			Além do conhecimento técnico exigido, conhecer os conceitos básicos de negociações utilizados na TRUSTHUB como "Nota Fiscal" ,  "XML" , "Duplicata", "Antecipação de recebíveis". 
+			Além do conhecimento técnico exigido, é útil estar familiarizado com conceitos básicos de negociações utilizados na TRUSTHUB como "Nota Fiscal" ,  "XML" , "Duplicata", "Antecipação de recebíveis". 
 			
 **Padrões** Nossa API segue os padrões de design e diretrizes utilizados pelo PAYPAL e especificação do protocolo HTTPS conforme referências abaixo.
 
@@ -87,7 +86,7 @@ Usando as suas credenciais, você garante que os seus dados só estejam disponí
 **Como funciona?**
 
  - Para  credenciais no ambiente de produção entre em contato através da nossa área comercial [contato@srmasset.com.br](contato@srmasset.com.br) para cadastramento de sua plataforma  e receba o seu token de acesso.  Use o seu access_token para operar com nossas API´s.
-Ele deverá ser utilizado para todas as operações a serem realizadas, enviando com atributo do Header da solicitação.
+Ele deverá ser utilizado para todas as operações a serem realizadas, enviando com atributo do Header da solicitação conforme exemplo.
 		
  - **Referências** 
 	 - Referência Outh2.0  [https://oauth.net/2/](https://oauth.net/2/)
@@ -115,8 +114,8 @@ E lembre-se que só serão aceitas notas com vencimento superior a data atual.
 					
 
  - **Vamos explicar um pouco do processo que ocorre quando recebemos as notas**
-	- Assim que recebemos a nota do seu cliente iremos efetuar pré cadastramento e quando o mesmo  acionar a nossa plataforma a partir do link presentes na sua plataforma iremos direciona-lo diretamente para área de negociações onde poderá serem já simuladas antecipações.
-	- Por isso que é importante já enviar as notas de imediato quando identificar que seu cliente deseja antecipar conosco ou antes mesmo.
+	- Assim que recebemos a nota do seu cliente iremos efetuar pré cadastramento e quando o mesmo  acionar a nossa plataforma a partir do link presentes na sua plataforma iremos direciona-lo diretamente para área de negociações onde já poderá simular as antecipações.
+	- Por isso é importante já enviar as notas de imediato quando identificar que seu cliente deseja antecipar conosco ou antes mesmo.
 	- Já no primeiro acesso do cliente iremos dar as boas vindas e notifica-lo na nossa plataforma e por e-mail que o mesmo esta utilizando um login provisório e que deve ter sua senha alterada para posteriores acessos.
 		
 <aside class="success">
