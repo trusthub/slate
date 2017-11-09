@@ -124,11 +124,10 @@ PRONTO !  A partir deste momento todo e qualquer acesso através do nosso link i
 
 Para tratativas de envio de invoices deve ser utilizado recurso conforme URL e exemplos como segue:	
 
-* POST  https://api.hom.trusthub.com.br/invoices/v1/
-
+`POST  https://api.hom.trusthub.com.br/invoices/v1/`
 
 ```java
-**Requisição**
+//Requisição
 
 HttpClient client = HttpClientBuilder.create().build();
 HttpPost request = new HttpPost(url);
@@ -146,36 +145,10 @@ request.addHeader("enctype", contentType.getMimeType());
 request.addHeader("Authorization", "Bearer " + "99f0e2361ccbf5dca644e78ba6038316");
 HttpResponse response = client.execute(request);
 
-**Retorno**
+//Retorno
 
 ```
 
-**JSON Padrão**
-
- - **invoices**  : Lista de chaves de notas fiscais 
-	 - Tipo de Dado : Arrray(Object)
-	 - Modo : Leitura / Escrita
-	 -  **file**
-		 - Tipo : Content-Type : text/xml 
-		 - Modo  : Escrita
-		 - **status** : Status de Identificação da nota 
-			 - Tipo de Dado : String(UUID)
-			 - Modo : Leitura 
-		 - **installments**  : Lista de  parcelas da nota fiscal.
-			 - Tipo de Dado : Arrray(Object)
-			 - Modo : Leitura / Escrita
-				 - **document** : Numero do Documento da Parcela
-					 - Tipo de Dado : String(UUID)
-					 - Modo : Leitura 
-				 - **maturity_date** : Data de vencimento da parcela
-					 - Tipo de Dado : Date(ISO_8601)
-					 - Modo : Leitura 
-				 - **amount**: Valor da parcela 
-					 - Tipo de Dado : String(UUID)
-					 - Modo : Leitura
-				 - **status**: Status da parcela
-					 - Tipo de Dado : String(UUID)
-					 - Modo : Leitura 
 
 ## Consulta de Notas Fiscais 
 
@@ -188,6 +161,39 @@ Consulta de notas fiscais por Chave
 
 `GET  https://api.hom.trusthub.com.br/invoices/v1/999999`
 
+```java
+//Requisição
+request.addHeader("charset", charset);
+request.addHeader("Content-Type", contentType.getMimeType() + ";boundary=" + boundary + "; charset=" + charset);
+request.addHeader("Accept", contentType.getMimeType());
+request.addHeader("enctype", contentType.getMimeType());
+request.addHeader("Authorization", "Bearer " + "99f0e2361ccbf5dca644e78ba6038316");
+HttpResponse response = client.execute(request);
+
+
+//Retorno
+{
+     "client_key" : "12345678909",
+     "key" : "100-123",
+     "status" : "PROCCESSED",
+     "installments" : [
+          {
+                "document" : "100-123/1",
+                "maturity_date" : "20171030103500",
+                "amount" : "100.40",
+                "status" : ""
+          },
+          {
+                "document" : "100-123/2",
+                "maturity_date" : "20171030113500",
+                "amount" : "100.40",
+                "status" : ""
+          }
+     ]
+}
+
+```
+
 Consulta de notas fiscais por Parametros
 
 `GET  https://api.hom.trusthub.com.br/invoices/v1`
@@ -197,3 +203,60 @@ Consulta de notas fiscais por Parametros
 Parameter | Description
 --------- | -----------
 client_id | Id do cliente das notas em questão. No caso de notas brasileiras informar o CNPJ do cliente.
+expire_date | Data de vencimento da duplicata da nota fiscal.
+status | Status de negociação da duplicata da nota fiscal.
+
+
+```java
+// Requisicao 
+//Requisição
+request.addHeader("charset", charset);
+request.addHeader("Content-Type", contentType.getMimeType() + ";boundary=" + boundary + "; charset=" + charset);
+request.addHeader("Accept", contentType.getMimeType());
+request.addHeader("enctype", contentType.getMimeType());
+request.addHeader("Authorization", "Bearer " + "99f0e2361ccbf5dca644e78ba6038316");
+HttpResponse response = client.execute(request);
+// Retorno
+[
+     {
+          "client_key" : "12345678909",
+          "key" : "100-123",
+          "status" : "PROCCESSED",
+          "installments" : [
+                {
+                     "document" : "100-123/1",
+                     "maturity_date" : "20171030103500",
+                     "amount" : "100.40",
+                     "status" : ""
+                },
+                {
+                     "document" : "100-123/2",
+                     "maturity_date" : "20171030113500",
+                     "amount" : "100.40",
+                     "status" : ""
+                }
+          ]
+     },
+     {
+          "client_key" : "12345678909",
+          "key" : "215-321",
+          "status" : "PROCCESSED",
+          "installments" : [
+                {
+                     "document" : "215-321/1",
+                     "maturity_date" : "20171030103500",
+                     "amount" : "100.40",
+                     "status" : ""
+                },
+                {
+                     "document" : "215-321/2",
+                     "maturity_date" : "20171030113500",
+                     "amount" : "100.40",
+                     "status" : ""
+                }
+          ]
+     }
+]
+
+
+```
