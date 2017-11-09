@@ -20,9 +20,9 @@ Bem vindo a  API da **TRUSTHUB** !
 Aqui você poderá obter todas as informações que precisa para se conectar nas nossas soluções.
 Você pode ver exemplos na área escura a direita e pode alternar os exemplos entre os tipos de linguagem pré definidas para integração.
 
-Fique a vontade para nos contatar caso tenha qualquer dificuldade através do **desenvolvimento@trusthub.com.br**.
+Fique a vontade para nos contatar caso tenha qualquer dificuldade através do *desenvolvimento@trusthub.com.br*.
 
-Se pretende se tornar um parceiro e acessar nosso ambiente de produção favor, entrar em contato com **contato@trusthub.com.br** para mais informações.
+Se pretende se tornar um parceiro e acessar nosso ambiente de produção favor, entrar em contato com *contato@trusthub.com.br* para mais informações.
 
 
 # Conceitos básicos  
@@ -63,7 +63,7 @@ Se pretende se tornar um parceiro e acessar nosso ambiente de produção favor, 
 
 **Homlogações** Para ambiente de homologação use o sufixo "hom" na URL base conforme segue:   
 
-	https://api-hom.trusthub.com.br/integration/invoices/v1/
+ - [https://api-hom.trusthub.com.br/integration/invoices/v1/](https://api-hom.trusthub.com.br/integration/invoices/v1/)
 
 Neste ambiente de homologação constam todos serviços que serão disponibilizados em produção, somente sendo restringido o volume de transações. Para este ambiente deve ser utilizado TOKEN publico de homologações abaixo. 
 
@@ -85,7 +85,7 @@ Usando as suas credenciais, você garante que os seus dados só estejam disponí
 
 **Como funciona?**
 
- - Para  credenciais no ambiente de produção entre em contato através da nossa área comercial **contato@srmasset.com.br** para cadastramento de sua plataforma  e receba o seu token de acesso.  Use o seu access_token para operar com nossas API´s.
+ - Para  credenciais no ambiente de produção entre em contato através da nossa área comercial *contato@srmasset.com.br* para cadastramento de sua plataforma  e receba o seu token de acesso.  Use o seu access_token para operar com nossas API´s.
 Ele deverá ser utilizado para todas as operações a serem realizadas, enviando com atributo do Header da solicitação conforme exemplo.
 		
  - **Referências** 
