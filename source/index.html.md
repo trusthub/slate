@@ -65,7 +65,7 @@ Se pretende se tornar um parceiro e acessar nosso ambiente de produção favor, 
 
  - [https://api-hom.trusthub.com.br/integration/invoices/v1/](https://api-hom.trusthub.com.br/integration/invoices/v1/)
 
-Neste ambiente de homologação constam todos serviços que serão disponibilizados em produção, somente sendo restringido o volume de transações. Para este ambiente deve ser utilizado TOKEN publico de homologações abaixo. 
+Neste ambiente de homologação constam todos serviços que serão disponibilizados em produção, somente sendo restringido o volume de transações. Para este ambiente deve ser utilizado TOKEN público de homologações abaixo. 
 
 	99f0e2361ccbf5dca644e78ba6038316 
 
