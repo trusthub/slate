@@ -179,33 +179,21 @@ HttpResponse response = client.execute(request);
 
 ## Consulta de Notas Fiscais 
 
- - GET  https://api.hom.trusthub.com.br/invoices/v1/999999
- - GET https://api.hom.trusthub.com.br/invoices/v1/1/1?client_id=11212
+ Este EndPoint retorna informações de notas fiscais.
 
 
+### HTTP Request
 
-> Envio JSON conforme estrutura abaixo:
-```json
-POST /invoices
-Host: XXX
-Content-Type: multipart/mixed; boundary=--invoice_file
-Authorization: Bearer oauth2_token
-Content-Length: total_content_length
-Accept-Encoding: gzip, deflate
+Consulta de notas fiscais por Chave 
 
+`GET  https://api.hom.trusthub.com.br/invoices/v1/999999`
 
+Consulta de notas fiscais por Parametros
 
-```
-> Envio JSON conforme estrutura abaixo:
+`GET  https://api.hom.trusthub.com.br/invoices/v1`
 
-```json
-HTTP/1.1 200 OK
-Content-Type: multipart/mixed; boundary=batch_111112-E=_XX11QQQYYY=
-Date: Tue, 27 Jun 2017 18:56:00 GMT
-Expires: Tue, 27 Jun 2017 18:56:00 GMT
-Cache-Control: private, max-age=0
-Content-Length: 5000
+### URL Parameters
 
-```
-
-
+Parameter | Description
+--------- | -----------
+client_id | Id do cliente das notas em questão. No caso de notas brasileiras informar o CNPJ do cliente.
