@@ -22,7 +22,7 @@ Você pode ver exemplos na área escura a direita e pode alternar os exemplos en
 
 Fique a vontade para nos contatar caso tenha qualquer dificuldade através do [desenvolvimento@trusthub.com.br](desenvolvimento@trusthub.com.br).
 
-Se pretende se tornar um parceiro por favor e acessar nosso ambiente de produção favor, entrar em contato com [contato@trusthub.com.br](contato@trusthub.com.br) para mais informações.
+Se pretende se tornar um parceiro e acessar nosso ambiente de produção favor, entrar em contato com [contato@trusthub.com.br](contato@trusthub.com.br) para mais informações.
 
 
 # Conceitos básicos  
@@ -42,7 +42,7 @@ Se pretende se tornar um parceiro por favor e acessar nosso ambiente de produç�
    	 - PUT: para editar recursos.
    	 - DELETE: para eliminar recursos.
   
-**URL base da API**: A URL base da API, a partir da qual pode acessar todos os recursos disponíveis, é a seguinte:  [https://api.trusthub.com.br/integration](https://api.trusthub.com.br/integration)
+**URL base da API**: A URL base da API, a partir da qual pode acessar todos os recursos disponíveis em produção, é a seguinte:  [https://api.trusthub.com.br/integration](https://api.trusthub.com.br/integration)
 	
 **Dados em formato JSON** : Os dados são enviados e recebidos em formato JSON (JavaScript Object Notation), que é um formato baseado em texto, simples e facilmente utilizado em diferentes plataformas e linguagens
 
@@ -50,7 +50,7 @@ Se pretende se tornar um parceiro por favor e acessar nosso ambiente de produç�
 
 **Formato da data e hora ISO-8601** : Todos os campos de data/hora utilizam a norma ISO-8601. Exemplo: 2017-04-24T16:37:22.032-04:00
 
-**Gamas de IP para comunicacões**: Quando for feito envio de informação desde a plataforma de TRUSTHUB a os seus servidores (por exemplo caso de Webhooks), esse envio será feito desde alguma das IPs compreendidas nas seguintes gamas:
+**Gamas de IP para comunicacões**: Quando for feito envio de informação a partir da plataforma de TRUSTHUB a os seus servidores (por exemplo caso de Webhooks), esse envio será feito desde alguma das IPs compreendidas nas seguintes gamas:
 
 	 189.125.22.110  
 
