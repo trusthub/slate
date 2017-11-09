@@ -64,7 +64,7 @@ Se pretende se tornar um parceiro por favor entrar em contato com [contato@trust
 
 **Homlogações** Para ambiente de homologação use o sufixo "hom" na URL base conforme segue:   
 
-	https://api.hom.trusthub.com.br/invoices/v1/
+	https://api-hom.trusthub.com.br/integration/invoices/v1/
 
 Neste ambiente constam todos serviços que serão disponibilizados no ambiente de produção de homologação somente sendo restringido o volume de transações. Para este ambiente deve ser utilizado TOKEN publico abaixo:
 
