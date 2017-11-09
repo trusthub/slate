@@ -122,12 +122,11 @@ Ele deverá ser utilizado para todas as operações que realizar com as APIs, en
 PRONTO !  A partir deste momento todo e qualquer acesso através do nosso link irá direcionar o cliente diretamente para fluxo de  negociações. ;) 
 </aside>
 
-Para tratativas com notas fiscais o recurso a ser utilizado deverá ser :  /invoices   
+Para tratativas de envio de invoices deve ser utilizado recurso conforme URL e exemplos como segue:	
 
-						
-**trusthub/invoices   :**  Use este recurso para ações relacionadas e envio e busca dos dados de de notas fiscais. Como este serviço recebe o xml da nota e pode ser custoso o trafego, o mesmo deve ser compactado e será processado de forma assíncrona e em lote (BULK).
+* POST  https://api.hom.trusthub.com.br/invoices/v1/
 
-**JSON Base**
+**Requisição**
 
 ```java
 HttpClient client = HttpClientBuilder.create().build();
@@ -144,14 +143,14 @@ HttpClient client = HttpClientBuilder.create().build();
 		request.addHeader("Accept", contentType.getMimeType());
 		request.addHeader("enctype", contentType.getMimeType());
 		request.addHeader("Authorization", "Bearer " + "99f0e2361ccbf5dca644e78ba6038316");
-
-		/*
-		 * Este é o método a ser executado
-		 * */
 		HttpResponse response = client.execute(request);
 ```
- - POST  https://api.hom.trusthub.com.br/invoices/v1/
- 
+**Retorno**
+```java
+
+```
+**JSON Padrão**
+
  - **invoices**  : Lista de chaves de notas fiscais 
 	 - Tipo de Dado : Arrray(Object)
 	 - Modo : Leitura / Escrita
