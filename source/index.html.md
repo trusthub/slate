@@ -73,7 +73,7 @@ Neste ambiente constam todos serviços que serão disponibilizados no ambiente d
 
 # Autenticação 
 
-> Para autorização 
+> Autenticação 
 
 ```java
 request.addHeader("Authorization", "Bearer " + "99f0e2361ccbf5dca644e78ba6038316");
@@ -126,8 +126,9 @@ Para tratativas de envio de invoices deve ser utilizado recurso conforme URL e e
 
 `POST  https://api.hom.trusthub.com.br/invoices/v1/`
 
+> Requisição 
+
 ```java
-//Requisição
 
 HttpClient client = HttpClientBuilder.create().build();
 HttpPost request = new HttpPost(url);
@@ -144,7 +145,6 @@ request.addHeader("enctype", contentType.getMimeType());
 request.addHeader("Authorization", "Bearer " + "99f0e2361ccbf5dca644e78ba6038316");
 HttpResponse response = client.execute(request);
 
-//Retorno
 
 ```
 
@@ -156,8 +156,9 @@ HttpResponse response = client.execute(request);
 
 ## Consulta de Notas Fiscais por Chave
 
+> Requisição 
+
 ```java
-//Requisição
 HttpClient client = HttpClientBuilder.create().build();
 HttpPost request = new HttpPost(url);
 request.addHeader("charset", charset);
@@ -166,9 +167,11 @@ request.addHeader("Accept", contentType.getMimeType());
 request.addHeader("enctype", contentType.getMimeType());
 request.addHeader("Authorization", "Bearer " + "99f0e2361ccbf5dca644e78ba6038316");
 HttpResponse response = client.execute(request);
+```
 
+> Retorno
 
-//Retorno
+```java
 {
      "client_key" : "12345678909",
      "key" : "100-123",
@@ -205,6 +208,7 @@ Consulta de notas fiscais por Chave
 
 ## Consulta de Notas Fiscais Por Parâmetros
 
+> Requisição 
 
 ```java
 //Requisição
@@ -216,7 +220,11 @@ request.addHeader("Accept", contentType.getMimeType());
 request.addHeader("enctype", contentType.getMimeType());
 request.addHeader("Authorization", "Bearer " + "99f0e2361ccbf5dca644e78ba6038316");
 HttpResponse response = client.execute(request);
-// Retorno
+```
+
+> Retorno
+
+```java
 [
      {
           "client_key" : "12345678909",
