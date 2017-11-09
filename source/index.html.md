@@ -150,7 +150,7 @@ HttpResponse response = client.execute(request);
 
  Através deste recurso é possível o envio das notas fiscais de clientes. 
 
-<aside class="warning">Importante salientar que os envios de arquivos de notas devem ser compactados através de padrão GZIP de forma a otimizar o envio de informações.
+<aside class="warning">Importante salientar que os envios de arquivos de notas devem ser compactados através de padrão .zip de forma a otimizar o envio de informações.
 </aside>		
 
 
