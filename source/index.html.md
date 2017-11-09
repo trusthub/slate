@@ -211,7 +211,6 @@ Consulta de notas fiscais por Chave
 > Sample Request
 
 ```java
-//Requisição
 HttpClient client = HttpClientBuilder.create().build();
 HttpPost request = new HttpPost(url);
 request.addHeader("charset", charset);
