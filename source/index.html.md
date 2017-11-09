@@ -150,9 +150,9 @@ HttpResponse response = client.execute(request);
 ```
 
 
-## Consulta de Notas Fiscais 
+## Consulta de Notas Fiscais por Chave
 
- Este EndPoint retorna informações de notas fiscais.
+ Este EndPoint retorna informações de notas fiscais de uma determinada chave.
 
 
 ### HTTP Request
@@ -193,6 +193,21 @@ HttpResponse response = client.execute(request);
 }
 
 ```
+
+
+
+## Consulta de Notas Fiscais Por Parâmetros
+
+ Este EndPoint retorna informações de notas fiscais de uma ou mais notas de acordo com parâmetros informados.
+
+
+### HTTP Request
+
+Consulta de notas fiscais por Chave 
+
+`GET  https://api.hom.trusthub.com.br/invoices/v1/1/1`
+
+
 
 Consulta de notas fiscais por Parametros
 
