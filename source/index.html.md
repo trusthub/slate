@@ -97,7 +97,7 @@ Ele deverá ser utilizado para todas as operações que realizar com as APIs, en
 
 # Recursos
 
-## Notas Fiscais 
+## Envio de Notas Fiscais 
 
 ![enter image description here](https://lh3.googleusercontent.com/-a01IWyWouGc/WgRC65ckc1I/AAAAAAAAAA4/FDsGxHCrvLE5W8T4azpU1Bc-gAiLTuFBwCLcBGAs/s0/IMG_02.png "IMG_02.png")
 
@@ -179,13 +179,11 @@ HttpClient client = HttpClientBuilder.create().build();
 
 
 
-
-### HTTP Request
+## Consulta de Notas Fiscais 
 
  - GET  https://api.hom.trusthub.com.br/invoices/v1/999999
  - GET https://api.hom.trusthub.com.br/invoices/v1/1/1?client_id=11212
 
-Use este recurso com esta ação para envio de notas fiscais. Como este serviço recebe o xml da nota e pode ser custoso o trafego, o mesmo deve ser compactado e será processado de forma assíncrona e em lote (BULK),
 
 
 > Envio JSON conforme estrutura abaixo:
