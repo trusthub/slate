@@ -89,7 +89,7 @@ html, body {
       margin: $nav-v-padding $nav-padding;
       width: $nav-width - 30;
       outline: none;
-      color: $nav-text;
+      color: #8a8787;
       border-radius: 0; /* ios has a default border radius */
     }
 
@@ -119,7 +119,7 @@ html, body {
     transition-property: height, margin;
     transition-duration: 180ms;
     transition-timing-function: ease-in-out;
-    background: $nav-subitem-bg;
+    background: #4db04e;
     &.visible {
       height: 30%;
       margin-bottom: 1em;
@@ -133,6 +133,8 @@ html, body {
     a {
       color: $nav-text;
       text-decoration: none;
+	  text-transform: uppercase;
+}
 
       &:hover {
         text-decoration: underline;
@@ -167,8 +169,7 @@ html, body {
 
   // this is parent links of the currently selected ToC entry
   .toc-link.active-parent {
-    background-color: $nav-active-parent-bg;
-    color: $nav-active-parent-text;
+     color: $nav-active-parent-text;
   }
 
   .toc-list-h2 {
@@ -216,6 +217,8 @@ html, body {
   transition-property: background;
   transition-timing-function: linear;
   transition-duration: 130ms;
+  text-transform: uppercase;
+    line-height: 2.5;
 }
 
 // button to show navigation on mobile devices
