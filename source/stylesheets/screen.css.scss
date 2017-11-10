@@ -6,13 +6,10 @@
 
 /*
 Copyright 2008-2013 Concur Technologies, Inc.
-
 Licensed under the Apache License, Version 2.0 (the "License"); you may
 not use this file except in compliance with the License. You may obtain
 a copy of the License at
-
   http://www.apache.org/licenses/LICENSE-2.0
-
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
 WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -89,7 +86,7 @@ html, body {
       margin: $nav-v-padding $nav-padding;
       width: $nav-width - 30;
       outline: none;
-      color: #8a8787;
+      color: $nav-text;
       border-radius: 0; /* ios has a default border radius */
     }
 
@@ -119,7 +116,7 @@ html, body {
     transition-property: height, margin;
     transition-duration: 180ms;
     transition-timing-function: ease-in-out;
-    background: #4db04e;
+    background: $nav-subitem-bg;
     &.visible {
       height: 30%;
       margin-bottom: 1em;
@@ -133,8 +130,6 @@ html, body {
     a {
       color: $nav-text;
       text-decoration: none;
-	  text-transform: uppercase;
-}
 
       &:hover {
         text-decoration: underline;
@@ -169,7 +164,8 @@ html, body {
 
   // this is parent links of the currently selected ToC entry
   .toc-link.active-parent {
-     color: $nav-active-parent-text;
+    background-color: $nav-active-parent-bg;
+    color: $nav-active-parent-text;
   }
 
   .toc-list-h2 {
@@ -217,8 +213,6 @@ html, body {
   transition-property: background;
   transition-timing-function: linear;
   transition-duration: 130ms;
-  text-transform: uppercase;
-    line-height: 2.5;
 }
 
 // button to show navigation on mobile devices
