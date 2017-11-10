@@ -1,5 +1,5 @@
 ---
-title: API Reference
+title: TRUSTHUB - API Reference
 
 language_tabs: 
   - java
