@@ -100,7 +100,7 @@ Ele deverá ser utilizado para todas as operações a serem realizadas, enviando
 ### Simular Pagamentos
 O serviço de simulação é o serviço primário de integração com a API TrustHub para recebimento de simulações de crédito e gestão de pedidos online, facilitando a integração entre o Cedente TrustHub e, com ou sem o intermédio de um Market Place. Através desse serviço é possível enviar os dados de identificação do Market Place ou Cedente e o valor total do pedido, com base nesses dados básicos é realizada uma simulação de crédito e financiamento para o Sacado(comprador).
 
-Abaixo o método e a URL para o recurso. Logo abaixo, exemplos.
+### HTTP Request
 
 `POST  https://api-hom.trusthub.com.br/integration/order/v1/simulation`
 
@@ -226,6 +226,399 @@ simulation	| Lista com os dados de parcelamento, ou seja, quantidade de títulos
 }
 
 ```
+
+### Registrar Pedido
+O serviço de registro de pedidos é responsável por registrar a requisição de compra dentro da TrustHub. Os dados do Sacado, bem como do pedido do mesmo, são recebidos, registrados e, em cima destes, é feito uma análise detalhada que, posteriormente retornará ao MarketPlace/Cedente a confirmação do pedido, ou seja, o aceite do financiamento e a liberação de crédito para o Sacado efetuar sua compra com sucesso.
+
+### HTTP Request
+
+`POST  https://api-hom.trusthub.com.br/integration/order/v1/`
+
+**Parâmetros de Entrada**
+
+### URL Parameters
+
+Parameter | Description | Format | Required
+--------- | ----------- | --------- | -----------
+orderID	| Identificador do pedido gerado pelo Market Place/Cedente	| STRING  (200)	| S
+value	| Valor bruto total do pedido.	| DECIMAL (15,2)	| S
+installments	| Quantidade de títulos de pagamento selecionados pelo Sacado.	| INTEGER	| S
+merchantDocument	| Identificador do Market Place ou Cliente. **Qual enviar?** Se a integração se dá através de um Market Place, deve-se enviar os dados deste. Porém, quando a integração se dá diretamente do e-commerce do Cliente, sem um Market de Place de integração, deve-se enviar os dados do Cliente.	| STRING  (30)	| S
+merchantDocumentType	| Identificador do dado do valor recebido no parâmetro: merchantDocument.	| STRING  (30)	| S
+miniCart	| Objeto com os dados essenciais do pedido: Dados do comprador, endereço de entrega e cobrança, itens do carrinho e demais tributos e descontos.	|OBJECT	|S
+buyer	| Objeto com os dados básicos do Sacado.	| OBJECT| S
+[buyer] firstName	| Primeiro nome do Sacado.	| STRING  (100)	| S
+[buyer] lastName	| Sobrenome do Sacado.	| STRING  (100)	| S
+[buyer] document	| Número do documento cadastrado no parceiro (Market Place/Cedente).	| STRING  (30)	| S
+[buyer] documentType	| Identificador do dado do valor recebido no parâmetro: buyer – document.	| STRING  (30)	| S
+[buyer] email	| Email de contato do Sacado.	| STRING  (200)	| S
+[buyer] phone	| Telefone principal do Sacado.	| STRING  (30)	| S
+billingAddress	| Objeto com os dados do endereço de cobrança do Sacado.	|  OBJECT | S
+[billingAddress] country	| Sigla do país do endereço de cobrança.	| STRING  (3)*	| S
+[billingAddress] street	| Descrição da localização do endereço de cobrança.	| STRING  (300)	| S
+[billingAddress] number	| Número do endereço de cobrança.	| INTEGER	| S
+[billingAddress] complement	| Complemento do endereço de cobrança.	| STRING  (300)	| N
+[billingAddress] neighborhood	| Bairro do endereço de cobrança.	| STRING  (300)	| S
+[billingAddress] postalCode	| Código Postal/CEP do endereço de cobrança.	| STRING  (20)	| S
+[billingAddress] city	| Cidade do endereço de cobrança.	| STRING  (100)	| S
+[billingAddress] state	| Estado do endereço de cobrança.	| STRING  (100)	| S
+shippingAddress	| Objeto com os dados do endereço de entrega do Sacado.	| OBJECT | S
+[shippingAddress] country	| País do endereço de entrega.	| STRING  (3)*	| S
+[shippingAddress] street	| Descrição da localização do endereço de entrega.	| STRING  (300)	| S
+[shippingAddress] number	| Número do endereço de entrega.	| INTEGER	| S
+[shippingAddress] complement	| Complemento do endereço de entrega.	| STRING  (300)	| N
+[shippingAddress] neighborhood	| Bairro do endereço de entrega.	| STRING  (300)	| S
+[shippingAddress] postalCode	| Código Postal/CEP do endereço de entrega.	| STRING  (20)	| S
+[shippingAddress] city	| Cidade do endereço de entrega.	| STRING  (100)	| S
+[shippingAddress] state	| Estado do endereço de entrega.	| STRING  (100)	| S
+Items	| Lista de items do pedido realizado pelo Sacado.	| LIST| S
+[items] id	| Identificador do item do pedido do Cedente.	| STRING  (200)	| S
+[items] name	| Descrição do item do pedido do Cedente.	| STRING  (300)	| S
+[items] price	| Valor bruto unitário do item.	| DECIMAL (15,2)	| S
+[items] quantity	| Quantidade do item.	| INTEGER	| S
+[items] discount	| Valor bruto de desconto do item.	| DECIMAL (15,2)	| S
+[items] clientDocument	| Identificador do vendedor do item: Cedente.	| STRING  (200)	| S
+[items] clientDocumentType	| Identificador do dado do valor recebido no parâmetro: items - clientDocument	| STRING  (30)	| S
+shippingValue	| Valor bruto total da taxa de entrega.	| DECIMAL (15,2)	| N
+taxValue	| Valor bruto total de juros do financiamento TrustHub.	| DECIMAL (15,2)	| N
+deviceFingerprint	| Identificador autifraude.	| STRING  (200)	| S
+
+> Sample Request
+
+```java
+{
+       "id" : "1234", 
+       "orderId": "v32478982vtx-01",
+       "value": 4307.23,
+       "installments": 3,
+       "merchantDocument": "88.256.695/0001-18",
+       "merchantDocumentType": "CNPJ",
+       "miniCart": {
+             "buyer": {
+                    "firstName": "John",
+                    "lastName": "Doe",
+                    "document": "012.345.678-90",
+                    "documentType": "CPF",
+                    "email": "john@doe.com",
+                    "phone": "+55 (21) 98765-4321"
+             },
+             "shippingAddress": {
+                    "country": "BRA",
+                    "street": "Rua Praia de Botafogo",
+                    "number": "518",
+                    "complement": "2o. andar",
+                    "neighborhood": "Botafogo",
+                    "postalCode": "22250-040",
+                    "city": "Rio de Janeiro",
+                    "state": "RJ"
+             },
+             "billingAddress": {
+                    "country": "BRA",
+                    "street": "Rua Praia de Botafogo",
+                    "number": "518",
+                    "complement": "2o. andar",
+                    "neighborhood": "Botafogo",
+                    "postalCode": "22250-040",
+                    "city": "Rio de Janeiro",
+                    "state": "RJ"
+             },
+             "items": [
+                    {
+                           "id": "132981",
+                           "name": "Some useful product",
+                           "price": 2134.9,
+                           "quantity": 2,
+                           "discount": 5,
+                           "clientDocument": "88.256.695/0001-18",
+                           "clientDocumentType": "CNPJ",
+                           "status" : "", 
+                           "idOperation" : "", 
+                           "statusOperation" : "" 
+                    },
+                    {
+                           "id": "123242",
+                           "name": "Some useless product",
+                           "price": 21.98,
+                           "quantity": 1,
+                           "discount": 1,
+                           "clientDocument": "88.256.695/0001-18",
+                           "clientDocumentType": "CNPJ",
+                           "status" : "", 
+                           "idOperation" : "", 
+                           "statusOperation" : "" 
+                    }
+             ],
+             "shippingValue": 11.44,
+             "taxValue": 10.01,
+             "deviceFingerprint": "1234567890", 
+       }
+}
+
+```
+**Parâmetros de Saída**
+
+### URL Parameters
+
+Parameter | Description | Format | Required
+--------- | ----------- | --------- | -----------
+responseStatus	| Código de saída da requisição.	| INTEGER	| S
+responseStatusMessage	| Descrição do código de saída da requisição.	| STRING (200)	| S
+
+> Sample Response
+
+```java
+{
+    "responseStatus": 200,
+    "responseStatusMessage": "Success"
+}
+```
+
+### Consultar Pedido
+O serviço de Consulta é responsável pelo envio do status atual do pedido que está sendo analisado pela TrustHub. 
+
+### HTTP Request
+
+`GET  https://api-hom.trusthub.com.br/integration/order/v1/search/{merchantDocument}/{orderId}`
+
+**Parâmetros de Entrada**
+
+### URL Parameters
+Parameter | Description | Example
+--------- | ----------- | -----------
+merchantDocument | Identificador do merchantDocument. | 88256695000118
+orderId | Identificador do pedido. | v32478982vtx-01
+
+**URL Entrada** :  `http://api-hom.trusthub.com.br/integration/order/v1/search/88256695000118/v32478982vtx-01`
+
+**Parâmetros de Saída**
+
+### URL Parameters
+Parameter | Description | Example
+--------- | ----------- | -----------
+orderID	| Identificador do pedido gerado pelo Market Place/Cedente	| STRING (200)	| S
+status	| Descrição do status geral do pedido	| STRING (200)	| S
+tracking	| Descrição do status do pedido no MarketPlace/Cedente	| STRING (200)	| S
+value	| Valor bruto total do pedido.	| DECIMAL (15,2)	| S
+installments	| Quantidade de títulos de pagamento selecionados pelo Sacado.	| INTEGER	| S
+merchantDocument	| Identificador do Market Place ou Cliente. **Qual enviar?** Se a integração se dá através de um Market Place, deve-se enviar os dados deste. Porém, quando a integração se dá diretamente do e-commerce do Cliente, sem um Market de Place de integração, deve-se enviar os dados do Cliente.	| STRING (30)	| S
+merchantDocumentType	| Identificador do dado do valor recebido no parâmetro: merchantDocument.	| STRING (30)	| S
+miniCart	| Objeto com os dados essenciais do pedido: Dados do comprador, endereço de entrega e cobrança, itens do carrinho e demais tributos e descontos.	| OBJECT	| S
+buyer	| Objeto com os dados básicos do Sacado.	| OBJECT| S
+[buyer] firstName	| Primeiro nome do Sacado.	| STRING (100)	| S
+[buyer] lastName	| Sobrenome do Sacado.	| STRING (100)	| S
+[buyer] document	| Número do documento cadastrado no parceiro (Market Place/Cedente).	| STRING (30)	| S
+[buyer] documentType	| Identificador do dado do valor recebido no parâmetro: buyer – document.	| STRING (30)	| S
+[buyer] email	| Email de contato do Sacado.	| STRING (200)	| S
+[buyer] phone	| Telefone principal do Sacado.	| STRING (30)	| S
+billingAddress	| Objeto com os dados do endereço de cobrança do Sacado.	| OBJECT | S
+[billingAddress] country	| Sigla do país do endereço de cobrança.	| STRING (3)*	| S
+[billingAddress] street	| Descrição da localização do endereço de cobrança.	| STRING (300)	| S
+[billingAddress] number	| Número do endereço de cobrança.	| INTEGER	| S
+[billingAddress] complement	| Complemento do endereço de cobrança.	| STRING (300)	| N
+[billingAddress] neighborhood	| Bairro do endereço de cobrança.	| STRING (300)	| S
+[billingAddress] postalCode	| Código Postal/CEP do endereço de cobrança.	| STRING (20) | S	
+[billingAddress] city	| Cidade do endereço de cobrança.	| STRING (100)	| S
+[billingAddress] state	| Estado do endereço de cobrança.	| STRING (100)	| S
+shippingAddress	| Objeto com os dados do endereço de entrega do Sacado.	| OBJECT | S
+[shippingAddress] country	| País do endereço de entrega.	| STRING (3)*	| S
+[shippingAddress] street	| Descrição da localização do endereço de entrega.	| STRING (300)	| S
+[shippingAddress] number	| Número do endereço de entrega.	| INTEGER	| S
+[shippingAddress] complement	| Complemento do endereço de entrega.	| STRING (300)	| N
+[shippingAddress] neighborhood	| Bairro do endereço de entrega.	| STRING (300)	| S
+[shippingAddress] postalCode	| Código Postal/CEP do endereço de entrega.	| STRING (20)	| S
+[shippingAddress] city	| Cidade do endereço de entrega.	| STRING (100)	| S
+[shippingAddress] state	| Estado do endereço de entrega.	| STRING (100)	| S
+Items	| Lista de items do pedido realizado pelo Sacado.	| LIST| S
+[items] id	| Identificador do item do pedido do Cedente.	| STRING (200)	| S
+[items] name	| Descrição do item do pedido do Cedente.	| STRING (300)	| S
+[items] price	| Valor bruto unitário do item.	| DECIMAL (15,2)	| S
+[items] quantity	| Quantidade do item.	| INTEGER	| S
+[items] discount	| Valor bruto de desconto do item.	| DECIMAL (15,2)	| S
+[items] clientDocument	| Identificador do vendedor do item: Cedente.	| STRING (200)	| S
+[items] clientDocumentType	| Identificador do dado do valor recebido no parâmetro: items – clientDocument	| STRING (30)	| S
+status	| Descrição do status individual do item do pedido.	| STRING (200)	| S
+idOperation	| Identificador da Operação vinculada ao item do pedido.	| INTEGER	| N
+statusOperation	| Descrição do status atual da Operação vinculada ao item do pedido.	| STRING (200)	| S
+shippingValue	| Valor bruto total da taxa de entrega.	| DECIMAL (15,2)	| N
+taxValue	| Valor bruto total de juros do financiamento TrustHub.	| DECIMAL (15,2)	| N
+deviceFingerprint	| Identificador autifraude.	| STRING (200)	| S
+
+> Sample Response
+
+```java
+{
+                "orderId": "v32478982vtx-01",
+                "status" : "",
+                "traking" : ""
+                "value": 4307.23,
+                "installments": 3,
+                "merchantDocument": "88.256.695/0001-18",
+                "merchantDocumentType": "CNPJ",
+                "miniCart": {
+                               "buyer": {
+                                               "firstName": "MARCELO",
+                                               "lastName": "Doe",
+                                               "document": "012.345.678-90",
+                                               "documentType": "CPF",
+                                               "email": "john@doe.com",
+                                               "phone": "+55 (21) 98765-4321"
+                               },
+                               "shippingAddress": {
+                                               "country": "BRA",
+                                               "street": "Rua Praia de Botafogo",
+                                               "number": "518",
+                                               "complement": "2o. andar",
+                                               "neighborhood": "Botafogo",
+                                               "postalCode": "22250-040",
+                                               "city": "Rio de Janeiro",
+                                               "state": "RJ"
+                               },
+                               "billingAddress": {
+                                               "country": "BRA",
+                                               "street": "Rua Praia de Botafogo",
+                                               "number": "518",
+                                               "complement": "2o. andar",
+                                               "neighborhood": "Botafogo",
+                                               "postalCode": "22250-040",
+                                               "city": "Rio de Janeiro",
+                                               "state": "RJ"
+                               },
+                               "items": [
+                                               {
+                                                               "id": "132981",
+                                                               "name": "Some useful product",
+                                                               "price": 2134.9,
+                                                               "quantity": 2,
+                                                               "discount": 5,
+                                                               "clientDocument": "88.256.695/0001-18",
+                                                               "clientDocumentType": "CNPJ",
+                                                               "status" : "",
+                                                               "idOperation" : "",
+                                                               "statusOperation" : ""
+                                               },
+                                               {
+                                                               "id": "123242",
+                                                               "name": "Some useless product",
+                                                               "price": 21.98,
+                                                               "quantity": 1,
+                                                               "discount": 1,
+                                                               "clientDocument": "88.256.695/0001-18",
+                                                               "clientDocumentType": "CNPJ",
+                                                              "status" : "",
+                                                               "idOperation" : "",
+                                                               "statusOperation" : ""
+                                               }
+                               ],
+                               "shippingValue": 11.44,
+                               "taxValue": 10.01,
+                               "deviceFingerprint": "1234567890",
+                }
+}
+
+```
+
+### Enviar Nota Fiscal do Pedido
+Serviço utilizado para o envio das notas fiscais do pedido.
+
+### HTTP Request
+
+`POST  https://api-hom.trusthub.com.br/integration/order/v1/invoice/json`
+
+**Parâmetros de Entrada**
+
+### URL Parameters
+
+Parameter | Description | Format | Required
+--------- | ----------- | --------- | -----------
+orderId	| Identificador do pedido gerado pelo Market Place/Cedente	| STRING (200)	| S
+zipName	| Nome do arquivo com a(s) nota(s) fiscal(is).	| STRING (200)	| S
+zipData	| Arquivo zip convertido em STRING BASE64.	| STRING Base64	| S
+fileNames	| Lista de relação para vínculo entre o arquivo e o item.	| ARRAY	| S
+[fileNames] | idItem	Identificador do item do pedido.	| STRING (200)	| S
+[fileNames] | fileName	Nome do arquivo xml contido dentro do arquivo zip.	| STRING (200)	| S
+
+> Sample Request
+
+```java
+{
+                "orderId": "v32478982vtx-01",
+                "zipName" : "teste.zip",
+                "zipData" : "",
+                "fileNames" : [
+                               {
+                                               "idItem" : "1",
+                                               "fileName" : "41170617047083000177550010000246841002246804-nfe.xml"
+                               }
+                ]
+}
+```
+
+**Parâmetros de Saída**
+
+### URL Parameters
+
+Parameter | Description | Format | Required
+--------- | ----------- | --------- | -----------
+responseStatus	| Código de saída da requisição.	| INTEGER	| S
+responseStatusMessage	| Descrição do código de saída da requisição.	| STRING (200)	| S
+
+> Sample Response
+
+```java
+{
+    "responseStatus": 200,
+    "responseStatusMessage": "Success"
+}
+```
+
+### Consultar Status Tracking
+O serviço de Consulta MarketPlace/Cedente é responsável pelo recebimento da atualização de status do pedido no MarketPlace/Cedente. Os status de atualização visíveis ao Sacado.
+
+### HTTP Request
+
+`POST  https://api-hom.trusthub.com.br/integration/order/v1/traking`
+
+**Parâmetros de Entrada**
+
+### URL Parameters
+
+Parameter | Description | Format | Required
+--------- | ----------- | --------- | -----------
+orderId	| Identificador do pedido gerado pelo Market Place/Cedente	| STRING (200)	| S
+Status	| Status do MarketPlace/Cedente. Status permitidos: CONFIRMED, SHIPPED, COMPLETED, DECLINED	| STRING (30)	| S
+Date	| Data/hora da atualização do status	| STRING (aaaa-MM-dd hh:mm)	| S
+complement	| Descrição complementar ao status 	| ARRAY| N
+
+
+> Sample Request
+
+```java
+{
+  "orderId" : "12345678909",
+  "status" : "CONFIRMED",
+  "date" : "2018-01-10",
+  "complement" : ""
+}
+```
+
+**Parâmetros de Saída**
+
+### URL Parameters
+
+Parameter | Description | Format | Required
+--------- | ----------- | --------- | -----------
+responseStatus	| Código de saída da requisição.	| INTEGER	| S
+responseStatusMessage	| Descrição do código de saída da requisição.	| STRING (200)	| S
+
+> Sample Response
+
+```java
+{
+    "responseStatus": 200,
+    "responseStatusMessage": "Success"
+}
+```
+
 
 ## Envio de Notas Fiscais 
 
