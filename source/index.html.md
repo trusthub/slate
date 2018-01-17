@@ -1,4 +1,3 @@
-
 ---
 title: TrustHub - API Reference
 
