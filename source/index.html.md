@@ -234,35 +234,51 @@ simulation	| Lista com os dados de parcelamento, ou seja, quantidade de títulos
  - Este é o único serviço necessário para integrar seus clientes para antecipação na TRUSTHUB.
  - Através deste serviço é possível enviar de forma muito simples as notas fiscais de seus clientes de onde será efetuado o pré cadastramento dos mesmos e de imediato já disponibilizando acesso para negociação das notas fiscais.
  - Após o envio das notas basta disponibilizar os links de acesso na nossa plataforma conforme scripts que serão encaminhados pós cadastramento para que o mesmo possa negociar as notas com a TRUSTHUB de forma simples, ágil e segura.
- - Dependendo do formato mais adequado para sua solução e o relacionamento que tem que seu cliente você pode utilizar os dois processos abaixo para integração 
+ - Dependendo do formato mais adequado para sua solução e o relacionamento que tem que seu cliente você pode utilizar os três processos abaixo para integração 
 	 - Enviar as notas para TRUTHUB antecipadamente para todos os clientes que estão na sua plataforma agilizando o processo de abertura de conta do mesmo.
 	 - Encaminhar as notas no momento do acionamento do link. Neste caso o usuário será direcionado porém terá que aguardar o carregamento das notas.
+	 - Envio do email do cliente juntamente com as notas para que possamos cadastrar as notas, o cliente e enviar email para o mesmo com as instruções para acessar a plataforma.
 
 <aside class="warning">Para uma melhor experiência do usuário e o mesmo já ser direcionado logado na nossa plataforma é importante na segunda opção que seja enviada pelo menos uma nota fiscal do mesmo de imediato. Caso contrário teremos que solicitar o cadastramento do mesmo o que não é muito legal ;)
 E lembre-se que só serão aceitas notas com vencimento superior a data atual.
 </aside>			
-	Após este primeiro aceite do cliente deve ser mantido o envio rotineiro das demais notas e notas novas para que o mesmo as tenha para negociação na nossa plataforma.
+	Após este primeiro aceite do cliente deve ser mantido o envio rotineiro das demais notas e notas novas ( não necessita enviar o email ) para que o mesmo as tenha para negociação na nossa plataforma.
 					
 
  - **Vamos explicar um pouco do processo que ocorre quando recebemos as notas**
 	- Assim que recebemos a nota do seu cliente iremos efetuar pré cadastramento e quando o mesmo  acionar a nossa plataforma a partir do link presentes na sua plataforma iremos direciona-lo diretamente para área de negociações onde já poderá simular as antecipações.
-	- Por isso é importante já enviar as notas de imediato quando identificar que seu cliente deseja antecipar conosco ou antes mesmo.
+	- Por isso é importante já enviar email e as notas de imediato quando identificar que seu cliente deseja antecipar conosco ou antes mesmo.
 	- Já no primeiro acesso do cliente iremos dar as boas vindas e notifica-lo na nossa plataforma e por e-mail que o mesmo esta utilizando um login provisório e que deve ter sua senha alterada para posteriores acessos.
 		
 <aside class="success">
 PRONTO !  A partir deste momento todo e qualquer acesso através do nosso link irá direcionar o cliente diretamente para fluxo de  negociações. ;) 
 </aside>
 
-Para tratativas de envio de invoices deve ser utilizado recurso conforme URL e exemplos como segue:	
+Para tratativas de envio de invoices deve ser utilizado recurso conforme umas das duas URLs e exemplos como segue:	
 
-`POST  https://api-hom.trusthub.com.br/integration/invoices/v1/`
+Via Multipart: `POST  https://api-hom.trusthub.com.br/integration/invoices/v1/`
+Via Json: `POST  https://api-hom.trusthub.com.br/integration/invoices/v1/json/`
 
-> Sample Request
+
+Parameter | Tipo Envio | Description | Format | Required
+--------- | ----------- | ----------- | --------- | -----------
+Token 	| Todos | Use o seu access_token para operar com nossas API´s.	| STRING	| S
+email	| Todos | Email que o cliente será cadastrado.	| STRING (200)	| N
+fileName	| Json | Nome do arquivo zip que contem as notas.	| STRING (200)	| S
+fileData	| Json | Arquivo zip na base 64.	| Base 64	| S
+
+
+> Sample Request Multipart
 
 ```java
-
+String TOKEN_PARCEIRO = "99f0e2361ccbf5dca644e78ba6038316";
+String url = "https://api-hom.trusthub.com.br/integration/invoices/v1/";
+List<NameValuePair> postParameters = new ArrayList<>();
+postParameters.add(new BasicNameValuePair("email", "emailcadastro@teste.com"));
+URIBuilder uriBuilder = new URIBuilder(url);
+uriBuilder.addParameters(postParameters);
 HttpClient client = HttpClientBuilder.create().build();
-HttpPost request = new HttpPost(url);
+HttpPost request = new HttpPost(uriBuilder.build());
 String charset = "UTF-8";
 ContentType contentType = ContentType.MULTIPART_FORM_DATA.withCharset(Charset.forName(charset));
 String boundary = UUID.randomUUID().toString();
@@ -281,16 +297,42 @@ request.addHeader("charset", charset);
 request.addHeader("Content-Type", contentType.getMimeType() + ";boundary=" + boundary + "; charset=" + charset);
 request.addHeader("Accept", contentType.getMimeType());
 request.addHeader("enctype", contentType.getMimeType());
-request.addHeader("Authorization", "Bearer " + "99f0e2361ccbf5dca644e78ba6038316");
+request.addHeader("Authorization", "Bearer " + TOKEN_PARCEIRO);
 HttpResponse response = client.execute(request);
 
+
+```
+
+> Sample Request Json
+
+```java
+String TOKEN_PARCEIRO = "99f0e2361ccbf5dca644e78ba6038316";
+String url = "https://api-hom.trusthub.com.br/integration/invoices/v1/json/";
+byte[] data = arquivo.getBytes();
+JObject uploadFile = new JObject();
+uploadFile.set("fileName", arquivo.getOriginalFilename());
+uploadFile.set("fileData", Base64.encodeBase64String(data));
+uploadFile.set("email", "emailcadastro@teste.com");
+String charset = "UTF-8";
+ContentType contentType = ContentType.APPLICATION_JSON.withCharset(Charset.forName(charset));
+String boundary = UUID.randomUUID().toString();
+HttpClient client = HttpClientBuilder.create().build();
+HttpPost request = new HttpPost(url);
+StringEntity params = new StringEntity(uploadFile.toString()); //Json
+request.addHeader("charset", charset);
+request.addHeader("Content-Type", contentType.getMimeType() + ";boundary=" + boundary + "; charset=" + charset);
+request.addHeader("Accept", contentType.getMimeType());
+request.addHeader("enctype", contentType.getMimeType());
+request.addHeader("Authorization", "Bearer " + TOKEN_PARCEIRO);
+request.setEntity(params);
+HttpResponse response = client.execute(request);
 
 
 ```
 
  Através deste recurso é possível o envio das notas fiscais de clientes. 
 
-<aside class="warning">Importante salientar que os envios de arquivos de notas devem ser compactados através de padrão .zip de forma a otimizar o envio de informações.
+<aside class="warning">Importante salientar que os envios de arquivos de notas devem ser compactados através de padrão .zip de forma a otimizar o envio de informações. E as notas devem terminarem com a extensão .XML.
 </aside>		
 
 
@@ -299,49 +341,52 @@ HttpResponse response = client.execute(request);
 > Sample Request
 
 ```java
+String TOKEN_PARCEIRO = "99f0e2361ccbf5dca644e78ba6038316";
+String chave = "INSERIR_CHAVE_AQUI";
 HttpClient client = HttpClientBuilder.create().build();
-HttpPost request = new HttpPost(url);
+HttpGet request = new HttpGet("https://api-hom.trusthub.com.br/integration/invoices/v1" + chave);
+String charset = "UTF-8";
+ContentType contentType = ContentType.APPLICATION_JSON.withCharset(Charset.forName(charset));
+String boundary = "---------------" + UUID.randomUUID().toString();
 request.addHeader("charset", charset);
 request.addHeader("Content-Type", contentType.getMimeType() + ";boundary=" + boundary + "; charset=" + charset);
 request.addHeader("Accept", contentType.getMimeType());
 request.addHeader("enctype", contentType.getMimeType());
-request.addHeader("Authorization", "Bearer " + "99f0e2361ccbf5dca644e78ba6038316");
+request.addHeader("Authorization", "Bearer " + TOKEN_PARCEIRO);
 HttpResponse response = client.execute(request);
 ```
 
 > Sample Response
 
 ```java
-{
-     "client_key" : "12345678909",
-     "key" : "100-123",
-     "status" : "PROCCESSED",
-     "installments" : [
-          {
-                "document" : "100-123/1",
-                "maturity_date" : "20171030103500",
-                "amount" : "100.40",
-                "status" : ""
-          },
-          {
-                "document" : "100-123/2",
-                "maturity_date" : "20171030113500",
-                "amount" : "100.40",
-                "status" : ""
-          }
-     ]
+{  
+   "client_key":400,
+   "installments":[  
+      {  
+         "document":"6919 01/01",
+         "client_key":400,
+         "maturity_date":"20180327000000",
+         "amount":860.4000,
+         "status":"ENVIADO"
+      }
+   ]
 }
 
 ```
 
  Através deste recurso é possível retornar informações de notas fiscais de uma determinada chave.
+ 
+Parameter | Description | Format | Required
+--------- | ----------- | --------- | -----------
+Token 	| Use o seu access_token para operar com nossas API´s.	| STRING	| S
+chave	| Chave que identifica a nota.	| STRING	| S
 
 
 ### HTTP Request
 
 Consulta de notas fiscais por Chave 
 
-`GET  https://apihom.trusthub.com.br/integration/invoices/v1/999999`
+`GET  https://api-hom.trusthub.com.br/integration/invoices/v1/999999`
 
 
 
@@ -351,59 +396,48 @@ Consulta de notas fiscais por Chave
 > Sample Request
 
 ```java
+String TOKEN_PARCEIRO = "99f0e2361ccbf5dca644e78ba6038316";
+String cnpj = "INSERIR_CNPJ_AQUI";
+String dataInicial = "INSERIR_DATA_INICIAL_AQUI";
+String dataFinal = "INSERIR_DATA_FINAL_AQUI";
+String idStatus = "INSERIR_ID_STATUS_AQUI";
+String paginaInicial = "INSERIR_PAG_INICIAL_AQUI";
+String paginaFim = "INSERIR_PAG_FIM_AQUI";
 HttpClient client = HttpClientBuilder.create().build();
-HttpPost request = new HttpPost(url);
+HttpGet request = new HttpGet("https://api-hom.trusthub.com.br/integration/invoices/v1/" + cnpj + "/" + dataInicial + "/" + dataFinal + "/" + idStatus + "/" + paginaInicial + "/" + paginaFim);
+String charset = "UTF-8";
+ContentType contentType = ContentType.APPLICATION_JSON.withCharset(Charset.forName(charset));
+String boundary = "---------------" + UUID.randomUUID().toString();
 request.addHeader("charset", charset);
 request.addHeader("Content-Type", contentType.getMimeType() + ";boundary=" + boundary + "; charset=" + charset);
 request.addHeader("Accept", contentType.getMimeType());
 request.addHeader("enctype", contentType.getMimeType());
-request.addHeader("Authorization", "Bearer " + "99f0e2361ccbf5dca644e78ba6038316");
+request.addHeader("Authorization", "Bearer " + TOKEN_PARCEIRO);
 HttpResponse response = client.execute(request);
 ```
 
 > Sample Response
 
 ```java
-[
-     {
-          "client_key" : "12345678909",
-          "key" : "100-123",
-          "status" : "PROCCESSED",
-          "installments" : [
-                {
-                     "document" : "100-123/1",
-                     "maturity_date" : "20171030103500",
-                     "amount" : "100.40",
-                     "status" : ""
-                },
-                {
-                     "document" : "100-123/2",
-                     "maturity_date" : "20171030113500",
-                     "amount" : "100.40",
-                     "status" : ""
-                }
-          ]
-     },
-     {
-          "client_key" : "12345678909",
-          "key" : "215-321",
-          "status" : "PROCCESSED",
-          "installments" : [
-                {
-                     "document" : "215-321/1",
-                     "maturity_date" : "20171030103500",
-                     "amount" : "100.40",
-                     "status" : ""
-                },
-                {
-                     "document" : "215-321/2",
-                     "maturity_date" : "20171030113500",
-                     "amount" : "100.40",
-                     "status" : ""
-                }
-          ]
-     }
-]
+{  
+   "client_key":400,
+   "installments":[  
+      {  
+         "document":"6821 01/01",
+         "client_key":400,
+         "maturity_date":"20180327000000",
+         "amount":860.4000,
+         "status":"ENVIADO"
+      }
+   ],
+   "pagination":{  
+      "page_size":20,
+      "total_regs":"1",
+      "pages":1,
+      "from_page":1,
+      "to_page":100
+   }
+}
 
 
 ```
@@ -413,21 +447,128 @@ HttpResponse response = client.execute(request);
 
 ### HTTP Request
 
-Consulta de notas fiscais por Chave 
+Consulta de notas fiscais por Parametros.
 
-`GET  https://api-hom.trusthub.com.br/integration/invoices/v1/1/1`
+`GET  https://api-hom.trusthub.com.br/integration/invoices/v1/{cnpj}/{dataInicial}/{dataFinal}/{idStatus}/{paginaInicial}/{paginaFim}`
 
-
-
-Consulta de notas fiscais por Parametros
-
-`GET  https://api-hom.trusthub.com.br/integration/invoices/v1`
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-client_id | Id do cliente das notas em questão. No caso de notas brasileiras informar o CNPJ do cliente.
-expire_date | Data de vencimento da duplicata da nota fiscal.
-status | Status de negociação da duplicata da nota fiscal.
+O padrão de data para ser enviada deve ser: AAAA-MM-DD.
 
+Parameter | Description | Format | Required
+--------- | ----------- | --------- | -----------
+Token 	| Use o seu access_token para operar com nossas API´s.	| STRING	| S
+cnpj | Id do cliente das notas em questão. No caso de notas brasileiras informar o CNPJ do cliente.	| STRING	| S
+dataInicial | Data inicial de vencimento da duplicata da nota fiscal.	| STRING	| S
+dataFinal | Data final de vencimento da duplicata da nota fiscal.	| STRING	| S
+idStatus | Status da duplicata.	| INTEGER	| S
+
+## Cadastrar Cliente
+
+> Sample Request
+
+```java
+String TOKEN_PARCEIRO = "99f0e2361ccbf5dca644e78ba6038316";
+String cnpj = "INSERIR_CNPJ_AQUI";
+JObject cedente = new JObject();
+cedente.set("cnpj", "INSERIR_CNPJ_AQUI");
+cedente.set("email", "INSERIR_EMAIL_AQUI");
+String url = "https://api-hom.trusthub.com.br/integration/invoices/v1/register/";
+String charset = "UTF-8";
+ContentType contentType = ContentType.APPLICATION_JSON.withCharset(Charset.forName(charset));
+String boundary = UUID.randomUUID().toString();
+HttpClient client = HttpClientBuilder.create().build();
+HttpPost request = new HttpPost(url);
+StringEntity params = new StringEntity(cedente.toString());
+request.addHeader("charset", charset);
+request.addHeader("Content-Type", contentType.getMimeType() + ";boundary=" + boundary + "; charset=" + charset);
+request.addHeader("Accept", contentType.getMimeType());
+request.addHeader("enctype", contentType.getMimeType());
+request.addHeader("Authorization", "Bearer " + TOKEN_PARCEIRO);
+request.setEntity(params);
+HttpResponse response = client.execute(request);
+```
+
+> Sample Response
+
+```java
+{  
+   "mensagem":"Request successfully.",
+   "sucesso":true
+}
+
+
+```
+ Cadastro cliente pelo CNPJ e email. Assim que recebemos a requisição, iremos processar o cadastramento do cliente, caso seja encontradas todas as informações necessárias estaremos enviando um email de boas vindas com as informações para operar na plataforma.
+
+
+### HTTP Request
+
+`POST  https://api-hom.trusthub.com.br/integration/invoices/v1/register/`
+
+
+### URL Parameters
+
+Parameter | Description | Format | Required
+--------- | ----------- | --------- | -----------
+Token 	| Use o seu access_token para operar com nossas API´s.	| STRING	| S
+cnpj | CNPJ do cliente que será cadastrado.	| STRING	| S
+email | Email que o cliente será cadastrado.	| STRING (200)	| S
+
+## Login Automático
+
+> Sample Request
+
+```java
+String TOKEN_PARCEIRO = "99f0e2361ccbf5dca644e78ba6038316";
+String cnpj = "INSERIR_CNPJ_AQUI";
+String erpCode = "INSERIR_AQUI_O_ERP_CODE_DO_PARCEIRO";
+JObject p = new JObject();
+p.set("erp-code", erpCode);
+p.set("cnpj-cliente", cnpj);
+String url = "https://api-hom.trusthub.com.br/integration/invoices/v1/generate-token/";
+String charset = "UTF-8";
+ContentType contentType = ContentType.APPLICATION_JSON.withCharset(Charset.forName(charset));
+String boundary = UUID.randomUUID().toString();
+HttpClient client = HttpClientBuilder.create().build();
+HttpPost request = new HttpPost(url);
+StringEntity params = new StringEntity(p.toString());
+request.addHeader("charset", charset);
+request.addHeader("Content-Type", contentType.getMimeType() + ";boundary=" + boundary + "; charset=" + charset);
+request.addHeader("Accept", contentType.getMimeType());
+request.addHeader("enctype", contentType.getMimeType());
+request.addHeader("Authorization", "Bearer " + TOKEN_PARCEIRO);
+request.setEntity(params);
+HttpResponse response = client.execute(request);
+```
+
+> Sample Response
+
+```java
+{  
+   "temporary-token":"MzM3YzM0MzQzNjMzMzYzMjM2MzYzMDMwMzAzMTMwMzk3YzRlN2MzMjMwMzEzODMwMzEzMTM3MzEzNDM0MzIzMjM1MzEzNTM0MzA="
+}
+
+
+```
+ O login automático se dar através de um token gerado pela Trusthub que tem validade de uso.
+ O processo se dar em duas etapas:
+ - Chamar o serviço de geração de token https://api-hom.trusthub.com.br/integration/invoices/v1/generate-token/;
+ - Com o token retornado deve-se acessar o portal passando o token gerado no fim da url do portal.
+	 https://hom.trusthub.com.br/trusthub-antecipacao-web/#/redirect-logged-user/{temporary-token}
+ - No momento do acesso com o token na aplicação, caso o cliente não esteja cadastrado, estaremos cadastrando o mesmo e redirecionando o mesmo logado.
+
+
+### HTTP Request
+
+`POST  https://api-hom.trusthub.com.br/integration/invoices/v1/generate-token/`
+
+
+### URL Parameters
+
+Parameter | Description | Format | Required
+--------- | ----------- | --------- | -----------
+Token 	| Use o seu access_token para operar com nossas API´s.	| STRING	| S
+cnpj-cliente | CNPJ do cliente que deseja acesso.	| STRING	| S
+erp-code | Código de Parceiro na Trusthub.	| INTEGER	| S
