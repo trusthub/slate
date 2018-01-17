@@ -96,6 +96,137 @@ Ele deverá ser utilizado para todas as operações a serem realizadas, enviando
 
 # Recursos
 
+## Pedidos Online
+### Simular Pagamentos
+O serviço de simulação é o serviço primário de integração com a API TrustHub para recebimento de simulações de crédito e gestão de pedidos online, facilitando a integração entre o Cedente TrustHub e, com ou sem o intermédio de um Market Place. Através desse serviço é possível enviar os dados de identificação do Market Place ou Cedente e o valor total do pedido, com base nesses dados básicos é realizada uma simulação de crédito e financiamento para o Sacado(comprador).
+
+Abaixo o método e a URL para o recurso. Logo abaixo, exemplos.
+
+`POST  https://api-hom.trusthub.com.br/integration/order/v1/simulation`
+
+**Parâmetros de Entrada**
+
+### URL Parameters
+
+Parameter | Description | Format | Required
+--------- | ----------- | --------- | -----------
+merchantDocument | Identificador do Market Place ou Cedente.| STRING (30) | S
+amount | Valor bruto total do pedido, incluindo taxa de entrega, descontos e demais valores relacionados. | DECIMAL (15,2) | S
+clients | Para cada Cliente do Market Place que tiver itens dentro da simulação, deve ser enviado o CPF/CNPJ deste Cliente neste parâmetro. | ARRAY | -
+[clients] clientIdentification | Para cada Cliente do Market Place que tiver itens dentro da simulação, deve ser enviado o CPF/CNPJ deste Cliente neste parâmetro. | STRING (30) | -
+[clients] amount | Para cara Cliente, também deve ser enviado o valor total dos pedidos destes isoladamente.  DECIMAL (15,2) | -
+
+> Sample Request
+
+```java
+
+{
+  "partnerIdentification" : "12345678909",
+  "amount" : "200.52",
+  "clients" : [
+                {
+                               "clientIdentification":"121212",
+                               "amount" : "200.52"
+                }
+  ]
+}
+```
+
+**Parâmetros de Saída**
+
+### URL Parameters
+
+Parameter | Description | Format | Required
+--------- | ----------- | --------- | -----------
+responseStatus	| Código de identificação do status da requisição do serviço.	| INTEGER	| S
+responseStatusMessage	| Descrição do código de identificação do status.	| STRING (200)	| S
+simulation	| Lista com os dados de parcelamento, ou seja, quantidade de títulos(parcelas) e valores respectivos.	| ARRAY	| S
+[simulation] installmants	| Lista com as parcelas da simulação.	| ARRAY	| S
+[installmants] installmant	| Identificador do título(parcela).	| INTEGER	| S
+[installmants] amount	| Valor bruto total do título(parcela).	| DECIMAL (15,2)	| S
+[installmants] interest	| Valor bruto de juros do título(parcela).	| DECIMAL (15,2)	| S
+
+> Sample Response
+
+```java
+
+{
+  "partnerIdentification" : "12345678909",
+  "amount" : "200.52",
+  "clients" : [
+{
+    "responseStatus": 200,
+    "responseStatusMessage": "Success",
+    "simulation": [
+        {
+            "installmants": [
+                {
+                    "installmant": 1,
+                    "amount": 18.39,
+                    "interest": 1.68
+                },
+                {
+                    "installmant": 2,
+                    "amount": 18.38,
+                    "interest": 1.67
+                },
+                {
+                    "installmant": 3,
+                    "amount": 18.38,
+                    "interest": 1.67
+                },
+                {
+                    "installmant": 4,
+                    "amount": 18.38,
+                    "interest": 1.67
+                },
+                {
+                    "installmant": 5,
+                    "amount": 18.38,
+                    "interest": 1.67
+                },
+                {
+                    "installmant": 6,
+                    "amount": 18.38,
+                    "interest": 1.67
+                },
+                {
+                    "installmant": 7,
+                    "amount": 18.38,
+                    "interest": 1.67
+                },
+                {
+                    "installmant": 8,
+                    "amount": 18.38,
+                    "interest": 1.67
+                },
+                {
+                    "installmant": 9,
+                    "amount": 18.38,
+                    "interest": 1.67
+                },
+                {
+                    "installmant": 10,
+                    "amount": 18.38,
+                    "interest": 1.67
+                },
+                {
+                    "installmant": 11,
+                    "amount": 18.38,
+                    "interest": 1.67
+                },
+                {
+                    "installmant": 12,
+                    "amount": 18.38,
+                    "interest": 1.67
+                }
+            ]
+        }
+    ]
+}
+
+```
+
 ## Envio de Notas Fiscais 
 
 ![enter image description here](https://lh3.googleusercontent.com/-a01IWyWouGc/WgRC65ckc1I/AAAAAAAAAA4/FDsGxHCrvLE5W8T4azpU1Bc-gAiLTuFBwCLcBGAs/s0/IMG_02.png "IMG_02.png")
