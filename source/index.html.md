@@ -383,19 +383,25 @@ O serviço de Consulta é responsável pelo envio do status atual do pedido que 
 
 **Parâmetros de Entrada**
 
+
 **URL Parameters**
+
 Parameter | Description | Example
 --------- | ----------- | -----------
 merchantDocument | Identificador do merchantDocument. | 88256695000118
 orderId | Identificador do pedido. | v32478982vtx-01
 
+
 **URL Entrada** :  `http://api-hom.trusthub.com.br/integration/order/v1/search/88256695000118/v32478982vtx-01`
+
 
 **Parâmetros de Saída**
 
+
 **URL Parameters**
-Parameter | Description | Example
---------- | ----------- | -----------
+
+Parameter | Description | Format | Required
+--------- | ----------- | --------- | -----------
 orderID	| Identificador do pedido gerado pelo Market Place/Cedente	| STRING (200)	| S
 status	| Descrição do status geral do pedido	| STRING (200)	| S
 tracking	| Descrição do status do pedido no MarketPlace/Cedente	| STRING (200)	| S
