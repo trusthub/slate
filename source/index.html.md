@@ -1,3 +1,4 @@
+
 ---
 title: TrustHub - API Reference
 
@@ -100,13 +101,13 @@ Ele deverá ser utilizado para todas as operações a serem realizadas, enviando
 ### Simular Pagamentos
 O serviço de simulação é o serviço primário de integração com a API TrustHub para recebimento de simulações de crédito e gestão de pedidos online, facilitando a integração entre o Cedente TrustHub e, com ou sem o intermédio de um Market Place. Através desse serviço é possível enviar os dados de identificação do Market Place ou Cedente e o valor total do pedido, com base nesses dados básicos é realizada uma simulação de crédito e financiamento para o Sacado(comprador).
 
-### HTTP Request
+**HTTP Request**
 
 `POST  https://api-hom.trusthub.com.br/integration/order/v1/simulation`
 
 **Parâmetros de Entrada**
 
-### URL Parameters
+**URL Parameters**
 
 Parameter | Description | Format | Required
 --------- | ----------- | --------- | -----------
@@ -134,7 +135,7 @@ clients | Para cada Cliente do Market Place que tiver itens dentro da simulaçã
 
 **Parâmetros de Saída**
 
-### URL Parameters
+**URL Parameters**
 
 Parameter | Description | Format | Required
 --------- | ----------- | --------- | -----------
@@ -230,13 +231,13 @@ simulation	| Lista com os dados de parcelamento, ou seja, quantidade de títulos
 ### Registrar Pedido
 O serviço de registro de pedidos é responsável por registrar a requisição de compra dentro da TrustHub. Os dados do Sacado, bem como do pedido do mesmo, são recebidos, registrados e, em cima destes, é feito uma análise detalhada que, posteriormente retornará ao MarketPlace/Cedente a confirmação do pedido, ou seja, o aceite do financiamento e a liberação de crédito para o Sacado efetuar sua compra com sucesso.
 
-### HTTP Request
+**HTTP Request**
 
 `POST  https://api-hom.trusthub.com.br/integration/order/v1/`
 
 **Parâmetros de Entrada**
 
-### URL Parameters
+**URL Parameters**
 
 Parameter | Description | Format | Required
 --------- | ----------- | --------- | -----------
@@ -357,7 +358,7 @@ deviceFingerprint	| Identificador autifraude.	| STRING  (200)	| S
 ```
 **Parâmetros de Saída**
 
-### URL Parameters
+**URL Parameters**
 
 Parameter | Description | Format | Required
 --------- | ----------- | --------- | -----------
@@ -376,13 +377,13 @@ responseStatusMessage	| Descrição do código de saída da requisição.	| STRI
 ### Consultar Pedido
 O serviço de Consulta é responsável pelo envio do status atual do pedido que está sendo analisado pela TrustHub. 
 
-### HTTP Request
+**HTTP Request**
 
 `GET  https://api-hom.trusthub.com.br/integration/order/v1/search/{merchantDocument}/{orderId}`
 
 **Parâmetros de Entrada**
 
-### URL Parameters
+**URL Parameters**
 Parameter | Description | Example
 --------- | ----------- | -----------
 merchantDocument | Identificador do merchantDocument. | 88256695000118
@@ -392,7 +393,7 @@ orderId | Identificador do pedido. | v32478982vtx-01
 
 **Parâmetros de Saída**
 
-### URL Parameters
+**URL Parameters**
 Parameter | Description | Example
 --------- | ----------- | -----------
 orderID	| Identificador do pedido gerado pelo Market Place/Cedente	| STRING (200)	| S
@@ -520,13 +521,13 @@ deviceFingerprint	| Identificador autifraude.	| STRING (200)	| S
 ### Enviar Nota Fiscal do Pedido
 Serviço utilizado para o envio das notas fiscais do pedido.
 
-### HTTP Request
+**HTTP Request**
 
 `POST  https://api-hom.trusthub.com.br/integration/order/v1/invoice/json`
 
 **Parâmetros de Entrada**
 
-### URL Parameters
+**URL Parameters**
 
 Parameter | Description | Format | Required
 --------- | ----------- | --------- | -----------
@@ -555,7 +556,7 @@ fileNames	| Lista de relação para vínculo entre o arquivo e o item.	| ARRAY	|
 
 **Parâmetros de Saída**
 
-### URL Parameters
+**URL Parameters**
 
 Parameter | Description | Format | Required
 --------- | ----------- | --------- | -----------
@@ -574,13 +575,13 @@ responseStatusMessage	| Descrição do código de saída da requisição.	| STRI
 ### Consultar Status Tracking
 O serviço de Consulta MarketPlace/Cedente é responsável pelo recebimento da atualização de status do pedido no MarketPlace/Cedente. Os status de atualização visíveis ao Sacado.
 
-### HTTP Request
+**HTTP Request**
 
 `POST  https://api-hom.trusthub.com.br/integration/order/v1/traking`
 
 **Parâmetros de Entrada**
 
-### URL Parameters
+**URL Parameters**
 
 Parameter | Description | Format | Required
 --------- | ----------- | --------- | -----------
@@ -603,7 +604,7 @@ complement	| Descrição complementar ao status 	| ARRAY| N
 
 **Parâmetros de Saída**
 
-### URL Parameters
+**URL Parameters**
 
 Parameter | Description | Format | Required
 --------- | ----------- | --------- | -----------
