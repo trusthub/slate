@@ -288,7 +288,7 @@ Items	| Lista de items do pedido realizado pelo Sacado.	| LIST| S
 [items] clientDocumentType	| Identificador do dado do valor recebido no parâmetro: items - clientDocument	| STRING  (30)	| S
 shippingValue	| Valor bruto total da taxa de entrega.	| DECIMAL (15,2)	| N
 taxValue	| Valor bruto total de juros do financiamento TrustHub.	| DECIMAL (15,2)	| N
-deviceFingerprint	| Identificador autifraude.	| STRING  (200)	| S
+deviceFingerprint	| Identificador antifraude.	| STRING  (200)	| S
 
 > Sample Request
 
@@ -454,7 +454,7 @@ idOperation	| Identificador da Operação vinculada ao item do pedido.	| INTEGER
 statusOperation	| Descrição do status atual da Operação vinculada ao item do pedido.	| STRING (200)	| S
 shippingValue	| Valor bruto total da taxa de entrega.	| DECIMAL (15,2)	| N
 taxValue	| Valor bruto total de juros do financiamento TrustHub.	| DECIMAL (15,2)	| N
-deviceFingerprint	| Identificador autifraude.	| STRING (200)	| S
+deviceFingerprint	| Identificador antifraude.	| STRING (200)	| S
 
 > Sample Response
 
