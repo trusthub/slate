@@ -97,6 +97,13 @@ Ele deverá ser utilizado para todas as operações a serem realizadas, enviando
 # Recursos
 
 ## Pedidos Online
+Pedidos Online é uma solução da TrustHub oferecida para facilitar o crédito a Sacados, com a forma de pagamento através de boletos parcelados. Assim, com as vendas realizadas através desta opção de pagamento, é possível realizar a antecipação de crédito de forma rápida, ágil e segura para todos os Cedentes e MarketPlace parceiros.
+
+O fluxo dos pedidos inicia com a simulação de crédito para financiamento do valor total do pedido. Quando o Sacado escolher a melhor forma de pagamento, os dados do pedido, do Cedente e  do Sacado, são enviados e devidamente analisados pelas validações de negócio da TrustHub. Com base nessa análise detalhada, a TrustHub envia um retorno de liberação de crédito, aprovando ou rejeitando o mesmo.
+
+Quando um pedido é aprovado, ele é acompanhado do inicio ao fim através dos recursos oferecidos pela API. Assim que recebidas todas as notas fiscais do pedido ele entrará para fila de antecipação de crédito ao Cedente e inicia-se o fluxo operacional do produto THPAR.
+
+
 ### Simular Pagamentos
 O serviço de simulação é o serviço primário de integração com a API TrustHub para recebimento de simulações de crédito e gestão de pedidos online, facilitando a integração entre o Cedente TrustHub e, com ou sem o intermédio de um Market Place. Através desse serviço é possível enviar os dados de identificação do Market Place ou Cedente e o valor total do pedido, com base nesses dados básicos é realizada uma simulação de crédito e financiamento para o Sacado(comprador).
 
@@ -577,8 +584,8 @@ responseStatusMessage	| Descrição do código de saída da requisição.	| STRI
 }
 ```
 
-### Consultar Status Tracking
-O serviço de Consulta MarketPlace/Cedente é responsável pelo recebimento da atualização de status do pedido no MarketPlace/Cedente. Os status de atualização visíveis ao Sacado.
+### Atualizar Status Tracking
+O serviço de atualização do status Tracking é responsável pelo recebimento da atualização de status do pedido no MarketPlace/Cedente.
 
 **HTTP Request**
 
