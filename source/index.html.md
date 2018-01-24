@@ -120,7 +120,7 @@ Parameter | Description | Format | Required
 merchantDocument | Identificador do Market Place ou Cedente.| STRING (30) | S
 amount | Valor bruto total do pedido, incluindo taxa de entrega, descontos e demais valores relacionados. | DECIMAL (15,2) | S
 clients | Para cada Cliente do Market Place que tiver itens dentro da simulação, deve ser enviado o CPF/CNPJ deste Cliente neste parâmetro. | ARRAY | -
-[clients] clientIdentification | Para cada Cliente do Market Place que tiver itens dentro da simulação, deve ser enviado o CPF/CNPJ deste Cliente neste parâmetro. | STRING (30) | -
+[clients] clientDocument | Para cada Cliente do Market Place que tiver itens dentro da simulação, deve ser enviado o CPF/CNPJ deste Cliente neste parâmetro. | STRING (30) | -
 [clients] amount | Para cara Cliente, também deve ser enviado o valor total dos pedidos destes isoladamente.  |DECIMAL (15,2) | -
 
 > Sample Request
@@ -128,15 +128,16 @@ clients | Para cada Cliente do Market Place que tiver itens dentro da simulaçã
 ```java
 
 {
-  "partnerIdentification" : "12345678909",
-  "amount" : "200.52",
+  "merchantDocument" : "12589656/0001-01",
+  "amount" : 200.52,
   "clients" : [
                 {
-                               "clientIdentification":"121212",
-                               "amount" : "200.52"
+                               "clientDocument":"158965852-96",
+                               "amount" : 200.52
                 }
   ]
 }
+
 ```
 
 **Parâmetros de Saída**
@@ -147,91 +148,392 @@ Parameter | Description | Format | Required
 --------- | ----------- | --------- | -----------
 responseStatus	| Código de identificação do status da requisição do serviço.	| INTEGER	| S
 responseStatusMessage	| Descrição do código de identificação do status.	| STRING (200)	| S
-simulation	| Lista com os dados de parcelamento, ou seja, quantidade de títulos(parcelas) e valores respectivos.	| ARRAY	| S
-[simulation] installmants	| Lista com as parcelas da simulação.	| ARRAY	| S
-[installmants] installmant	| Identificador do título(parcela).	| INTEGER	| S
-[installmants] amount	| Valor bruto total do título(parcela).	| DECIMAL (15,2)	| S
-[installmants] interest	| Valor bruto de juros do título(parcela).	| DECIMAL (15,2)	| S
+simulation	| Lista com os dados de simulação: taxa de juros, valor bruto total (sem juros), condições de parcelamento possíveis, valor total atualizado (com juros). | ARRAY	| S
+[simulation] taxAmount | Valor calculado do juros a aplicar sobre o valor bruto(amount) do pedido. | DECIMAL(15,2) | S  
+[simulation] amount | Valor bruto do pedido, sem juros. | DECIMAL(15,2)|S
+[simulation] amountWithTax | Valor bruto final do pedido, com juros. | DECIMAL(15,2)|S
+[simulation] installments | Lista com as simulações de pagamento do pedido. Cada ID contém os seus dados individuais de parcelamento e valores respectivos. | ARRAY	| S
+[installments] ID* | Índice da(s) condição(ões) de pagamento(s) geradas(s) através de regras internas da TrustHub. | INTEGER | S
+[installments] installment	| Identificador do título(parcela).	| INTEGER	| S
+[installments] amount	| Valor bruto total do título(parcela).	| DECIMAL (15,2)	| S
+
 
 > Sample Response
 
 ```java
-
-{
-  "partnerIdentification" : "12345678909",
-  "amount" : "200.52",
-  "clients" : [
 {
     "responseStatus": 200,
     "responseStatusMessage": "Success",
     "simulation": [
         {
-            "installmants": [
+            "taxAmount": 20.05,
+            "amount": 200.52,
+            "amountWithTax": 220.57,
+            "installments": [
                 {
-                    "installmant": 1,
-                    "amount": 18.39,
-                    "interest": 1.68
+                    "1": [
+                        {
+                            "installment": 1,
+                            "amount": 220.57
+                        }
+                    ]
                 },
                 {
-                    "installmant": 2,
-                    "amount": 18.38,
-                    "interest": 1.67
+                    "2": [
+                        {
+                            "installment": 1,
+                            "amount": 110.29
+                        },
+                        {
+                            "installment": 2,
+                            "amount": 110.28
+                        }
+                    ]
                 },
                 {
-                    "installmant": 3,
-                    "amount": 18.38,
-                    "interest": 1.67
+                    "3": [
+                        {
+                            "installment": 1,
+                            "amount": 73.53
+                        },
+                        {
+                            "installment": 2,
+                            "amount": 73.52
+                        },
+                        {
+                            "installment": 3,
+                            "amount": 73.52
+                        }
+                    ]
                 },
                 {
-                    "installmant": 4,
-                    "amount": 18.38,
-                    "interest": 1.67
+                    "4": [
+                        {
+                            "installment": 1,
+                            "amount": 55.15
+                        },
+                        {
+                            "installment": 2,
+                            "amount": 55.14
+                        },
+                        {
+                            "installment": 3,
+                            "amount": 55.14
+                        },
+                        {
+                            "installment": 4,
+                            "amount": 55.14
+                        }
+                    ]
                 },
                 {
-                    "installmant": 5,
-                    "amount": 18.38,
-                    "interest": 1.67
+                    "5": [
+                        {
+                            "installment": 1,
+                            "amount": 44.13
+                        },
+                        {
+                            "installment": 2,
+                            "amount": 44.11
+                        },
+                        {
+                            "installment": 3,
+                            "amount": 44.11
+                        },
+                        {
+                            "installment": 4,
+                            "amount": 44.11
+                        },
+                        {
+                            "installment": 5,
+                            "amount": 44.11
+                        }
+                    ]
                 },
                 {
-                    "installmant": 6,
-                    "amount": 18.38,
-                    "interest": 1.67
+                    "6": [
+                        {
+                            "installment": 1,
+                            "amount": 36.77
+                        },
+                        {
+                            "installment": 2,
+                            "amount": 36.76
+                        },
+                        {
+                            "installment": 3,
+                            "amount": 36.76
+                        },
+                        {
+                            "installment": 4,
+                            "amount": 36.76
+                        },
+                        {
+                            "installment": 5,
+                            "amount": 36.76
+                        },
+                        {
+                            "installment": 6,
+                            "amount": 36.76
+                        }
+                    ]
                 },
                 {
-                    "installmant": 7,
-                    "amount": 18.38,
-                    "interest": 1.67
+                    "7": [
+                        {
+                            "installment": 1,
+                            "amount": 31.51
+                        },
+                        {
+                            "installment": 2,
+                            "amount": 31.51
+                        },
+                        {
+                            "installment": 3,
+                            "amount": 31.51
+                        },
+                        {
+                            "installment": 4,
+                            "amount": 31.51
+                        },
+                        {
+                            "installment": 5,
+                            "amount": 31.51
+                        },
+                        {
+                            "installment": 6,
+                            "amount": 31.51
+                        },
+                        {
+                            "installment": 7,
+                            "amount": 31.51
+                        }
+                    ]
                 },
                 {
-                    "installmant": 8,
-                    "amount": 18.38,
-                    "interest": 1.67
+                    "8": [
+                        {
+                            "installment": 1,
+                            "amount": 27.58
+                        },
+                        {
+                            "installment": 2,
+                            "amount": 27.57
+                        },
+                        {
+                            "installment": 3,
+                            "amount": 27.57
+                        },
+                        {
+                            "installment": 4,
+                            "amount": 27.57
+                        },
+                        {
+                            "installment": 5,
+                            "amount": 27.57
+                        },
+                        {
+                            "installment": 6,
+                            "amount": 27.57
+                        },
+                        {
+                            "installment": 7,
+                            "amount": 27.57
+                        },
+                        {
+                            "installment": 8,
+                            "amount": 27.57
+                        }
+                    ]
                 },
                 {
-                    "installmant": 9,
-                    "amount": 18.38,
-                    "interest": 1.67
+                    "9": [
+                        {
+                            "installment": 1,
+                            "amount": 24.57
+                        },
+                        {
+                            "installment": 2,
+                            "amount": 24.5
+                        },
+                        {
+                            "installment": 3,
+                            "amount": 24.5
+                        },
+                        {
+                            "installment": 4,
+                            "amount": 24.5
+                        },
+                        {
+                            "installment": 5,
+                            "amount": 24.5
+                        },
+                        {
+                            "installment": 6,
+                            "amount": 24.5
+                        },
+                        {
+                            "installment": 7,
+                            "amount": 24.5
+                        },
+                        {
+                            "installment": 8,
+                            "amount": 24.5
+                        },
+                        {
+                            "installment": 9,
+                            "amount": 24.5
+                        }
+                    ]
                 },
                 {
-                    "installmant": 10,
-                    "amount": 18.38,
-                    "interest": 1.67
+                    "10": [
+                        {
+                            "installment": 1,
+                            "amount": 22.12
+                        },
+                        {
+                            "installment": 2,
+                            "amount": 22.05
+                        },
+                        {
+                            "installment": 3,
+                            "amount": 22.05
+                        },
+                        {
+                            "installment": 4,
+                            "amount": 22.05
+                        },
+                        {
+                            "installment": 5,
+                            "amount": 22.05
+                        },
+                        {
+                            "installment": 6,
+                            "amount": 22.05
+                        },
+                        {
+                            "installment": 7,
+                            "amount": 22.05
+                        },
+                        {
+                            "installment": 8,
+                            "amount": 22.05
+                        },
+                        {
+                            "installment": 9,
+                            "amount": 22.05
+                        },
+                        {
+                            "installment": 10,
+                            "amount": 22.05
+                        }
+                    ]
                 },
                 {
-                    "installmant": 11,
-                    "amount": 18.38,
-                    "interest": 1.67
+                    "11": [
+                        {
+                            "installment": 1,
+                            "amount": 20.07
+                        },
+                        {
+                            "installment": 2,
+                            "amount": 20.05
+                        },
+                        {
+                            "installment": 3,
+                            "amount": 20.05
+                        },
+                        {
+                            "installment": 4,
+                            "amount": 20.05
+                        },
+                        {
+                            "installment": 5,
+                            "amount": 20.05
+                        },
+                        {
+                            "installment": 6,
+                            "amount": 20.05
+                        },
+                        {
+                            "installment": 7,
+                            "amount": 20.05
+                        },
+                        {
+                            "installment": 8,
+                            "amount": 20.05
+                        },
+                        {
+                            "installment": 9,
+                            "amount": 20.05
+                        },
+                        {
+                            "installment": 10,
+                            "amount": 20.05
+                        },
+                        {
+                            "installment": 11,
+                            "amount": 20.05
+                        }
+                    ]
                 },
                 {
-                    "installmant": 12,
-                    "amount": 18.38,
-                    "interest": 1.67
+                    "12": [
+                        {
+                            "installment": 1,
+                            "amount": 18.39
+                        },
+                        {
+                            "installment": 2,
+                            "amount": 18.38
+                        },
+                        {
+                            "installment": 3,
+                            "amount": 18.38
+                        },
+                        {
+                            "installment": 4,
+                            "amount": 18.38
+                        },
+                        {
+                            "installment": 5,
+                            "amount": 18.38
+                        },
+                        {
+                            "installment": 6,
+                            "amount": 18.38
+                        },
+                        {
+                            "installment": 7,
+                            "amount": 18.38
+                        },
+                        {
+                            "installment": 8,
+                            "amount": 18.38
+                        },
+                        {
+                            "installment": 9,
+                            "amount": 18.38
+                        },
+                        {
+                            "installment": 10,
+                            "amount": 18.38
+                        },
+                        {
+                            "installment": 11,
+                            "amount": 18.38
+                        },
+                        {
+                            "installment": 12,
+                            "amount": 18.38
+                        }
+                    ]
                 }
             ]
         }
     ]
 }
-
 ```
 
 ### Registrar Pedido
