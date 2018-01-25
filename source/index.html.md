@@ -717,7 +717,7 @@ Parameter | Description | Format | Required
 orderID	| Identificador do pedido gerado pelo Market Place/Cedente	| STRING (200)	| S
 status	| Descrição do status geral do pedido	| STRING (200)	| S
 tracking	| Descrição do status do pedido no MarketPlace/Cedente	| STRING (200)	| S
-value	| Valor bruto total do pedido.	| DECIMAL (15,2)	| S
+amount	| Valor bruto total do pedido.	| DECIMAL (15,2)	| S
 installments	| Quantidade de títulos de pagamento selecionados pelo Sacado.	| INTEGER	| S
 merchantDocument	| Identificador do Market Place ou Cliente. **Qual enviar?** Se a integração se dá através de um Market Place, deve-se enviar os dados deste. Porém, quando a integração se dá diretamente do e-commerce do Cliente, sem um Market de Place de integração, deve-se enviar os dados do Cliente.	| STRING (30)	| S
 merchantDocumentType	| Identificador do dado do valor recebido no parâmetro: merchantDocument.	| STRING (30)	| S
@@ -725,115 +725,60 @@ miniCart	| Objeto com os dados essenciais do pedido: Dados do comprador, endere�
 buyer	| Objeto com os dados básicos do Sacado.	| OBJECT| S
 [buyer] firstName	| Primeiro nome do Sacado.	| STRING (100)	| S
 [buyer] lastName	| Sobrenome do Sacado.	| STRING (100)	| S
-[buyer] document	| Número do documento cadastrado no parceiro (Market Place/Cedente).	| STRING (30)	| S
-[buyer] documentType	| Identificador do dado do valor recebido no parâmetro: buyer – document.	| STRING (30)	| S
-[buyer] email	| Email de contato do Sacado.	| STRING (200)	| S
-[buyer] phone	| Telefone principal do Sacado.	| STRING (30)	| S
-billingAddress	| Objeto com os dados do endereço de cobrança do Sacado.	| OBJECT | S
-[billingAddress] country	| Sigla do país do endereço de cobrança.	| STRING (3)*	| S
-[billingAddress] street	| Descrição da localização do endereço de cobrança.	| STRING (300)	| S
-[billingAddress] number	| Número do endereço de cobrança.	| INTEGER	| S
-[billingAddress] complement	| Complemento do endereço de cobrança.	| STRING (300)	| N
-[billingAddress] neighborhood	| Bairro do endereço de cobrança.	| STRING (300)	| S
-[billingAddress] postalCode	| Código Postal/CEP do endereço de cobrança.	| STRING (20) | S	
-[billingAddress] city	| Cidade do endereço de cobrança.	| STRING (100)	| S
-[billingAddress] state	| Estado do endereço de cobrança.	| STRING (100)	| S
-shippingAddress	| Objeto com os dados do endereço de entrega do Sacado.	| OBJECT | S
-[shippingAddress] country	| País do endereço de entrega.	| STRING (3)*	| S
-[shippingAddress] street	| Descrição da localização do endereço de entrega.	| STRING (300)	| S
-[shippingAddress] number	| Número do endereço de entrega.	| INTEGER	| S
-[shippingAddress] complement	| Complemento do endereço de entrega.	| STRING (300)	| N
-[shippingAddress] neighborhood	| Bairro do endereço de entrega.	| STRING (300)	| S
-[shippingAddress] postalCode	| Código Postal/CEP do endereço de entrega.	| STRING (20)	| S
-[shippingAddress] city	| Cidade do endereço de entrega.	| STRING (100)	| S
-[shippingAddress] state	| Estado do endereço de entrega.	| STRING (100)	| S
+[buyer] document	| Número do documento cadastrado no parceiro (Market Place/Cedente).	| [buyer] email	| Email de contato do Sacado.	| STRING (200)	| S
 Items	| Lista de items do pedido realizado pelo Sacado.	| LIST| S
 [items] id	| Identificador do item do pedido do Cedente.	| STRING (200)	| S
-[items] name	| Descrição do item do pedido do Cedente.	| STRING (300)	| S
-[items] price	| Valor bruto unitário do item.	| DECIMAL (15,2)	| S
-[items] quantity	| Quantidade do item.	| INTEGER	| S
-[items] discount	| Valor bruto de desconto do item.	| DECIMAL (15,2)	| S
 [items] clientDocument	| Identificador do vendedor do item: Cedente.	| STRING (200)	| S
-[items] clientDocumentType	| Identificador do dado do valor recebido no parâmetro: items – clientDocument	| STRING (30)	| S
-status	| Descrição do status individual do item do pedido.	| STRING (200)	| S
-idOperation	| Identificador da Operação vinculada ao item do pedido.	| INTEGER	| N
-statusOperation	| Descrição do status atual da Operação vinculada ao item do pedido.	| STRING (200)	| S
-shippingValue	| Valor bruto total da taxa de entrega.	| DECIMAL (15,2)	| N
-taxValue	| Valor bruto total de juros do financiamento TrustHub.	| DECIMAL (15,2)	| N
-deviceFingerprint	| Identificador antifraude.	| STRING (200)	| S
+[items] status | Status individual do item do pedido. | STRING (50) | N
+[items] idOperation | Código da Operação atrelada ao item do pedido. | INTEGER | N
+[items] statusOperation | Status atual da Operações atrelada ao item do pedido. | STRING(50) | N
+shippingAmount	| Valor bruto total da taxa de entrega.	| DECIMAL (15,2)	| N
+taxAmount	| Valor bruto total de juros do financiamento TrustHub.	| DECIMAL (15,2)	| N
+otherFees | Valor bruto total de outras taxas cobradas no pedido.	| DECIMAL (15,2)	| N
+orderDiscount | Valor bruto total de descontos do pedido.	| DECIMAL (15,2)	| N
+deviceFingerprint	| Identificador antifraude.	| STRING  (200)	| S
 
 > Sample Response
 
 ```java
-{
-                "orderId": "v32478982vtx-01",
-                "status" : "",
-                "traking" : ""
-                "value": 4307.23,
-                "installments": 3,
-                "merchantDocument": "88.256.695/0001-18",
-                "merchantDocumentType": "CNPJ",
-                "miniCart": {
-                               "buyer": {
-                                               "firstName": "MARCELO",
-                                               "lastName": "Doe",
-                                               "document": "012.345.678-90",
-                                               "documentType": "CPF",
-                                               "email": "john@doe.com",
-                                               "phone": "+55 (21) 98765-4321"
-                               },
-                               "shippingAddress": {
-                                               "country": "BRA",
-                                               "street": "Rua Praia de Botafogo",
-                                               "number": "518",
-                                               "complement": "2o. andar",
-                                               "neighborhood": "Botafogo",
-                                               "postalCode": "22250-040",
-                                               "city": "Rio de Janeiro",
-                                               "state": "RJ"
-                               },
-                               "billingAddress": {
-                                               "country": "BRA",
-                                               "street": "Rua Praia de Botafogo",
-                                               "number": "518",
-                                               "complement": "2o. andar",
-                                               "neighborhood": "Botafogo",
-                                               "postalCode": "22250-040",
-                                               "city": "Rio de Janeiro",
-                                               "state": "RJ"
-                               },
-                               "items": [
-                                               {
-                                                               "id": "132981",
-                                                               "name": "Some useful product",
-                                                               "price": 2134.9,
-                                                               "quantity": 2,
-                                                               "discount": 5,
-                                                               "clientDocument": "88.256.695/0001-18",
-                                                               "clientDocumentType": "CNPJ",
-                                                               "status" : "",
-                                                               "idOperation" : "",
-                                                               "statusOperation" : ""
-                                               },
-                                               {
-                                                               "id": "123242",
-                                                               "name": "Some useless product",
-                                                               "price": 21.98,
-                                                               "quantity": 1,
-                                                               "discount": 1,
-                                                               "clientDocument": "88.256.695/0001-18",
-                                                               "clientDocumentType": "CNPJ",
-                                                              "status" : "",
-                                                               "idOperation" : "",
-                                                               "statusOperation" : ""
-                                               }
-                               ],
-                               "shippingValue": 11.44,
-                               "taxValue": 10.01,
-                               "deviceFingerprint": "1234567890",
-                }
-}
-
+{   
+    "orderId": "v32478982vtx-01",
+    "status" : "",
+    "tracking" : "",
+    "amount": 4307.23,
+    "installments": 3,
+    "merchantDocument": "88.256.695/0001-18",
+    "merchantDocumentType": "CNPJ",
+    "miniCart": {
+                   "buyer": {
+                             "firstName": "MARCELO",
+                             "lastName": "DOMES",
+                             "document": "012.345.678-90",
+                             "email": "marcelo@domes.com",
+                   },
+                   "items": [
+                             {
+                              "id": "132981",
+                              "clientDocument": "88.256.695/0001-18",
+                              "status" : "",
+                              "idOperation" : "",
+                              "statusOperation" : ""
+                             },
+                             {
+                               "id": "123242",
+                               "clientDocument": "88.256.695/0001-18",
+                               "status" : "",
+                               "idOperation" : "",
+                               "statusOperation" : ""
+                             }
+                   ],
+    "shippingAmount": 11.44,
+    "taxAmount": 10.01,
+    "otherFees" : 0,
+    "orderDiscount" : 0,
+    "deviceFingerprint": "1234567890",
+    }
+}   
 ```
 
 ### Enviar Nota Fiscal do Pedido
