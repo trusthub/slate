@@ -119,9 +119,9 @@ Parameter | Description | Format | Required
 --------- | ----------- | --------- | -----------
 merchantDocument | Identificador do Market Place ou Cedente.| STRING (30) | S
 amount | Valor bruto total do pedido, incluindo taxa de entrega, descontos e demais valores relacionados. | DECIMAL (15,2) | S
-clients | Para cada Cliente do Market Place que tiver itens dentro da simulação, deve ser enviado o CPF/CNPJ deste Cliente neste parâmetro. | ARRAY | -
-[clients] clientDocument | Para cada Cliente do Market Place que tiver itens dentro da simulação, deve ser enviado o CPF/CNPJ deste Cliente neste parâmetro. | STRING (30) | -
-[clients] amount | Para cara Cliente, também deve ser enviado o valor total dos pedidos destes isoladamente.  |DECIMAL (15,2) | -
+clients | Para cada Cliente do Market Place que tiver itens dentro da simulação, deve ser enviado o CPF/CNPJ deste Cliente neste parâmetro. | ARRAY | N
+[clients] clientDocument | Para cada Cliente do Market Place que tiver itens dentro da simulação, deve ser enviado o CPF/CNPJ deste Cliente neste parâmetro. | STRING (30) | N
+[clients] amount | Para cara Cliente, também deve ser enviado o valor total dos pedidos destes isoladamente.  |DECIMAL (15,2) | N
 
 > Sample Request
 
@@ -550,7 +550,7 @@ O serviço de registro de pedidos é responsável por registrar a requisição d
 Parameter | Description | Format | Required
 --------- | ----------- | --------- | -----------
 orderID	| Identificador do pedido gerado pelo Market Place/Cedente	| STRING  (200)	| S
-value	| Valor bruto total do pedido.	| DECIMAL (15,2)	| S
+amount	| Valor bruto total do pedido.	| DECIMAL (15,2)	| S
 installments	| Quantidade de títulos de pagamento selecionados pelo Sacado.	| INTEGER	| S
 merchantDocument	| Identificador do Market Place ou Cliente. **Qual enviar?** Se a integração se dá através de um Market Place, deve-se enviar os dados deste. Porém, quando a integração se dá diretamente do e-commerce do Cliente, sem um Market de Place de integração, deve-se enviar os dados do Cliente.	| STRING  (30)	| S
 merchantDocumentType	| Identificador do dado do valor recebido no parâmetro: merchantDocument.	| STRING  (30)	| S
@@ -588,17 +588,19 @@ Items	| Lista de items do pedido realizado pelo Sacado.	| LIST| S
 [items] discount	| Valor bruto de desconto do item.	| DECIMAL (15,2)	| S
 [items] clientDocument	| Identificador do vendedor do item: Cedente.	| STRING  (200)	| S
 [items] clientDocumentType	| Identificador do dado do valor recebido no parâmetro: items - clientDocument	| STRING  (30)	| S
-shippingValue	| Valor bruto total da taxa de entrega.	| DECIMAL (15,2)	| N
-taxValue	| Valor bruto total de juros do financiamento TrustHub.	| DECIMAL (15,2)	| N
+shippingAmount	| Valor bruto total da taxa de entrega.	| DECIMAL (15,2)	| N
+taxAmount	| Valor bruto total de juros do financiamento TrustHub.	| DECIMAL (15,2)	| N
+otherFees | Valor bruto total de outras taxas cobradas no pedido.	| DECIMAL (15,2)	| N
+orderDiscount | Valor bruto total de descontos do pedido.	| DECIMAL (15,2)	| N
 deviceFingerprint	| Identificador antifraude.	| STRING  (200)	| S
 
 > Sample Request
 
 ```java
 {
-       "id" : "1234", 
+       "Id": "123456",
        "orderId": "v32478982vtx-01",
-       "value": 4307.23,
+       "amount": 4307.23,
        "installments": 3,
        "merchantDocument": "88.256.695/0001-18",
        "merchantDocumentType": "CNPJ",
@@ -611,7 +613,7 @@ deviceFingerprint	| Identificador antifraude.	| STRING  (200)	| S
                     "email": "john@doe.com",
                     "phone": "+55 (21) 98765-4321"
              },
-             "shippingAddress": {
+             "billingAddress": {
                     "country": "BRA",
                     "street": "Rua Praia de Botafogo",
                     "number": "518",
@@ -621,7 +623,7 @@ deviceFingerprint	| Identificador antifraude.	| STRING  (200)	| S
                     "city": "Rio de Janeiro",
                     "state": "RJ"
              },
-             "billingAddress": {
+             "shippingAddress": {
                     "country": "BRA",
                     "street": "Rua Praia de Botafogo",
                     "number": "518",
@@ -637,7 +639,7 @@ deviceFingerprint	| Identificador antifraude.	| STRING  (200)	| S
                            "name": "Some useful product",
                            "price": 2134.9,
                            "quantity": 2,
-                           "discount": 5,
+                           "itemDiscount": 5,
                            "clientDocument": "88.256.695/0001-18",
                            "clientDocumentType": "CNPJ",
                            "status" : "", 
@@ -649,7 +651,7 @@ deviceFingerprint	| Identificador antifraude.	| STRING  (200)	| S
                            "name": "Some useless product",
                            "price": 21.98,
                            "quantity": 1,
-                           "discount": 1,
+                           "itemDiscount": 1,
                            "clientDocument": "88.256.695/0001-18",
                            "clientDocumentType": "CNPJ",
                            "status" : "", 
@@ -657,8 +659,10 @@ deviceFingerprint	| Identificador antifraude.	| STRING  (200)	| S
                            "statusOperation" : "" 
                     }
              ],
-             "shippingValue": 11.44,
-             "taxValue": 10.01,
+             "shippingAmount": 11.44,
+             "taxAmount": 10.01,
+             "otherFees" : 0,
+             "orderDiscount" : 0,
              "deviceFingerprint": "1234567890", 
        }
 }
