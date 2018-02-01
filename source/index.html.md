@@ -913,8 +913,8 @@ PRONTO !  A partir deste momento todo e qualquer acesso através do nosso link i
 
 Para tratativas de envio de invoices deve ser utilizado recurso conforme umas das duas URLs e exemplos como segue:	
 
-Via Multipart: `POST  https://api-hom.trusthub.com.br/integration/invoices/v1/`
-Via Json: `POST  https://api-hom.trusthub.com.br/integration/invoices/v1/json/`
+ - Via Multipart: `POST  https://api-hom.trusthub.com.br/integration/invoices/v1/`
+ - Via Json: `POST  https://api-hom.trusthub.com.br/integration/invoices/v1/json/`
 
 
 Parameter | Tipo Envio | Description | Format | Required
@@ -989,9 +989,8 @@ HttpResponse response = client.execute(request);
 
  Através deste recurso é possível o envio das notas fiscais de clientes. 
 
-<aside class="warning">Importante salientar que os envios de arquivos de notas devem ser compactados através de padrão .zip de forma a otimizar o envio de informações. E as notas devem terminarem com a extensão .XML.
-</aside>		
-
+<aside class="warning">Importante salientar que os envios de arquivos de notas devem ser compactados através de padrão ".zip" de forma a otimizar o envio de informações. E as notas devem terminarem com a extensão ".XML". Cada ".ZIP" deve conter ".XMLs" (Notas) de um único cedente.
+</aside>			
 
 ## Consulta de Notas Fiscais por Chave
 
@@ -1017,13 +1016,19 @@ HttpResponse response = client.execute(request);
 
 ```java
 {  
-   "client_key":400,
+   "client_key":"99999999999999",
+   "key":"000011111-250",
    "installments":[  
       {  
-         "document":"6919 01/01",
-         "client_key":400,
-         "maturity_date":"20180327000000",
-         "amount":860.4000,
+         "document":"000011111",
+         "maturity_date":"20180301000000",
+         "amount":9975.2100,
+         "status":"ENVIADO"
+      },
+	  {  
+         "document":"000022222",
+         "maturity_date":"20180302000000",
+         "amount":8875.2100,
          "status":"ENVIADO"
       }
    ]
@@ -1077,19 +1082,41 @@ HttpResponse response = client.execute(request);
 
 ```java
 {  
-   "client_key":400,
-   "installments":[  
+   "arrayInstallments":[  
       {  
-         "document":"6821 01/01",
-         "client_key":400,
-         "maturity_date":"20180327000000",
-         "amount":860.4000,
-         "status":"ENVIADO"
+         "client_key":"99999999999999",
+         "key":"000000001-007",
+         "installments":[  
+            {  
+               "document":"000000001",
+               "maturity_date":"20180301000000",
+               "amount":5.0000,
+               "status":"EM ANÁLISE"
+            }
+         ]
+      },
+      {  
+         "client_key":"99999999999999",
+         "key":"000000006-008",
+         "installments":[  
+            {  
+               "document":"000000046",
+               "maturity_date":"20180215000000",
+               "amount":5.0000,
+               "status":"EM ANÁLISE"
+            },
+            {  
+               "document":"000000901",
+               "maturity_date":"20180210000000",
+               "amount":90.0000,
+               "status":"EM ANÁLISE"
+            }
+         ]
       }
    ],
    "pagination":{  
       "page_size":20,
-      "total_regs":"1",
+      "total_regs":"3",
       "pages":1,
       "from_page":1,
       "to_page":100
@@ -1212,9 +1239,9 @@ HttpResponse response = client.execute(request);
  O login automático se dar através de um token gerado pela Trusthub que tem validade de uso.
  O processo se dar em duas etapas:
  - Chamar o serviço de geração de token https://api-hom.trusthub.com.br/integration/invoices/v1/generate-token/;
- - Com o token retornado deve-se acessar o portal passando o token gerado no fim da url do portal.
-	 https://hom.trusthub.com.br/trusthub-antecipacao-web/#/redirect-logged-user/{temporary-token}
- - No momento do acesso com o token na aplicação, caso o cliente não esteja cadastrado, estaremos cadastrando o mesmo e redirecionando o mesmo logado.
+ - Com o token retornado deve-se acessar o portal passando o token gerado no fim da url do portal. https://hom.trusthub.com.br/trusthub-antecipacao-web/#/redirect-logged-user/{temporary-token}
+
+ No momento do acesso com o token na aplicação, caso o cliente não esteja cadastrado, estaremos cadastrando o mesmo e redirecionando o mesmo logado.
 
 
 ### HTTP Request
