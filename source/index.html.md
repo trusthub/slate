@@ -1023,13 +1023,17 @@ HttpResponse response = client.execute(request);
          "document":"000011111",
          "maturity_date":"20180301000000",
          "amount":9975.2100,
-         "status":"ENVIADO"
+         "status":"ENVIADO",
+		 "liquidation_date":"20180301000000",
+		 "transmission_date":"20180301000000"
       },
 	  {  
          "document":"000022222",
          "maturity_date":"20180302000000",
          "amount":8875.2100,
-         "status":"ENVIADO"
+         "status":"ENVIADO",
+		 "liquidation_date":"20180301000000",
+		 "transmission_date":"20180301000000"
       }
    ]
 }
@@ -1091,7 +1095,9 @@ HttpResponse response = client.execute(request);
                "document":"000000001",
                "maturity_date":"20180301000000",
                "amount":5.0000,
-               "status":"EM ANÁLISE"
+               "status":"EM ANÁLISE",
+			   "liquidation_date":"20180301000000",
+			   "transmission_date":"20180301000000"
             }
          ]
       },
@@ -1103,13 +1109,17 @@ HttpResponse response = client.execute(request);
                "document":"000000046",
                "maturity_date":"20180215000000",
                "amount":5.0000,
-               "status":"EM ANÁLISE"
+               "status":"EM ANÁLISE",
+			   "liquidation_date":"20180301000000",
+			   "transmission_date":"20180301000000"
             },
             {  
                "document":"000000901",
                "maturity_date":"20180210000000",
                "amount":90.0000,
-               "status":"EM ANÁLISE"
+               "status":"EM ANÁLISE",
+			   "liquidation_date":"20180301000000",
+			   "transmission_date":"20180301000000"
             }
          ]
       }
@@ -1242,6 +1252,8 @@ HttpResponse response = client.execute(request);
  - Com o token retornado deve-se acessar o portal passando o token gerado no fim da url do portal. https://hom.trusthub.com.br/trusthub-antecipacao-web/#/redirect-logged-user/{temporary-token}
 
  No momento do acesso com o token na aplicação, caso o cliente não esteja cadastrado, estaremos cadastrando o mesmo e redirecionando o mesmo logado.
+ 
+ Exemplo de botão de Login: [http://hom.trusthub.com.br/HTML-API/box.html](http://hom.trusthub.com.br/HTML-API/box.html)
 
 
 ### HTTP Request
