@@ -146,8 +146,9 @@ clients | Para cada Cliente do Market Place que tiver itens dentro da simulaçã
 
 Parameter | Description | Format | Required
 --------- | ----------- | --------- | -----------
-responseStatus	| Código de identificação do status da requisição do serviço.	| INTEGER	| S
-responseStatusMessage	| Descrição do código de identificação do status.	| STRING (200)	| S
+responseCode	| Código de identificação do status da requisição do serviço.	| INTEGER	| S
+responseStatus	|  Descrição do código de identificação do status.	| STRING (200)	| S
+responseStatusMessage	| Descrição adicional da TrustHub para o retorno.	| STRING (200)	| S
 simulation	| Lista com os dados de simulação: taxa de juros, valor bruto total (sem juros), condições de parcelamento possíveis, valor total atualizado (com juros). | ARRAY	| S
 [simulation] taxAmount | Valor calculado do juros a aplicar sobre o valor bruto(amount) do pedido. | DECIMAL(15,2) | S  
 [simulation] amount | Valor bruto do pedido, sem juros. | DECIMAL(15,2)|S
@@ -162,8 +163,9 @@ simulation	| Lista com os dados de simulação: taxa de juros, valor bruto total
 
 ```java
 {
-    "responseStatus": 200,
-    "responseStatusMessage": "Success",
+    "responseCode": 200,
+    "responseStatus": "Success",
+    "responseStatusMessage": "",
     "simulation": [
         {
             "taxAmount": 20.05,
@@ -674,8 +676,9 @@ deviceFingerprint	| Identificador antifraude.	| STRING  (200)	| S
 
 Parameter | Description | Format | Required
 --------- | ----------- | --------- | -----------
-responseStatus	| Código de saída da requisição.	| INTEGER	| S
-responseStatusMessage	| Descrição do código de saída da requisição.	| STRING (200)	| S
+responseCode	| Código de saída da requisição.	| INTEGER	| S
+responseStatus	| Descrição do código de saída da requisição.	| STRING (200)	| S
+responseStatusMessage	| Descrição adicional da TrustHub para o retorno.	| STRING (200)	| S
 
 > Sample Response
 
@@ -823,8 +826,9 @@ fileNames	| Lista de relação para vínculo entre o arquivo e o item.	| ARRAY	|
 
 Parameter | Description | Format | Required
 --------- | ----------- | --------- | -----------
-responseStatus	| Código de saída da requisição.	| INTEGER	| S
-responseStatusMessage	| Descrição do código de saída da requisição.	| STRING (200)	| S
+responseCode	| Código de saída da requisição.	| INTEGER	| S
+responseStatus	| Descrição do código de saída da requisição.	| STRING (200)	| S
+responseStatusMessage	| Descrição adicional da TrustHub para o retorno.	| STRING (200)	| S
 
 > Sample Response
 
@@ -871,8 +875,9 @@ complement	| Descrição complementar ao status 	| ARRAY| N
 
 Parameter | Description | Format | Required
 --------- | ----------- | --------- | -----------
-responseStatus	| Código de saída da requisição.	| INTEGER	| S
-responseStatusMessage	| Descrição do código de saída da requisição.	| STRING (200)	| S
+responseCode	| Código de saída da requisição.	| INTEGER	| S
+responseStatus	| Descrição do código de saída da requisição.	| STRING (200)	| S
+responseStatusMessage	| Descrição adicional da TrustHub para o retorno.	| STRING (200)	| S
 
 > Sample Response
 
