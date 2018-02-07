@@ -119,9 +119,9 @@ Parameter | Description | Format | Required
 --------- | ----------- | --------- | -----------
 merchantDocument | Identificador do Market Place ou Cedente.| STRING (30) | S
 amount | Valor bruto total do pedido, incluindo taxa de entrega, descontos e demais valores relacionados. | DECIMAL (15,2) | S
-clients | Para cada Cliente do Market Place que tiver itens dentro da simulação, deve ser enviado o CPF/CNPJ deste Cliente neste parâmetro. | ARRAY | N
-[clients] clientDocument | Para cada Cliente do Market Place que tiver itens dentro da simulação, deve ser enviado o CPF/CNPJ deste Cliente neste parâmetro. | STRING (30) | N
-[clients] amount | Para cara Cliente, também deve ser enviado o valor total dos pedidos destes isoladamente.  |DECIMAL (15,2) | N
+clients | Para cada Cliente do Market Place que tiver itens dentro da simulação, deve ser enviado o CPF/CNPJ deste Cliente neste parâmetro. | ARRAY | S
+[clients] clientDocument | Para cada Cliente do Market Place que tiver itens dentro da simulação, deve ser enviado o CPF/CNPJ deste Cliente neste parâmetro. | STRING (30) | S
+[clients] amount | Para cara Cliente, também deve ser enviado o valor total dos pedidos destes isoladamente.  |DECIMAL (15,2) | S
 
 > Sample Request
 
