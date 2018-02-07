@@ -105,7 +105,7 @@ Quando um pedido é aprovado, ele é acompanhado do inicio ao fim através dos r
 
 
 ### Simular Pagamentos
-O serviço de simulação é o serviço primário de integração com a API TrustHub para recebimento de simulações de crédito e gestão de pedidos online, facilitando a integração entre o Cedente TrustHub e, com ou sem o intermédio de um Market Place. Através desse serviço é possível enviar os dados de identificação do Market Place ou Cedente e o valor total do pedido, com base nesses dados básicos é realizada uma simulação de crédito e financiamento para o Sacado(comprador).
+O serviço de simulação é o serviço primário de integração com a API TrustHub para recebimento de simulações de crédito e gestão de pedidos online, facilitando a integração entre o Cedente TrustHub e, com ou sem o intermédio de um Marketplace. Através desse serviço é possível enviar os dados de identificação do Marketplace ou Cedente e o valor total do pedido, com base nesses dados básicos é realizada uma simulação de crédito e financiamento para o Sacado(comprador).
 
 **HTTP Request**
 
@@ -117,10 +117,10 @@ O serviço de simulação é o serviço primário de integração com a API Trus
 
 Parameter | Description | Format | Required
 --------- | ----------- | --------- | -----------
-merchantDocument | Identificador do Market Place ou Cedente.| STRING (30) | S
+merchantDocument | Identificador do Marketplace ou e-commerce(Cedente).| STRING (30) | S
 amount | Valor bruto total do pedido, incluindo taxa de entrega, descontos e demais valores relacionados. | DECIMAL (15,2) | S
-clients | Para cada Cliente do Market Place que tiver itens dentro da simulação, deve ser enviado o CPF/CNPJ deste Cliente neste parâmetro. | ARRAY | S
-[clients] clientDocument | Para cada Cliente do Market Place que tiver itens dentro da simulação, deve ser enviado o CPF/CNPJ deste Cliente neste parâmetro. | STRING (30) | S
+clients | Para cada Cliente do Marketplace que tiver itens dentro da simulação, deve ser enviado o CPF/CNPJ deste Cliente neste parâmetro. | ARRAY | S
+[clients] clientDocument | Para cada Cliente do Marketplace que tiver itens dentro da simulação, deve ser enviado o CPF/CNPJ deste Cliente neste parâmetro. Ou, em caso de e-commerce, enviar neste parâmetro o mesmo valor enviado no parâmetro merchantDocument | STRING (30) | S
 [clients] amount | Para cara Cliente, também deve ser enviado o valor total dos pedidos destes isoladamente.  |DECIMAL (15,2) | S
 
 > Sample Request
@@ -551,16 +551,16 @@ O serviço de registro de pedidos é responsável por registrar a requisição d
 
 Parameter | Description | Format | Required
 --------- | ----------- | --------- | -----------
-orderID	| Identificador do pedido gerado pelo Market Place/Cedente	| STRING  (200)	| S
+orderID	| Identificador do pedido gerado pelo Marketplace/Cedente	| STRING  (200)	| S
 amount	| Valor bruto total do pedido.	| DECIMAL (15,2)	| S
 installments	| Quantidade de títulos de pagamento selecionados pelo Sacado.	| INTEGER	| S
-merchantDocument	| Identificador do Market Place ou Cliente. **Qual enviar?** Se a integração se dá através de um Market Place, deve-se enviar os dados deste. Porém, quando a integração se dá diretamente do e-commerce do Cliente, sem um Market de Place de integração, deve-se enviar os dados do Cliente.	| STRING  (30)	| S
+merchantDocument	| Identificador do Marketplace ou Cliente. **Qual enviar?** Se a integração se dá através de um Marketplace, deve-se enviar os dados deste. Porém, quando a integração se dá diretamente do e-commerce do Cliente, sem um Market de Place de integração, deve-se enviar os dados do Cliente.	| STRING  (30)	| S
 merchantDocumentType	| Identificador do dado do valor recebido no parâmetro: merchantDocument.	| STRING  (30)	| S
 miniCart	| Objeto com os dados essenciais do pedido: Dados do comprador, endereço de entrega e cobrança, itens do carrinho e demais tributos e descontos.	|OBJECT	|S
 buyer	| Objeto com os dados básicos do Sacado.	| OBJECT| S
 [buyer] firstName	| Primeiro nome do Sacado.	| STRING  (100)	| S
 [buyer] lastName	| Sobrenome do Sacado.	| STRING  (100)	| S
-[buyer] document	| Número do documento cadastrado no parceiro (Market Place/Cedente).	| STRING  (30)	| S
+[buyer] document	| Número do documento cadastrado no parceiro (Marketplace/Cedente).	| STRING  (30)	| S
 [buyer] documentType	| Identificador do dado do valor recebido no parâmetro: buyer – document.	| STRING  (30)	| S
 [buyer] email	| Email de contato do Sacado.	| STRING  (200)	| S
 [buyer] phone	| Telefone principal do Sacado.	| STRING  (30)	| S
@@ -717,18 +717,18 @@ orderId | Identificador do pedido. | v32478982vtx-01
 
 Parameter | Description | Format | Required
 --------- | ----------- | --------- | -----------
-orderID	| Identificador do pedido gerado pelo Market Place/Cedente	| STRING (200)	| S
+orderID	| Identificador do pedido gerado pelo Marketplace/Cedente	| STRING (200)	| S
 status	| Descrição do status geral do pedido	| STRING (200)	| S
 tracking	| Descrição do status do pedido no MarketPlace/Cedente	| STRING (200)	| S
 amount	| Valor bruto total do pedido.	| DECIMAL (15,2)	| S
 installments	| Quantidade de títulos de pagamento selecionados pelo Sacado.	| INTEGER	| S
-merchantDocument	| Identificador do Market Place ou Cliente. **Qual enviar?** Se a integração se dá através de um Market Place, deve-se enviar os dados deste. Porém, quando a integração se dá diretamente do e-commerce do Cliente, sem um Market de Place de integração, deve-se enviar os dados do Cliente.	| STRING (30)	| S
+merchantDocument	| Identificador do Marketplace ou Cliente. **Qual enviar?** Se a integração se dá através de um Marketplace, deve-se enviar os dados deste. Porém, quando a integração se dá diretamente do e-commerce do Cliente, sem um Market de Place de integração, deve-se enviar os dados do Cliente.	| STRING (30)	| S
 merchantDocumentType	| Identificador do dado do valor recebido no parâmetro: merchantDocument.	| STRING (30)	| S
 miniCart	| Objeto com os dados essenciais do pedido: Dados do comprador, endereço de entrega e cobrança, itens do carrinho e demais tributos e descontos.	| OBJECT	| S
 buyer	| Objeto com os dados básicos do Sacado.	| OBJECT| S
 [buyer] firstName	| Primeiro nome do Sacado.	| STRING (100)	| S
 [buyer] lastName	| Sobrenome do Sacado.	| STRING (100)	| S
-[buyer] document	| Número do documento cadastrado no parceiro (Market Place/Cedente).	| [buyer] email	| Email de contato do Sacado.	| STRING (200)	| S
+[buyer] document	| Número do documento cadastrado no parceiro (Marketplace/Cedente).	| [buyer] email	| Email de contato do Sacado.	| STRING (200)	| S
 Items	| Lista de items do pedido realizado pelo Sacado.	| LIST| S
 [items] id	| Identificador do item do pedido do Cedente.	| STRING (200)	| S
 [items] clientDocument	| Identificador do vendedor do item: Cedente.	| STRING (200)	| S
@@ -797,7 +797,7 @@ Serviço utilizado para o envio das notas fiscais do pedido.
 
 Parameter | Description | Format | Required
 --------- | ----------- | --------- | -----------
-orderId	| Identificador do pedido gerado pelo Market Place/Cedente	| STRING (200)	| S
+orderId	| Identificador do pedido gerado pelo Marketplace/Cedente	| STRING (200)	| S
 zipName	| Nome do arquivo com a(s) nota(s) fiscal(is).	| STRING (200)	| S
 zipData	| Arquivo zip convertido em STRING BASE64.	| STRING Base64	| S
 fileNames	| Lista de relação para vínculo entre o arquivo e o item.	| ARRAY	| S
@@ -852,7 +852,7 @@ O serviço de atualização do status Tracking é responsável pelo recebimento 
 
 Parameter | Description | Format | Required
 --------- | ----------- | --------- | -----------
-orderId	| Identificador do pedido gerado pelo Market Place/Cedente	| STRING (200)	| S
+orderId	| Identificador do pedido gerado pelo Marketplace/Cedente	| STRING (200)	| S
 Status	| Status do MarketPlace/Cedente. Status permitidos: CONFIRMED, SHIPPED, COMPLETED, DECLINED	| STRING (30)	| S
 Date	| Data/hora da atualização do status	| STRING (aaaa-MM-dd hh:mm)	| S
 complement	| Descrição complementar ao status 	| ARRAY| N
