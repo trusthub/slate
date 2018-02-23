@@ -558,8 +558,8 @@ merchantDocument	| Identificador do Marketplace ou Cliente. **Qual enviar?** Se 
 merchantDocumentType	| Identificador do dado do valor recebido no parâmetro: merchantDocument.	| STRING  (30)	| S
 miniCart	| Objeto com os dados essenciais do pedido: Dados do comprador, endereço de entrega e cobrança, itens do carrinho e demais tributos e descontos.	|OBJECT	|S
 buyer	| Objeto com os dados básicos do Sacado.	| OBJECT| S
-[buyer] firstName	| Primeiro nome do Sacado.	| STRING  (100)	| S
-[buyer] lastName	| Sobrenome do Sacado.	| STRING  (100)	| S
+[buyer] firstName	| **Sacado PJ**: Recebe a razão social completa neste parâmetro. **Sacado PF**: Recebe o primeiro nome. | STRING  (200)	| S
+[buyer] lastName	| **Sacado PJ**: Enviar vazio. **Sacado PF**: Sobrenome do Sacado.	| STRING  (200)	| N
 [buyer] document	| Número do documento cadastrado no parceiro (Marketplace/Cedente).	| STRING  (30)	| S
 [buyer] documentType	| Identificador do dado do valor recebido no parâmetro: buyer – document.	| STRING  (30)	| S
 [buyer] email	| Email de contato do Sacado.	| STRING  (200)	| S
