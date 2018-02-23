@@ -741,7 +741,7 @@ otherFees | Valor bruto total de outras taxas cobradas no pedido.	| DECIMAL (15,
 orderDiscount | Valor bruto total de descontos do pedido.	| DECIMAL (15,2)	| N
 deviceFingerprint	| Identificador antifraude.	| STRING  (200)	| N
 
-**Gestão de Status**
+**Status | Monitoramento do Pedido**
 
 Source | Status | Description 
 --------- | ----------- | ---------
@@ -750,7 +750,7 @@ PEDIDO | REJEITADO | Pedido rejeitado automaticamente.
 PEDIDO | AGUARDANDO_APROVACAO | Aguardando a análise do Cedente e Sacado.
 PEDIDO | APROVADO | Cedente e Sacado analisados automaticamente com sucesso.
 PEDIDO | CANCELADO_CLIENTE | Pedido cancelado pelo Sacado e/ou Cedente. Retorno da SRM de recebimento do cancelamento recibo.
-PEDIDO | CANCELADO_PARCEIRO | Pedido cancelado pelo Sacado e/ou Cedente. Retorno da SRM de recebimento do cancelamento recibo.
+PEDIDO | CANCELADO_OUTROS | Pedido cancelado por motivos diversos.
 TRACKING | CONFIRMADO | Pedido confirmado. Preparando para entrega.		
 TRACKING | EM_TRANSITO | Pedido em rota de entrega.
 TRACKING | ENTREGUE | Pedido entregue com sucesso.
@@ -821,6 +821,7 @@ Serviço utilizado para o envio das notas fiscais do pedido.
 Parameter | Description | Format | Required
 --------- | ----------- | --------- | -----------
 orderId	| Identificador do pedido gerado pelo Marketplace/Cedente	| STRING (200)	| S
+
 zipName	| Nome do arquivo com a(s) nota(s) fiscal(is).	| STRING (200)	| S
 zipData	| Arquivo zip convertido em STRING BASE64.	| STRING Base64	| S
 fileNames	| Lista de relação para vínculo entre o arquivo e o item.	| ARRAY	| S
