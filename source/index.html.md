@@ -726,8 +726,8 @@ merchantDocument	| Identificador do Marketplace ou Cliente. **Qual enviar?** Se 
 merchantDocumentType	| Identificador do dado do valor recebido no parâmetro: merchantDocument.	| STRING (30)	| S
 miniCart	| Objeto com os dados essenciais do pedido: Dados do comprador, endereço de entrega e cobrança, itens do carrinho e demais tributos e descontos.	| OBJECT	| S
 buyer	| Objeto com os dados básicos do Sacado.	| OBJECT| S
-[buyer] firstName	| Primeiro nome do Sacado.	| STRING (100)	| S
-[buyer] lastName	| Sobrenome do Sacado.	| STRING (100)	| S
+[buyer] firstName	| Primeiro nome do Sacado.	| STRING (200)	| S
+[buyer] lastName	| Sobrenome do Sacado.	| STRING (200)	| N
 [buyer] document	| Número do documento cadastrado no parceiro (Marketplace/Cedente).	| [buyer] email	| Email de contato do Sacado.	| STRING (200)	| S
 Items	| Lista de items do pedido realizado pelo Sacado.	| LIST| S
 [items] id	| Identificador do item do pedido do Cedente.	| STRING (200)	| S
@@ -739,7 +739,7 @@ shippingAmount	| Valor bruto total da taxa de entrega.	| DECIMAL (15,2)	| N
 taxAmount	| Valor bruto total de juros do financiamento TrustHub.	| DECIMAL (15,2)	| N
 otherFees | Valor bruto total de outras taxas cobradas no pedido.	| DECIMAL (15,2)	| N
 orderDiscount | Valor bruto total de descontos do pedido.	| DECIMAL (15,2)	| N
-deviceFingerprint	| Identificador antifraude.	| STRING  (200)	| S
+deviceFingerprint	| Identificador antifraude.	| STRING  (200)	| N
 
 > Sample Response
 
