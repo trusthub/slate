@@ -741,6 +741,29 @@ otherFees | Valor bruto total de outras taxas cobradas no pedido.	| DECIMAL (15,
 orderDiscount | Valor bruto total de descontos do pedido.	| DECIMAL (15,2)	| N
 deviceFingerprint	| Identificador antifraude.	| STRING  (200)	| N
 
+**Gestão de Status**
+
+Source | Status | Description 
+--------- | ----------- | ---------
+PEDIDO | RECEBIDO | Pedido recebido com sucesso. Iniciado processo de verificação dos dados.
+PEDIDO | REJEITADO | Pedido rejeitado automaticamente.
+PEDIDO | AGUARDANDO_APROVACAO | Aguardando a análise do Cedente e Sacado.
+PEDIDO | APROVADO | Cedente e Sacado analisados automaticamente com sucesso.
+PEDIDO | CANCELADO_CLIENTE | Pedido cancelado pelo Sacado e/ou Cedente. Retorno da SRM de recebimento do cancelamento recibo.
+PEDIDO | CANCELADO_PARCEIRO | Pedido cancelado pelo Sacado e/ou Cedente. Retorno da SRM de recebimento do cancelamento recibo.
+TRACKING | CONFIRMADO | Pedido confirmado. Preparando para entrega.		
+TRACKING | EM_TRANSITO | Pedido em rota de entrega.
+TRACKING | ENTREGUE | Pedido entregue com sucesso.
+TRACKING | REJEITADO | Pedido cancelado/rejeitado por motivos diversos.
+NOTA_FISCAL | AGUARDANDO_NOTA_FISCAL | Aguardando Nota Fiscal para conferência de dados do pedido.
+NOTA_FISCAL | NOTA_FISCAL_RECEBIDA | Nota Fiscal Recebida. Iniciado o processo de conferência da Nota Fiscal.
+NOTA_FISCAL | DIVERGENTE | Nota Fiscal com divergências.							
+NOTA_FISCAL | CONFIRMADO | Nota Fiscal concordante(sem divergências). Pedido confirmado. Aguardando para o inicio do processo operacional.
+OPERACAO | INICIADO_PROCESSO_PAGAMENTO | Operação criada. Iniciado o processo operacional.
+OPERACAO | AGUARDANDO_ASSINATURA_CONTRATOS | Aguardando a assinatura dos contratos Operacionais.
+OPERACAO | AGUARDANDO_PAGAMENTO | Aguardando pagamento da Operação.										
+OPERACAO | PEDIDO_PAGO | Operação paga com sucesso.
+
 > Sample Response
 
 ```java
