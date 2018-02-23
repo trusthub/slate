@@ -594,7 +594,7 @@ shippingAmount	| Valor bruto total da taxa de entrega.	| DECIMAL (15,2)	| N
 taxAmount	| Valor bruto total de juros do financiamento TrustHub.	| DECIMAL (15,2)	| N
 otherFees | Valor bruto total de outras taxas cobradas no pedido.	| DECIMAL (15,2)	| N
 orderDiscount | Valor bruto total de descontos do pedido.	| DECIMAL (15,2)	| N
-deviceFingerprint	| Identificador antifraude.	| STRING  (200)	| S
+deviceFingerprint	| Identificador antifraude.	| STRING  (200)	| N
 
 > Sample Request
 
