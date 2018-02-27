@@ -748,6 +748,7 @@ Source | Status | Description
 PEDIDO | RECEBIDO | Pedido recebido com sucesso. Iniciado processo de verificação dos dados.
 PEDIDO | REJEITADO | Pedido rejeitado automaticamente.
 PEDIDO | AGUARDANDO_APROVACAO | Aguardando a análise do Cedente e Sacado.
+PEDIDO | REJEITADO_APROVACAO | Cedente e Sacado analisados, porém com restrições de cadastro ou crédito.
 PEDIDO | APROVADO | Cedente e Sacado analisados automaticamente com sucesso.
 PEDIDO | CANCELADO_SACADO | Pedido cancelado pelo Sacado. Retorno de confirmação do cancelamento recebido pela TrustHub.
 PEDIDO | CANCELADO_PARCEIRO | Pedido cancelado pelo Cedente/Marletplace. Retorno de confirmação do cancelamento recebido pela TrustHub.
