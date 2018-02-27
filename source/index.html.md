@@ -749,8 +749,8 @@ PEDIDO | RECEBIDO | Pedido recebido com sucesso. Iniciado processo de verificaç
 PEDIDO | REJEITADO | Pedido rejeitado automaticamente.
 PEDIDO | AGUARDANDO_APROVACAO | Aguardando a análise do Cedente e Sacado.
 PEDIDO | APROVADO | Cedente e Sacado analisados automaticamente com sucesso.
-PEDIDO | CANCELADO_CLIENTE | Pedido cancelado pelo Sacado e/ou Cedente. Retorno da SRM de recebimento do cancelamento recibo.
-PEDIDO | CANCELADO_OUTROS | Pedido cancelado por motivos diversos.
+PEDIDO | CANCELADO_SACADO | Pedido cancelado pelo Sacado. Retorno de confirmação do cancelamento recebido pela TrustHub.
+PEDIDO | CANCELADO_PARCEIRO | Pedido cancelado pelo Cedente/Marletplace. Retorno de confirmação do cancelamento recebido pela TrustHub.
 TRACKING | CONFIRMADO | Pedido confirmado. Preparando para entrega.		
 TRACKING | EM_TRANSITO | Pedido em rota de entrega.
 TRACKING | ENTREGUE | Pedido entregue com sucesso.
