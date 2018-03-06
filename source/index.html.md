@@ -748,6 +748,9 @@ Source | Status | Description
 --------- | ----------- | ---------
 PEDIDO | RECEBIDO | Pedido recebido com sucesso. Iniciado processo de verificação dos dados.
 PEDIDO | REJEITADO | Pedido rejeitado automaticamente.
+PEDIDO | REJEITADO_PESSOA_FISICA| Pedido rejeitado automaticamente: Pessoa Física.
+PEDIDO | REJEITADO_PAIS_DIFERENTE_BRASIL| Pedido rejeitado automaticamente: País do Sacado diferente de Brasil.
+PEDIDO | REJEITADO_DIVERGENCIA_VALORES| Valor calculado do pedido diverge do valor recebido.
 PEDIDO | AGUARDANDO_APROVACAO | Aguardando a análise do Cedente e Sacado.
 PEDIDO | REJEITADO_APROVACAO | Cedente e Sacado analisados, porém com restrições de cadastro ou crédito.
 PEDIDO | APROVADO | Cedente e Sacado analisados automaticamente com sucesso.
