@@ -728,7 +728,8 @@ miniCart	| Objeto com os dados essenciais do pedido: Dados do comprador, endere�
 buyer	| Objeto com os dados básicos do Sacado.	| OBJECT| S
 [buyer] firstName	| **Sacado PJ**: Recebe a razão social completa neste parâmetro. **Sacado PF**: Recebe o primeiro nome. | STRING  (200)	| S
 [buyer] lastName	| **Sacado PJ**: Enviar vazio. **Sacado PF**: Sobrenome do Sacado.	| STRING  (200)	| N
-[buyer] document	| Número do documento cadastrado no parceiro (Marketplace/Cedente).	| [buyer] email	| Email de contato do Sacado.	| STRING (200)	| S
+[buyer] document	| Número do documento cadastrado no parceiro (Marketplace/Cedente). 	| STRING (30)	| S
+[buyer] email	| Email de contato do Sacado.	| STRING (200)	| S
 Items	| Lista de items do pedido realizado pelo Sacado.	| LIST| S
 [items] id	| Identificador do item do pedido do Cedente.	| STRING (200)	| S
 [items] clientDocument	| Identificador do vendedor do item: Cedente.	| STRING (200)	| S
@@ -822,7 +823,6 @@ Serviço utilizado para o envio das notas fiscais do pedido.
 Parameter | Description | Format | Required
 --------- | ----------- | --------- | -----------
 orderId	| Identificador do pedido gerado pelo Marketplace/Cedente	| STRING (200)	| S
-
 zipName	| Nome do arquivo com a(s) nota(s) fiscal(is).	| STRING (200)	| S
 zipData	| Arquivo zip convertido em STRING BASE64.	| STRING Base64	| S
 fileNames	| Lista de relação para vínculo entre o arquivo e o item.	| ARRAY	| S
