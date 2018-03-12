@@ -747,7 +747,6 @@ deviceFingerprint	| Identificador antifraude.	| STRING  (200)	| N
 Source | Status | Description 
 --------- | ----------- | ---------
 PEDIDO | RECEBIDO | Pedido recebido com sucesso. Iniciado processo de verificação dos dados.
-PEDIDO | REJEITADO | Pedido rejeitado automaticamente.
 PEDIDO | REJEITADO_PESSOA_FISICA| Pedido rejeitado automaticamente: Pessoa Física.
 PEDIDO | REJEITADO_PAIS_DIFERENTE_BRASIL| Pedido rejeitado automaticamente: País do Sacado diferente de Brasil.
 PEDIDO | REJEITADO_DIVERGENCIA_VALORES| Valor calculado do pedido diverge do valor recebido.
@@ -812,8 +811,8 @@ OPERACAO | PEDIDO_PAGO | Operação paga com sucesso.
 }   
 ```
 
-### Enviar Nota Fiscal do Pedido
-Serviço utilizado para o envio das notas fiscais do pedido.
+### Enviar Nota Fiscal do Pedido (arquivo)
+Serviço utilizado para o envio dos arquivos xml das notas fiscais do pedido.
 
 **HTTP Request**
 
@@ -845,6 +844,60 @@ fileNames	| Lista de relação para vínculo entre o arquivo e o item.	| ARRAY	|
                                                "fileName" : "41170617047083000177550010000246841002246804-nfe.xml"
                                }
                 ]
+}
+```
+
+**Parâmetros de Saída**
+
+**URL Parameters**
+
+Parameter | Description | Format | Required
+--------- | ----------- | --------- | -----------
+responseCode	| Código de saída da requisição.	| INTEGER	| S
+responseStatus	| Descrição do código de saída da requisição.	| STRING (200)	| S
+responseStatusMessage	| Descrição adicional da TrustHub para o retorno.	| STRING (200)	| S
+
+> Sample Response
+
+```java
+{
+    "responseStatus": 200,
+    "responseStatusMessage": "Success"
+}
+```
+### Enviar Nota Fiscal do Pedido (chave de acesso)
+Serviço utilizado para o envio da chave de acesso das notas fiscais do pedido.
+
+**HTTP Request**
+
+`POST  < pendente >
+
+**Parâmetros de Entrada**
+
+**URL Parameters**
+
+Parameter | Description | Format | Required
+--------- | ----------- | --------- | -----------
+orderId	| Identificador do pedido gerado pelo Marketplace/Cedente	| STRING (200)	| S
+invoices | Lista de gestão das notas fiscais do pedido.	| LIST | S
+[invoices] idItem | Identificador do item do pedido.	| STRING (200)	| S
+[invoices] accessKey | Chave de acesso da nota fiscal vinculada ao item do pedido.	| STRING (200)	| S
+
+> Sample Request
+
+```java
+{
+    "orderId": "v32478982vtx-01",
+    "invoices" : [
+                   {
+                       "idItem" : "1",
+                       "accessKey" : "51171006116723000722550010000014861291207052"
+                                   
+                       "idItem" : "1",
+                       "accessKey" : "85975556546132321110000021500002465620244515"
+
+               }
+    ]
 }
 ```
 
