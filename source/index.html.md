@@ -825,10 +825,11 @@ Serviço utilizado para o envio dos arquivos xml das notas fiscais do pedido.
 Parameter | Description | Format | Required
 --------- | ----------- | --------- | -----------
 orderId	| Identificador do pedido gerado pelo Marketplace/Cedente	| STRING (200)	| S
+merchantDocument | Identificador do merchantDocument. | 88256695000118 | S
 zipName	| Nome do arquivo com a(s) nota(s) fiscal(is).	| STRING (200)	| S
 zipData	| Arquivo zip convertido em STRING BASE64.	| STRING Base64	| S
 fileNames	| Lista de relação para vínculo entre o arquivo e o item.	| ARRAY	| S
-[fileNames] | idItem	Identificador do item do pedido.	| STRING (200)	| S
+[fileNames] | itemId	Identificador do item do pedido.	| STRING (200)	| S
 [fileNames] | fileName	Nome do arquivo xml contido dentro do arquivo zip.	| STRING (200)	| S
 
 > Sample Request
@@ -840,7 +841,7 @@ fileNames	| Lista de relação para vínculo entre o arquivo e o item.	| ARRAY	|
                 "zipData" : "",
                 "fileNames" : [
                                {
-                                               "idItem" : "1",
+                                               "itemId" : "1",
                                                "fileName" : "41170617047083000177550010000246841002246804-nfe.xml"
                                }
                 ]
@@ -879,8 +880,9 @@ Serviço utilizado para o envio da chave de acesso das notas fiscais do pedido.
 Parameter | Description | Format | Required
 --------- | ----------- | --------- | -----------
 orderId	| Identificador do pedido gerado pelo Marketplace/Cedente	| STRING (200)	| S
+merchantDocument | Identificador do merchantDocument. | 88256695000118 | S
 invoices | Lista de gestão das notas fiscais do pedido.	| LIST | S
-[invoices] idItem | Identificador do item do pedido.	| STRING (200)	| S
+[invoices] itemId| Identificador do item do pedido.	| STRING (200)	| S
 [invoices] accessKey | Chave de acesso da nota fiscal vinculada ao item do pedido.	| STRING (200)	| S
 
 > Sample Request
@@ -890,10 +892,10 @@ invoices | Lista de gestão das notas fiscais do pedido.	| LIST | S
     "orderId": "v32478982vtx-01",
     "invoices" : [
                    {
-                       "idItem" : "1",
+                       "itemId" : "1",
                        "accessKey" : "51171006116723000722550010000014861291207052"
                                    
-                       "idItem" : "1",
+                       "itemId" : "1",
                        "accessKey" : "85975556546132321110000021500002465620244515"
 
                }
