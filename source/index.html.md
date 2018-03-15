@@ -96,8 +96,8 @@ Ele deverá ser utilizado para todas as operações a serem realizadas, enviando
 
 # Recursos
 
-## Pedidos Online
-Pedidos Online é uma solução da TrustHub oferecida para facilitar o crédito a Sacados, com a forma de pagamento através de boletos parcelados. Assim, com as vendas realizadas através desta opção de pagamento, é possível realizar a antecipação de crédito de forma rápida, ágil e segura para todos os Cedentes e MarketPlace parceiros.
+## TrustHub Parcele+
+TrustHub Parcele+ é uma solução da TrustHub oferecida para facilitar o crédito a Sacados, com a forma de pagamento através de boletos parcelados. Assim, com as vendas realizadas através desta opção de pagamento, é possível realizar a antecipação de crédito de forma rápida, ágil e segura para todos os Cedentes e Marketplace parceiros.
 
 O fluxo dos pedidos inicia com a simulação de crédito para financiamento do valor total do pedido. Quando o Sacado escolher a melhor forma de pagamento, os dados do pedido, do Cedente e  do Sacado, são enviados e devidamente analisados pelas validações de negócio da TrustHub. Com base nessa análise detalhada, a TrustHub envia um retorno de liberação de crédito, aprovando ou rejeitando o mesmo.
 
@@ -539,7 +539,7 @@ simulation	| Lista com os dados de simulação: taxa de juros, valor bruto total
 ```
 
 ### Registrar Pedido
-O serviço de registro de pedidos é responsável por registrar a requisição de compra dentro da TrustHub. Os dados do Sacado, bem como do pedido do mesmo, são recebidos, registrados e, em cima destes, é feito uma análise detalhada que, posteriormente retornará ao MarketPlace/Cedente a confirmação do pedido, ou seja, o aceite do financiamento e a liberação de crédito para o Sacado efetuar sua compra com sucesso.
+O serviço de registro de pedidos é responsável por registrar a requisição de compra dentro da TrustHub. Os dados do Sacado, bem como do pedido do mesmo, são recebidos, registrados e, em cima destes, é feito uma análise detalhada que, posteriormente retornará ao Marketplace/Cedente a confirmação do pedido, ou seja, o aceite do financiamento e a liberação de crédito para o Sacado efetuar sua compra com sucesso.
 
 **HTTP Request**
 
@@ -554,7 +554,7 @@ Parameter | Description | Format | Required
 orderID	| Identificador do pedido gerado pelo Marketplace/Cedente	| STRING  (200)	| S
 amount	| Valor bruto total do pedido.	| DECIMAL (15,2)	| S
 installments	| Quantidade de títulos de pagamento selecionados pelo Sacado.	| INTEGER	| S
-merchantDocument	| Identificador do Marketplace ou Cliente. **Qual enviar?** Se a integração se dá através de um Marketplace, deve-se enviar os dados deste. Porém, quando a integração se dá diretamente do e-commerce do Cliente, sem um Market de Place de integração, deve-se enviar os dados do Cliente.	| STRING  (30)	| S
+merchantDocument	| Identificador do Marketplace ou Cliente. **Qual enviar?** Se a integração se dá através de um Marketplace, deve-se enviar os dados deste. Porém, quando a integração se dá diretamente do e-commerce do Cliente, sem um Marketplace de integração, deve-se enviar os dados do Cliente.	| STRING  (30)	| S
 merchantDocumentType	| Identificador do dado do valor recebido no parâmetro: merchantDocument.	| STRING  (30)	| S
 miniCart	| Objeto com os dados essenciais do pedido: Dados do comprador, endereço de entrega e cobrança, itens do carrinho e demais tributos e descontos.	|OBJECT	|S
 buyer	| Objeto com os dados básicos do Sacado.	| OBJECT| S
@@ -719,10 +719,10 @@ Parameter | Description | Format | Required
 --------- | ----------- | --------- | -----------
 orderID	| Identificador do pedido gerado pelo Marketplace/Cedente	| STRING (200)	| S
 status	| Descrição do status geral do pedido	| STRING (200)	| S
-tracking	| Descrição do status do pedido no MarketPlace/Cedente	| STRING (200)	| S
+tracking	| Descrição do status do pedido no Marketplace/Cedente	| STRING (200)	| S
 amount	| Valor bruto total do pedido.	| DECIMAL (15,2)	| S
 installments	| Quantidade de títulos de pagamento selecionados pelo Sacado.	| INTEGER	| S
-merchantDocument	| Identificador do Marketplace ou Cliente. **Qual enviar?** Se a integração se dá através de um Marketplace, deve-se enviar os dados deste. Porém, quando a integração se dá diretamente do e-commerce do Cliente, sem um Market de Place de integração, deve-se enviar os dados do Cliente.	| STRING (30)	| S
+merchantDocument	| Identificador do Marketplace ou Cliente. **Qual enviar?** Se a integração se dá através de um Marketplace, deve-se enviar os dados deste. Porém, quando a integração se dá diretamente do e-commerce do Cliente, sem um Marketplace de integração, deve-se enviar os dados do Cliente.	| STRING (30)	| S
 merchantDocumentType	| Identificador do dado do valor recebido no parâmetro: merchantDocument.	| STRING (30)	| S
 miniCart	| Objeto com os dados essenciais do pedido: Dados do comprador, endereço de entrega e cobrança, itens do carrinho e demais tributos e descontos.	| OBJECT	| S
 buyer	| Objeto com os dados básicos do Sacado.	| OBJECT| S
@@ -923,7 +923,7 @@ responseStatusMessage	| Descrição adicional da TrustHub para o retorno.	| STRI
 ```
 
 ### Atualizar Status Tracking
-O serviço de atualização do status Tracking é responsável pelo recebimento da atualização de status do pedido no MarketPlace/Cedente.
+O serviço de atualização do status Tracking é responsável pelo recebimento da atualização de status do pedido no Marketplace/Cedente.
 
 **HTTP Request**
 
@@ -936,7 +936,7 @@ O serviço de atualização do status Tracking é responsável pelo recebimento 
 Parameter | Description | Format | Required
 --------- | ----------- | --------- | -----------
 orderId	| Identificador do pedido gerado pelo Marketplace/Cedente	| STRING (200)	| S
-Status	| Status do MarketPlace/Cedente. Status permitidos: CONFIRMED, SHIPPED, COMPLETED, DECLINED	| STRING (30)	| S
+Status	| Status do Marketplace/Cedente. Status permitidos: CONFIRMED, SHIPPED, COMPLETED, DECLINED	| STRING (30)	| S
 Date	| Data/hora da atualização do status	| STRING (aaaa-MM-dd hh:mm)	| S
 complement	| Descrição complementar ao status 	| ARRAY| N
 
