@@ -684,8 +684,9 @@ responseStatusMessage	| Descrição adicional da TrustHub para o retorno.	| STRI
 
 ```java
 {
-    "responseStatus": 200,
-    "responseStatusMessage": "Success"
+    "responseCode": 200,
+    "responseStatus": "Success"
+    "responseStatusMessage": ""
 }
 ```
 
@@ -703,9 +704,8 @@ O serviço de Consulta é responsável pelo envio do status atual do pedido que 
 
 Parameter | Description | Example
 --------- | ----------- | -----------
-merchantDocument | Identificador do merchantDocument. | 88256695000118
 orderId | Identificador do pedido. | v32478982vtx-01
-
+merchantDocument	| Identificador do Marketplace ou Cliente. **Qual enviar?** Se a integração se dá através de um Marketplace, deve-se enviar os dados deste. Porém, quando a integração se dá diretamente do e-commerce do Cliente, sem um Marketplace de integração, deve-se enviar os dados do Cliente.	| STRING  (30)	| S
 
 **URL Entrada** :  `http://api-hom.trusthub.com.br/integration/order/v1/search/88256695000118/v32478982vtx-01`
 
@@ -816,7 +816,7 @@ Serviço utilizado para o envio dos arquivos xml das notas fiscais do pedido.
 
 **HTTP Request**
 
-`POST  https://api-hom.trusthub.com.br/integration/order/v1/invoice/json`
+`POST  https://api-hom.trusthub.com.br/integration/order/v1/invoice`
 
 **Parâmetros de Entrada**
 
@@ -825,7 +825,7 @@ Serviço utilizado para o envio dos arquivos xml das notas fiscais do pedido.
 Parameter | Description | Format | Required
 --------- | ----------- | --------- | -----------
 orderId	| Identificador do pedido gerado pelo Marketplace/Cedente	| STRING (200)	| S
-merchantDocument | Identificador do merchantDocument. | 88256695000118 | S
+merchantDocument	| Identificador do Marketplace ou Cliente. **Qual enviar?** Se a integração se dá através de um Marketplace, deve-se enviar os dados deste. Porém, quando a integração se dá diretamente do e-commerce do Cliente, sem um Marketplace de integração, deve-se enviar os dados do Cliente.	| STRING  (30)	| S
 zipName	| Nome do arquivo com a(s) nota(s) fiscal(is).	| STRING (200)	| S
 zipData	| Arquivo zip convertido em STRING BASE64.	| STRING Base64	| S
 fileNames	| Lista de relação para vínculo entre o arquivo e o item.	| ARRAY	| S
@@ -862,8 +862,9 @@ responseStatusMessage	| Descrição adicional da TrustHub para o retorno.	| STRI
 
 ```java
 {
-    "responseStatus": 200,
-    "responseStatusMessage": "Success"
+    "responseCode": 200,
+    "responseStatus": "Success"
+    "responseStatusMessage": ""
 }
 ```
 ### Enviar Nota Fiscal do Pedido (chave de acesso)
@@ -871,7 +872,7 @@ Serviço utilizado para o envio da chave de acesso das notas fiscais do pedido.
 
 **HTTP Request**
 
-`POST  < pendente >
+`POST  https://api-hom.trusthub.com.br/integration/order/v1/invoice/key`
 
 **Parâmetros de Entrada**
 
@@ -880,7 +881,7 @@ Serviço utilizado para o envio da chave de acesso das notas fiscais do pedido.
 Parameter | Description | Format | Required
 --------- | ----------- | --------- | -----------
 orderId	| Identificador do pedido gerado pelo Marketplace/Cedente	| STRING (200)	| S
-merchantDocument | Identificador do merchantDocument. | 88256695000118 | S
+merchantDocument	| Identificador do Marketplace ou Cliente. **Qual enviar?** Se a integração se dá através de um Marketplace, deve-se enviar os dados deste. Porém, quando a integração se dá diretamente do e-commerce do Cliente, sem um Marketplace de integração, deve-se enviar os dados do Cliente.	| STRING  (30)	| S
 invoices | Lista de gestão das notas fiscais do pedido.	| LIST | S
 [invoices] itemId| Identificador do item do pedido.	| STRING (200)	| S
 [invoices] accessKey | Chave de acesso da nota fiscal vinculada ao item do pedido.	| STRING (200)	| S
@@ -917,8 +918,9 @@ responseStatusMessage	| Descrição adicional da TrustHub para o retorno.	| STRI
 
 ```java
 {
-    "responseStatus": 200,
-    "responseStatusMessage": "Success"
+    "responseCode": 200,
+    "responseStatus": "Success"
+    "responseStatusMessage": ""
 }
 ```
 
@@ -936,6 +938,8 @@ O serviço de atualização do status Tracking é responsável pelo recebimento 
 Parameter | Description | Format | Required
 --------- | ----------- | --------- | -----------
 orderId	| Identificador do pedido gerado pelo Marketplace/Cedente	| STRING (200)	| S
+merchantDocument	| Identificador do Marketplace ou Cliente. **Qual enviar?** Se a integração se dá através de um Marketplace, deve-se enviar os dados deste. Porém, quando a integração se dá diretamente do e-commerce do Cliente, sem um Marketplace de integração, deve-se enviar os dados do Cliente.	| STRING  (30)	| S
+invoices | Lista de gestão das notas fiscais do pedido.	| LIST | S
 Status	| Status do Marketplace/Cedente. Status permitidos: CONFIRMED, SHIPPED, COMPLETED, DECLINED	| STRING (30)	| S
 Date	| Data/hora da atualização do status	| STRING (aaaa-MM-dd hh:mm)	| S
 complement	| Descrição complementar ao status 	| ARRAY| N
@@ -966,8 +970,9 @@ responseStatusMessage	| Descrição adicional da TrustHub para o retorno.	| STRI
 
 ```java
 {
-    "responseStatus": 200,
-    "responseStatusMessage": "Success"
+    "responseCode": 200,
+    "responseStatus": "Success"
+    "responseStatusMessage": ""
 }
 ```
 
