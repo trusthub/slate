@@ -828,9 +828,9 @@ orderId	| Identificador do pedido gerado pelo Marketplace/Cedente	| STRING (200)
 merchantDocument	| Identificador do Marketplace ou Cliente. **Qual enviar?** Se a integração se dá através de um Marketplace, deve-se enviar os dados deste. Porém, quando a integração se dá diretamente do e-commerce do Cliente, sem um Marketplace de integração, deve-se enviar os dados do Cliente.	| STRING  (30)	| S
 zipName	| Nome do arquivo com a(s) nota(s) fiscal(is).	| STRING (200)	| S
 zipData	| Arquivo zip convertido em STRING BASE64.	| STRING Base64	| S
-fileNames	| Lista de relação para vínculo entre o arquivo e o item.	| ARRAY	| S
-[fileNames] itemId |  Identificador do item do pedido.	| STRING (200)	| S
-[fileNames] fileName	 | Nome do arquivo xml contido dentro do arquivo zip.	| STRING (200)	| S
+invoices	| Lista de relação para vínculo entre o arquivo e o item.	| ARRAY	| S
+[invoice] itemId |  Identifica*do*r do item do pedido.	| STRING (200)	| S
+[invoice] fileName| Nome do arquivo xml contido dentro do arquivo zip.	| STRING (200)	| S
 
 > Sample Request
 
