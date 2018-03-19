@@ -829,8 +829,8 @@ merchantDocument	| Identificador do Marketplace ou Cliente. **Qual enviar?** Se 
 zipName	| Nome do arquivo com a(s) nota(s) fiscal(is).	| STRING (200)	| S
 zipData	| Arquivo zip convertido em STRING BASE64.	| STRING Base64	| S
 fileNames	| Lista de relação para vínculo entre o arquivo e o item.	| ARRAY	| S
-[fileNames] | itemId	Identificador do item do pedido.	| STRING (200)	| S
-[fileNames] | fileName	Nome do arquivo xml contido dentro do arquivo zip.	| STRING (200)	| S
+[fileNames] itemId |  Identificador do item do pedido.	| STRING (200)	| S
+[fileNames] fileName	 | Nome do arquivo xml contido dentro do arquivo zip.	| STRING (200)	| S
 
 > Sample Request
 
