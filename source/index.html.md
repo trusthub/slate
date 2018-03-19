@@ -929,7 +929,7 @@ O serviço de atualização do status Tracking é responsável pelo recebimento 
 
 **HTTP Request**
 
-`POST  https://api-hom.trusthub.com.br/integration/order/v1/traking`
+`POST  https://api-hom.trusthub.com.br/integration/order/v1/tracking`
 
 **Parâmetros de Entrada**
 
