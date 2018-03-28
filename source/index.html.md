@@ -556,6 +556,8 @@ amount	| Valor bruto total do pedido.	| DECIMAL (15,2)	| S
 installments	| Quantidade de títulos de pagamento selecionados pelo Sacado.	| INTEGER	| S
 merchantDocument	| Identificador do Marketplace ou Cliente. **Qual enviar?** Se a integração se dá através de um Marketplace, deve-se enviar os dados deste. Porém, quando a integração se dá diretamente do e-commerce do Cliente, sem um Marketplace de integração, deve-se enviar os dados do Cliente.	| STRING  (30)	| S
 merchantDocumentType	| Identificador do dado do valor recebido no parâmetro: merchantDocument.	| STRING  (30)	| S
+clientDocument	| Identificador do vendedor do item: Cedente.	| STRING  (200)	| S
+clientDocumentType	| Identificador do dado do valor recebido no parâmetro: clientDocument	| STRING  (30)	| S
 miniCart	| Objeto com os dados essenciais do pedido: Dados do comprador, endereço de entrega e cobrança, itens do carrinho e demais tributos e descontos.	|OBJECT	|S
 buyer	| Objeto com os dados básicos do Sacado.	| OBJECT| S
 [buyer] firstName	| **Sacado PJ**: Recebe a razão social completa neste parâmetro. **Sacado PF**: Recebe o primeiro nome. | STRING  (200)	| S
@@ -588,8 +590,6 @@ Items	| Lista de items do pedido realizado pelo Sacado.	| LIST| S
 [items] price	| Valor bruto unitário do item.	| DECIMAL (15,2)	| S
 [items] quantity	| Quantidade do item.	| INTEGER	| S
 [items] discount	| Valor bruto de desconto do item.	| DECIMAL (15,2)	| S
-[items] clientDocument	| Identificador do vendedor do item: Cedente.	| STRING  (200)	| S
-[items] clientDocumentType	| Identificador do dado do valor recebido no parâmetro: items - clientDocument	| STRING  (30)	| S
 shippingAmount	| Valor bruto total da taxa de entrega.	| DECIMAL (15,2)	| N
 taxAmount	| Valor bruto total de juros do financiamento TrustHub.	| DECIMAL (15,2)	| N
 otherFees | Valor bruto total de outras taxas cobradas no pedido.	| DECIMAL (15,2)	| N
@@ -606,6 +606,8 @@ deviceFingerprint	| Identificador antifraude.	| STRING  (200)	| N
        "installments": 3,
        "merchantDocument": "88.256.695/0001-18",
        "merchantDocumentType": "CNPJ",
+       "clientDocument": "88.256.695/0001-18",
+       "clientDocumentType": "CNPJ",
        "miniCart": {
              "buyer": {
                     "firstName": "John",
@@ -642,8 +644,6 @@ deviceFingerprint	| Identificador antifraude.	| STRING  (200)	| N
                            "price": 2134.9,
                            "quantity": 2,
                            "itemDiscount": 5,
-                           "clientDocument": "88.256.695/0001-18",
-                           "clientDocumentType": "CNPJ",
                            "status" : "", 
                            "idOperation" : "", 
                            "statusOperation" : "" 
@@ -654,8 +654,6 @@ deviceFingerprint	| Identificador antifraude.	| STRING  (200)	| N
                            "price": 21.98,
                            "quantity": 1,
                            "itemDiscount": 1,
-                           "clientDocument": "88.256.695/0001-18",
-                           "clientDocumentType": "CNPJ",
                            "status" : "", 
                            "idOperation" : "", 
                            "statusOperation" : "" 
