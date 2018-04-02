@@ -747,20 +747,23 @@ Source | Status | Description
 PEDIDO | RECEBIDO | Pedido recebido com sucesso. Iniciado processo de verificação dos dados.
 PEDIDO | REJEITADO_PESSOA_FISICA| Pedido rejeitado automaticamente: Pessoa Física.
 PEDIDO | REJEITADO_PAIS_DIFERENTE_BRASIL| Pedido rejeitado automaticamente: País do Sacado diferente de Brasil.
-PEDIDO | REJEITADO_DIVERGENCIA_VALORES| Valor calculado do pedido diverge do valor recebido.
+PEDIDO | REJEITADO_DIVERGENCIA_VALORES| Pedido rejeitado automaticamente: Valor calculado do pedido diverge do valor recebido.
+PEDIDO | REJEITADO_CLIENTE_NAO_CADASTRADO | Pedido rejeitado automaticamente: Cliente não cadastrado.
 PEDIDO | AGUARDANDO_APROVACAO | Aguardando a análise do Cedente e Sacado.
+PEDIDO | APROVADO | Cedente e Sacado analisados automaticamente com sucesso.\
 PEDIDO | REJEITADO_APROVACAO | Cedente e Sacado analisados, porém com restrições de cadastro ou crédito.
-PEDIDO | APROVADO | Cedente e Sacado analisados automaticamente com sucesso.
-PEDIDO | CANCELADO_SACADO | Pedido cancelado pelo Sacado. Retorno de confirmação do cancelamento recebido pela TrustHub.
-PEDIDO | CANCELADO_PARCEIRO | Pedido cancelado pelo Cedente/Marletplace. Retorno de confirmação do cancelamento recebido pela TrustHub.
+PEDIDO | REJEITADO_PARCEIRO| Pedido recebido com sucesso, porém com Marketplace/Cedente ou E-commerce não registrado na base da TrustHub.
+PEDIDO | REJEITADO_CANCELADO_SACADO| Pedido cancelado pelo Sacado. Retorno de confirmação do cancelamento recebido pela TrustHub.
+PEDIDO | REJEITADO_NOTA_FISCAL| Pedido rejeitado por divergências na Nota Fiscal.
 TRACKING | CONFIRMADO | Pedido confirmado. Preparando para entrega.		
 TRACKING | EM_TRANSITO | Pedido em rota de entrega.
 TRACKING | ENTREGUE | Pedido entregue com sucesso.
 TRACKING | REJEITADO | Pedido cancelado/rejeitado por motivos diversos.
 NOTA_FISCAL | AGUARDANDO_NOTA_FISCAL | Aguardando Nota Fiscal para conferência de dados do pedido.
 NOTA_FISCAL | NOTA_FISCAL_RECEBIDA | Nota Fiscal Recebida. Iniciado o processo de conferência da Nota Fiscal.
-NOTA_FISCAL | DIVERGENTE | Nota Fiscal com divergências.							
-NOTA_FISCAL | CONFIRMADO | Nota Fiscal concordante(sem divergências). Pedido confirmado. Aguardando para o inicio do processo operacional.
+NOTA_FISCAL | NOTA_FISCAL_DIVERGENTE| Nota Fiscal com divergências.							
+NOTA_FISCAL | NOTA_FISCAL_NAO_AUTORIZADA| Nota Fiscal não autorizada pela SEFAZ.		
+NOTA_FISCAL | CONCORDANTE| Nota Fiscal concordante(sem divergências). Pedido confirmado. Aguardando para o inicio do processo operacional.
 OPERACAO | INICIADO_PROCESSO_PAGAMENTO | Operação criada. Iniciado o processo operacional.
 OPERACAO | AGUARDANDO_ASSINATURA_CONTRATOS | Aguardando a assinatura dos contratos Operacionais.
 OPERACAO | AGUARDANDO_PAGAMENTO | Aguardando pagamento da Operação.										
