@@ -552,7 +552,7 @@ O serviço de registro de pedidos é responsável por registrar a requisição d
 Parameter | Description | Format | Required
 --------- | ----------- | --------- | -----------
 orderID	| Identificador do pedido gerado pelo Marketplace/Cedente	| STRING  (200)	| S
-amount	| Valor bruto total do pedido.	| DECIMAL (15,2)	| S
+amount	| Valor final do pedido.	| DECIMAL (15,2)	| S
 installments	| Quantidade de títulos de pagamento selecionados pelo Sacado.	| INTEGER	| S
 merchantDocument	| Identificador do Marketplace ou Cliente. **Qual enviar?** Se a integração se dá através de um Marketplace, deve-se enviar os dados deste. Porém, quando a integração se dá diretamente do e-commerce do Cliente, sem um Marketplace de integração, deve-se enviar os dados do Cliente.	| STRING  (30)	| S
 merchantDocumentType	| Identificador do dado do valor recebido no parâmetro: merchantDocument.	| STRING  (30)	| S
