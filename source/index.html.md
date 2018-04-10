@@ -589,7 +589,7 @@ Items	| Lista de items do pedido realizado pelo Sacado.	| LIST| S
 [items] name	| Descrição do item do pedido do Cedente.	| STRING  (300)	| S
 [items] price	| Valor bruto unitário do item.	| DECIMAL (15,2)	| S
 [items] quantity	| Quantidade do item.	| INTEGER	| S
-[items] discount	| Valor bruto de desconto do item.	| DECIMAL (15,2)	| S
+[items] itemDiscount	| Valor bruto de desconto do item.	| DECIMAL (15,2)	| S
 shippingAmount	| Valor bruto total da taxa de entrega.	| DECIMAL (15,2)	| N
 taxAmount	| Valor bruto total de juros do financiamento TrustHub.	| DECIMAL (15,2)	| N
 otherFees | Valor bruto total de outras taxas cobradas no pedido.	| DECIMAL (15,2)	| N
@@ -2062,7 +2062,7 @@ tracking	| Descrição do status do pedido no Marketplace/Cedente	| STRING (200)
 amount	| Valor bruto total do pedido.	| DECIMAL (15,2)	| S
 installments	| Quantidade de títulos de pagamento selecionados pelo Sacado.	| INTEGER	| S
 merchantDocument	| Identificador do Marketplace ou Cliente. **Qual enviar?** Se a integração se dá através de um Marketplace, deve-se enviar os dados deste. Porém, quando a integração se dá diretamente do e-commerce do Cliente, sem um Marketplace de integração, deve-se enviar os dados do Cliente.	| STRING (30)	| S
-merchantDocumentType	| Identificador do dado do valor recebido no parâmetro: merchantDocument.	| STRING (30)	| S
+clientDocument	| Identificador do vendedor do item: Cedente.	| STRING (200)	| S
 miniCart	| Objeto com os dados essenciais do pedido: Dados do comprador, endereço de entrega e cobrança, itens do carrinho e demais tributos e descontos.	| OBJECT	| S
 buyer	| Objeto com os dados básicos do Sacado.	| OBJECT| S
 [buyer] firstName	| **Sacado PJ**: Recebe a razão social completa neste parâmetro. **Sacado PF**: Recebe o primeiro nome. | STRING  (200)	| S
@@ -2071,10 +2071,9 @@ buyer	| Objeto com os dados básicos do Sacado.	| OBJECT| S
 [buyer] email	| Email de contato do Sacado.	| STRING (200)	| S
 Items	| Lista de items do pedido realizado pelo Sacado.	| LIST| S
 [items] id	| Identificador do item do pedido do Cedente.	| STRING (200)	| S
-[items] clientDocument	| Identificador do vendedor do item: Cedente.	| STRING (200)	| S
-[items] status | Status individual do item do pedido. | STRING (50) | N
-[items] idOperation | Código da Operação atrelada ao item do pedido. | INTEGER | N
-[items] statusOperation | Status atual da Operações atrelada ao item do pedido. | STRING(50) | N
+status | Descrição do status geral do pedido | STRING (50) | N
+idOperation | Código da Operação atrelada ao do pedido. | INTEGER | N
+statusOperation | Status atual da Operação atrelada ao pedido. | STRING(50) | N
 shippingAmount	| Valor bruto total da taxa de entrega.	| DECIMAL (15,2)	| N
 taxAmount	| Valor bruto total de juros do financiamento TrustHub.	| DECIMAL (15,2)	| N
 otherFees | Valor bruto total de outras taxas cobradas no pedido.	| DECIMAL (15,2)	| N
