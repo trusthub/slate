@@ -715,7 +715,7 @@ tracking	| Descrição do status do pedido no Marketplace/Cedente	| STRING (200)
 amount	| Valor bruto total do pedido.	| DECIMAL (15,2)	| S
 installments	| Quantidade de títulos de pagamento selecionados pelo Sacado.	| INTEGER	| S
 merchantDocument	| Identificador do Marketplace ou Cliente. **Qual enviar?** Se a integração se dá através de um Marketplace, deve-se enviar os dados deste. Porém, quando a integração se dá diretamente do e-commerce do Cliente, sem um Marketplace de integração, deve-se enviar os dados do Cliente.	| STRING (30)	| S
-merchantDocumentType	| Identificador do dado do valor recebido no parâmetro: merchantDocument.	| STRING (30)	| S
+clientDocument	| Identificador do vendedor do item: Cedente.	| STRING (200)	| S
 miniCart	| Objeto com os dados essenciais do pedido: Dados do comprador, endereço de entrega e cobrança, itens do carrinho e demais tributos e descontos.	| OBJECT	| S
 buyer	| Objeto com os dados básicos do Sacado.	| OBJECT| S
 [buyer] firstName	| **Sacado PJ**: Recebe a razão social completa neste parâmetro. **Sacado PF**: Recebe o primeiro nome. | STRING  (200)	| S
@@ -724,7 +724,6 @@ buyer	| Objeto com os dados básicos do Sacado.	| OBJECT| S
 [buyer] email	| Email de contato do Sacado.	| STRING (200)	| S
 Items	| Lista de items do pedido realizado pelo Sacado.	| LIST| S
 [items] id	| Identificador do item do pedido do Cedente.	| STRING (200)	| S
-[items] clientDocument	| Identificador do vendedor do item: Cedente.	| STRING (200)	| S
 shippingAmount	| Valor bruto total da taxa de entrega.	| DECIMAL (15,2)	| N
 taxAmount	| Valor bruto total de juros do financiamento TrustHub.	| DECIMAL (15,2)	| N
 otherFees | Valor bruto total de outras taxas cobradas no pedido.	| DECIMAL (15,2)	| N
@@ -771,7 +770,7 @@ OPERACAO | PEDIDO_PAGO | Operação paga com sucesso.
     "amount": 4307.23,
     "installments": 3,
     "merchantDocument": "88.256.695/0001-18",
-    "merchantDocumentType": "CNPJ",
+    "clientDocument": "88.256.695/0001-18",
     "miniCart": {
                    "buyer": {
                              "firstName": "MARCELO",
@@ -781,12 +780,10 @@ OPERACAO | PEDIDO_PAGO | Operação paga com sucesso.
                    },
                    "items": [
                              {
-                              "id": "132981",
-                              "clientDocument": "88.256.695/0001-18"
+                              "id": "132981",                          
                              },
                              {
                                "id": "123242",
-                               "clientDocument": "88.256.695/0001-18"
                              }
                    ],
     "status" : "",
@@ -2090,7 +2087,7 @@ PEDIDO | REJEITADO_PAIS_DIFERENTE_BRASIL| Pedido rejeitado automaticamente: Paí
 PEDIDO | REJEITADO_DIVERGENCIA_VALORES| Pedido rejeitado automaticamente: Valor calculado do pedido diverge do valor recebido.
 PEDIDO | REJEITADO_CLIENTE_NAO_CADASTRADO | Pedido rejeitado automaticamente: Cliente não cadastrado.
 PEDIDO | AGUARDANDO_APROVACAO | Aguardando a análise do Cedente e Sacado.
-PEDIDO | APROVADO | Cedente e Sacado analisados automaticamente com sucesso.\
+PEDIDO | APROVADO | Cedente e Sacado analisados automaticamente com sucesso.
 PEDIDO | REJEITADO_APROVACAO | Cedente e Sacado analisados, porém com restrições de cadastro ou crédito.
 PEDIDO | REJEITADO_PARCEIRO| Pedido recebido com sucesso, porém com Marketplace/Cedente ou E-commerce não registrado na base da TrustHub.
 PEDIDO | REJEITADO_CANCELADO_SACADO| Pedido cancelado pelo Sacado. Retorno de confirmação do cancelamento recebido pela TrustHub.
@@ -2119,7 +2116,7 @@ OPERACAO | PEDIDO_PAGO | Operação paga com sucesso.
     "amount": 4307.23,
     "installments": 3,
     "merchantDocument": "88.256.695/0001-18",
-    "merchantDocumentType": "CNPJ",
+    "clientDocument": "88.256.695/0001-18",
     "miniCart": {
                    "buyer": {
                              "firstName": "MARCELO",
@@ -2129,20 +2126,15 @@ OPERACAO | PEDIDO_PAGO | Operação paga com sucesso.
                    },
                    "items": [
                              {
-                              "id": "132981",
-                              "clientDocument": "88.256.695/0001-18",
-                              "status" : "",
-                              "idOperation" : "",
-                              "statusOperation" : ""
+                              "id": "132981"
                              },
                              {
-                               "id": "123242",
-                               "clientDocument": "88.256.695/0001-18",
-                               "status" : "",
-                               "idOperation" : "",
-                               "statusOperation" : ""
+                               "id": "123242"
                              }
                    ],
+    "status": "",
+    "idOperation": "",
+    "statusOperation": "",
     "shippingAmount": 11.44,
     "taxAmount": 10.01,
     "otherFees" : 0,
