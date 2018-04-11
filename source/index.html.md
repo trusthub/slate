@@ -724,6 +724,9 @@ buyer	| Objeto com os dados básicos do Sacado.	| OBJECT| S
 [buyer] email	| Email de contato do Sacado.	| STRING (200)	| S
 Items	| Lista de items do pedido realizado pelo Sacado.	| LIST| S
 [items] id	| Identificador do item do pedido do Cedente.	| STRING (200)	| S
+status | Descrição do status geral do pedido | STRING (50) | N
+idOperation | Código da Operação atrelada ao do pedido. | INTEGER | N
+statusOperation | Status atual da Operação atrelada ao pedido. | STRING(50) | N
 shippingAmount	| Valor bruto total da taxa de entrega.	| DECIMAL (15,2)	| N
 taxAmount	| Valor bruto total de juros do financiamento TrustHub.	| DECIMAL (15,2)	| N
 otherFees | Valor bruto total de outras taxas cobradas no pedido.	| DECIMAL (15,2)	| N
