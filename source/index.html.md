@@ -33,7 +33,7 @@ Se pretende se tornar um parceiro e acessar nosso ambiente de produção favor, 
 
  - Stateless: a API não controla os estados, toda informação necessária é enviada pelo cliente.
  - URLs : cada recurso tem a sua própria e única URL, seguindo uma
-   hierarquia lógica. Por exemplo: URL de notas fiscais:
+   hierarquia lógica. Por exemplo:  URL de notas fiscais:
    [https://api.trusthub.com.br/integration/invoices/](https://api.trusthub.com.br/integration/invoices/) 
  - Métodos HTTP: todas as operações são realizadas usando os métodos HTTP de acordo com cada intuito, por exemplo:
    	 - GET: para consultar e ler recursos.
