@@ -577,7 +577,7 @@ billingAddress	| Objeto com os dados do endereço de cobrança do Sacado.	|  OBJ
 [billingAddress] state	| Estado do endereço de cobrança.	| STRING  (100)	| S
 shippingAddress	| Objeto com os dados do endereço de entrega do Sacado.	| OBJECT | S
 [shippingAddress] country	| País do endereço de entrega.	| STRING  (3)*	| S
-[shippingAddress] street	| Descrição da localização do endereço de entrega.	| STRING  (300)	| S
+[shippingAddress] street| Descrição da localização do endereço de entrega.	| STRING  (300)	| S
 [shippingAddress] number	| Número do endereço de entrega.	| INTEGER	| S
 [shippingAddress] complement	| Complemento do endereço de entrega.	| STRING  (300)	| N
 [shippingAddress] neighborhood	| Bairro do endereço de entrega.	| STRING  (300)	| S
