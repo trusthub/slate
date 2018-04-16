@@ -677,7 +677,7 @@ responseStatusMessage	| Descrição adicional da TrustHub para o retorno.	| STRI
 ```java
 {
     "responseCode": 200,
-    "responseStatus": "Success"
+    "responseStatus": "Success",
     "responseStatusMessage": ""
 }
 ```
@@ -777,7 +777,7 @@ OPERACAO | PEDIDO_PAGO | Operação paga com sucesso.
                              "firstName": "MARCELO",
                              "lastName": "DOMES",
                              "document": "012.345.678-90",
-                             "email": "marcelo@domes.com",
+                             "email": "marcelo@domes.com"
                    },
                    "items": [
                              {
@@ -794,7 +794,7 @@ OPERACAO | PEDIDO_PAGO | Operação paga com sucesso.
     "taxAmount": 10.01,
     "otherFees" : 0,
     "orderDiscount" : 0,
-    "deviceFingerprint": "1234567890",
+    "deviceFingerprint": "1234567890"
     }
 }   
 ```
@@ -829,8 +829,8 @@ invoices	| Lista de relação para vínculo entre o arquivo e o item.	| ARRAY	| 
                 "zipData" : "",
                 "fileNames" : [
                                {
-                                               "itemId" : "1",
-                                               "fileName" : "41170617047083000177550010000246841002246804-nfe.xml"
+                               "itemId" : "1",
+                               "fileName" : "41170617047083000177550010000246841002246804-nfe.xml"
                                }
                 ]
 }
@@ -851,7 +851,7 @@ responseStatusMessage	| Descrição adicional da TrustHub para o retorno.	| STRI
 ```java
 {
     "responseCode": 200,
-    "responseStatus": "Success"
+    "responseStatus": "Success",
     "responseStatusMessage": ""
 }
 ```
@@ -881,13 +881,13 @@ invoices | Lista de gestão das notas fiscais do pedido.	| LIST | S
     "orderId": "v32478982vtx-01",
     "invoices" : [
                    {
-                       "itemId" : "1",
-                       "accessKey" : "51171006116723000722550010000014861291207052"
-                                   
-                       "itemId" : "1",
-                       "accessKey" : "85975556546132321110000021500002465620244515"
-
-               }
+                   "itemId" : "1",
+                   "accessKey" : "51171006116723000722550010000014861291207052"
+                   },
+                   {           
+                   "itemId" : "1",
+                   "accessKey" : "85975556546132321110000021500002465620244515"
+                   }
     ]
 }
 ```
@@ -907,7 +907,7 @@ responseStatusMessage	| Descrição adicional da TrustHub para o retorno.	| STRI
 ```java
 {
     "responseCode": 200,
-    "responseStatus": "Success"
+    "responseStatus": "Success",
     "responseStatusMessage": ""
 }
 ```
@@ -960,11 +960,56 @@ responseStatusMessage	| Descrição adicional da TrustHub para o retorno.	| STRI
 ```java
 {
     "responseCode": 200,
-    "responseStatus": "Success"
+    "responseStatus": "Success",
     "responseStatusMessage": ""
 }
 ```
 
+### Consultar Limite de Crédito Sacado
+Serviço utilizado para recebimento do limite de crédito atual disponível para o Sacado.
+
+**HTTP Request**
+
+`POST  https://api-hom.trusthub.com.br/integration/order/v1/credit-limit-buyer`
+
+**Parâmetros de Entrada**
+
+**URL Parameters**
+
+Parameter | Description | Format | Required
+--------- | ----------- | --------- | -----------
+buyerDocument | Número do documento do Sacado. 	| STRING (200)	| S
+buyerDocumentType | Identificador do dado do valor recebido no parâmetro: buyerDocument.	| STRING (30)	| S
+
+> Sample Request
+
+```java
+{
+    "buyerdDocument": "08941084000170"
+}
+```
+
+**Parâmetros de Saída**
+
+**URL Parameters**
+
+Parameter | Description | Format | Required
+--------- | ----------- | --------- | -----------
+responseCode	| Código de saída da requisição.	| INTEGER	| S
+responseStatus	| Descrição do código de saída da requisição.	| STRING (200)	| S
+responseStatusMessage	| Descrição adicional da TrustHub para o retorno.	| STRING (200)	| S
+currentCreditLimit | Valor do limite de crédito atual do Sacado.	| DECIMAL (15,2)	| S
+
+> Sample Response
+
+```java
+{
+    "responseCode": 200,
+    "responseStatus": "Success"
+    "responseStatusMessage": "",
+    "currentCreditLimit": 10000
+}
+```
 
 ## Envio de Notas Fiscais 
 
