@@ -938,6 +938,7 @@ complement	| Descrição complementar ao status 	| ARRAY| N
 ```java
 {
   "orderId" : "12345678909",
+  "merchantDocument": "88.256.695/0001-18",
   "status" : "CONFIRMED",
   "date" : "2018-01-10",
   "complement" : ""
