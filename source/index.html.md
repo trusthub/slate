@@ -985,7 +985,8 @@ buyerDocumentType | Identificador do dado do valor recebido no parâmetro: buyer
 
 ```java
 {
-    "buyerdDocument": "08941084000170"
+    "buyerdDocument": "08941084000170",
+    "buyerDocumentType": "CNPJ"
 }
 ```
 
