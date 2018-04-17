@@ -825,15 +825,16 @@ invoices	| Lista de relação para vínculo entre o arquivo e o item.	| ARRAY	| 
 
 ```java
 {
-                "orderId": "v32478982vtx-01",
-                "zipName" : "teste.zip",
-                "zipData" : "",
-                "fileNames" : [
-                               {
-                               "itemId" : "1",
-                               "fileName" : "41170617047083000177550010000246841002246804-nfe.xml"
-                               }
-                ]
+    "orderId": "v32478982vtx-01",
+    "merchantDocument": "88256695000118",
+    "zipName" : "teste.zip",
+    "zipData" : "",
+    "invoices" : [
+					{
+                    "itemId" : "1",
+                    "fileName" : "41170617047083000177550010000246841002246804-nfe.xml"
+                    }
+		]
 }
 ```
 
@@ -880,6 +881,7 @@ invoices | Lista de gestão das notas fiscais do pedido.	| LIST | S
 ```java
 {
     "orderId": "v32478982vtx-01",
+    "merchantDocument": "88256695000118",
     "invoices" : [
                    {
                    "itemId" : "1",
