@@ -711,7 +711,6 @@ Parameter | Description | Format | Required
 --------- | ----------- | --------- | -----------
 orderID	| Identificador do pedido gerado pelo Marketplace/Cedente	| STRING (200)	| S
 status	| Descrição do status geral do pedido	| STRING (200)	| S
-tracking	| Descrição do status do pedido no Marketplace/Cedente	| STRING (200)	| S
 amount	| Valor bruto total do pedido.	| DECIMAL (15,2)	| S
 installments	| Quantidade de títulos de pagamento selecionados pelo Sacado.	| INTEGER	| S
 merchantDocument	| Identificador do Marketplace ou Cliente. **Qual enviar?** Se a integração se dá através de um Marketplace, deve-se enviar os dados deste. Porém, quando a integração se dá diretamente do e-commerce do Cliente, sem um Marketplace de integração, deve-se enviar os dados do Cliente.	| STRING (30)	| S
@@ -724,7 +723,9 @@ buyer	| Objeto com os dados básicos do Sacado.	| OBJECT| S
 [buyer] email	| Email de contato do Sacado.	| STRING (200)	| S
 Items	| Lista de items do pedido realizado pelo Sacado.	| LIST| S
 [items] id	| Identificador do item do pedido do Cedente.	| STRING (200)	| S
-[items] status	| Descrição do status do item do pedido.	| STRING (200)	| S
+[items] tracking	| Descrição do status do pedido no Marketplace/Cedente	| STRING (200)	| S
+idOperation | Identificador da Operação atrelada ao pedido. | INTEGER	| S
+statusOperation	| Descrição do status da Operação atrelada ao pedido.	| STRING (200)	| S
 shippingAmount	| Valor bruto total da taxa de entrega.	| DECIMAL (15,2)	| N
 taxAmount	| Valor bruto total de juros do financiamento TrustHub.	| DECIMAL (15,2)	| N
 otherFees | Valor bruto total de outras taxas cobradas no pedido.	| DECIMAL (15,2)	| N
@@ -767,7 +768,6 @@ OPERACAO | PEDIDO_PAGO | Operação paga com sucesso.
 {   
     "orderId": "v32478982vtx-01",
     "status" : "",
-    "tracking" : "",
     "amount": 4307.23,
     "installments": 3,
     "merchantDocument": "88.256.695/0001-18",
@@ -781,13 +781,14 @@ OPERACAO | PEDIDO_PAGO | Operação paga com sucesso.
                    },
                    "items": [
                              {
-                              "id": "132981",                          
+                              "id": "132981",
+			      "tracking" : ""
                              },
                              {
                                "id": "123242",
+			       "tracking" : ""
                              }
                    ],
-    "status" : "",
     "idOperation" : "",
     "statusOperation" : "",
     "shippingAmount": 11.44,
