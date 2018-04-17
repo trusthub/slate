@@ -128,11 +128,11 @@ clients | Para cada Cliente do Marketplace que tiver itens dentro da simulação
 ```java
 
 {
-  "merchantDocument" : "12589656/0001-01",
+  "merchantDocument" : "12589656000101",
   "amount" : 200.52,
   "clients" : [
                 {
-                               "clientDocument":"158965852-96",
+                               "clientDocument":"15896585296",
                                "amount" : 200.52
                 }
   ]
@@ -604,36 +604,36 @@ deviceFingerprint	| Identificador antifraude.	| STRING  (200)	| N
        "orderId": "v32478982vtx-01",
        "amount": 4307.23,
        "installments": 3,
-       "merchantDocument": "88.256.695/0001-18",
+       "merchantDocument": "88256695000118",
        "merchantDocumentType": "CNPJ",
-       "clientDocument": "88.256.695/0001-18",
+       "clientDocument": "88256695000118",
        "clientDocumentType": "CNPJ",
        "miniCart": {
              "buyer": {
-                    "firstName": "John",
-                    "lastName": "Doe",
-                    "document": "012.345.678-90",
+                    "firstName": "João",
+                    "lastName": "Marinho da Silva",
+                    "document": "01234567890",
                     "documentType": "CPF",
-                    "email": "john@doe.com",
-                    "phone": "+55 (21) 98765-4321"
+                    "email": "joao_marinho@gmail.com",
+                    "phone": "+55 (51) 99999-9999"
              },
              "billingAddress": {
                     "country": "BRA",
-                    "street": "Rua Praia de Botafogo",
-                    "number": "518",
-                    "complement": "2o. andar",
-                    "neighborhood": "Botafogo",
-                    "postalCode": "22250-040",
-                    "city": "Rio de Janeiro",
-                    "state": "RJ"
+                    "street": "Travessa Farroupilha",
+                    "number": "1155",
+                    "complement": "1o. andar",
+                    "neighborhood": "Bela Vista",
+                    "postalCode": "90450-190",
+                    "city": "Porto Alegre",
+                    "state": "RS"
              },
              "shippingAddress": {
                     "country": "BRA",
-                    "street": "Rua Praia de Botafogo",
-                    "number": "518",
-                    "complement": "2o. andar",
-                    "neighborhood": "Botafogo",
-                    "postalCode": "22250-040",
+                    "street": "Avenida Amazonas",
+                    "number": "2018",
+                    "complement": "15. andar",
+                    "neighborhood": "São Geraldo",
+                    "postalCode": "90240-542",
                     "city": "Rio de Janeiro",
                     "state": "RJ"
              },
@@ -770,13 +770,13 @@ OPERACAO | PEDIDO_PAGO | Operação paga com sucesso.
     "status" : "",
     "amount": 4307.23,
     "installments": 3,
-    "merchantDocument": "88.256.695/0001-18",
-    "clientDocument": "88.256.695/0001-18",
+    "merchantDocument": "88256695000118",
+    "clientDocument": "88256695000118",
     "miniCart": {
                    "buyer": {
                              "firstName": "MARCELO",
                              "lastName": "DOMES",
-                             "document": "012.345.678-90",
+                             "document": "01234567890",
                              "email": "marcelo@domes.com"
                    },
                    "items": [
@@ -818,7 +818,7 @@ merchantDocument	| Identificador do Marketplace ou Cliente. **Qual enviar?** Se 
 zipName	| Nome do arquivo com a(s) nota(s) fiscal(is).	| STRING (200)	| S
 zipData	| Arquivo zip convertido em STRING BASE64.	| STRING Base64	| S
 invoices	| Lista de relação para vínculo entre o arquivo e o item.	| ARRAY	| S
-[invoice] itemId |  Identifica*do*r do item do pedido.	| STRING (200)	| S
+[invoice] itemId |  Identificador do item do pedido.	| STRING (200)	| S
 [invoice] fileName| Nome do arquivo xml contido dentro do arquivo zip.	| STRING (200)	| S
 
 > Sample Request
