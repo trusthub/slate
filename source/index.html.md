@@ -543,7 +543,7 @@ O serviço de registro de pedidos é responsável por registrar a requisição d
 
 **HTTP Request**
 
-`POST  https://api-hom.trusthub.com.br/integration/order/v1/`
+`POST  https://api-hom.trusthub.com.br/integration/order/v1/submit`
 
 **Parâmetros de Entrada**
 
@@ -804,7 +804,7 @@ Serviço utilizado para o envio dos arquivos xml das notas fiscais do pedido.
 
 **HTTP Request**
 
-`POST  https://api-hom.trusthub.com.br/integration/order/v1/invoice`
+`POST  https://api-hom.trusthub.com.br/integration/order/v1/invoice/file`
 
 **Parâmetros de Entrada**
 
