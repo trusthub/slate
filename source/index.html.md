@@ -601,7 +601,7 @@ deviceFingerprint	| Identificador antifraude.	| STRING  (200)	| N
 ```java
 {
        "Id": "123456",
-       "orderId": "v32478982vtx-01",
+       "orderId": "trusthub2018-01",
        "amount": 4307.23,
        "installments": 3,
        "merchantDocument": "88256695000118",
@@ -766,7 +766,7 @@ OPERACAO | PEDIDO_PAGO | Operação paga com sucesso.
 
 ```java
 {   
-    "orderId": "v32478982vtx-01",
+    "orderId": "trusthub2018-01",
     "status" : "",
     "amount": 4307.23,
     "installments": 3,
@@ -825,7 +825,7 @@ invoices	| Lista de relação para vínculo entre o arquivo e o item.	| ARRAY	| 
 
 ```java
 {
-    "orderId": "v32478982vtx-01",
+    "orderId": "trusthub2018-01",
     "merchantDocument": "88256695000118",
     "zipName" : "teste.zip",
     "zipData" : "",
@@ -880,7 +880,7 @@ invoices | Lista de gestão das notas fiscais do pedido.	| LIST | S
 
 ```java
 {
-    "orderId": "v32478982vtx-01",
+    "orderId": "trusthub2018-01",
     "merchantDocument": "88256695000118",
     "invoices" : [
                    {
@@ -940,7 +940,7 @@ complement	| Descrição complementar ao status 	| ARRAY| N
 
 ```java
 {
-  "orderId" : "12345678909",
+  "orderId" : "trusthub2018-01",
   "merchantDocument": "88.256.695/0001-18",
   "status" : "CONFIRMED",
   "date" : "2018-01-10",
