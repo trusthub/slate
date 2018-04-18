@@ -774,11 +774,11 @@ OPERACAO | PEDIDO_PAGO | Operação paga com sucesso.
     "clientDocument": "88256695000118",
     "miniCart": {
                    "buyer": {
-                             "firstName": "MARCELO",
-                             "lastName": "DOMES",
+                             "firstName": "João",
+                             "lastName": "Marinho da Silva",
                              "document": "01234567890",
-                             "email": "marcelo@domes.com"
-                   },
+                             "email": "joao_marinho@gmail.com"
+                            },
                    "items": [
                              {
                               "id": "132981",
@@ -941,7 +941,7 @@ complement	| Descrição complementar ao status 	| ARRAY| N
 ```java
 {
   "orderId" : "trusthub2018-01",
-  "merchantDocument": "88.256.695/0001-18",
+  "merchantDocument": "88256695000118",
   "status" : "CONFIRMED",
   "date" : "2018-01-10",
   "complement" : ""
@@ -1009,7 +1009,7 @@ currentCreditLimit | Valor do limite de crédito atual do Sacado.	| DECIMAL (15,
 ```java
 {
     "responseCode": 200,
-    "responseStatus": "Success"
+    "responseStatus": "Success",
     "responseStatusMessage": "",
     "currentCreditLimit": 10000
 }
