@@ -132,7 +132,7 @@ clients | Para cada Cliente do Marketplace que tiver itens dentro da simulação
   "amount" : 200.52,
   "clients" : [
                 {
-                               "clientDocument":"15896585296",
+                               "clientDocument":"12589656000101",
                                "amount" : 200.52
                 }
   ]
@@ -555,15 +555,12 @@ orderID	| Identificador do pedido gerado pelo Marketplace/Cedente	| STRING  (200
 amount	| Valor final do pedido.	| DECIMAL (15,2)	| S
 installments	| Quantidade de títulos de pagamento selecionados pelo Sacado.	| INTEGER	| S
 merchantDocument	| Identificador do Marketplace ou Cliente. **Qual enviar?** Se a integração se dá através de um Marketplace, deve-se enviar os dados deste. Porém, quando a integração se dá diretamente do e-commerce do Cliente, sem um Marketplace de integração, deve-se enviar os dados do Cliente.	| STRING  (30)	| S
-merchantDocumentType	| Identificador do dado do valor recebido no parâmetro: merchantDocument.	| STRING  (30)	| S
 clientDocument	| Identificador do vendedor do item: Cedente.	| STRING  (200)	| S
-clientDocumentType	| Identificador do dado do valor recebido no parâmetro: clientDocument	| STRING  (30)	| S
 miniCart	| Objeto com os dados essenciais do pedido: Dados do comprador, endereço de entrega e cobrança, itens do carrinho e demais tributos e descontos.	|OBJECT	|S
 buyer	| Objeto com os dados básicos do Sacado.	| OBJECT| S
 [buyer] firstName	| **Sacado PJ**: Recebe a razão social completa neste parâmetro. **Sacado PF**: Recebe o primeiro nome. | STRING  (200)	| S
 [buyer] lastName	| **Sacado PJ**: Enviar vazio. **Sacado PF**: Sobrenome do Sacado.	| STRING  (200)	| N
 [buyer] document	| Número do documento cadastrado no parceiro (Marketplace/Cedente).	| STRING  (30)	| S
-[buyer] documentType	| Identificador do dado do valor recebido no parâmetro: buyer – document.	| STRING  (30)	| S
 [buyer] email	| Email de contato do Sacado.	| STRING  (200)	| S
 [buyer] phone	| Telefone principal do Sacado.	| STRING  (30)	| S
 billingAddress	| Objeto com os dados do endereço de cobrança do Sacado.	|  OBJECT | S
@@ -605,15 +602,12 @@ deviceFingerprint	| Identificador antifraude.	| STRING  (200)	| N
        "amount": 4307.23,
        "installments": 3,
        "merchantDocument": "88256695000118",
-       "merchantDocumentType": "CNPJ",
        "clientDocument": "88256695000118",
-       "clientDocumentType": "CNPJ",
        "miniCart": {
              "buyer": {
                     "firstName": "João",
                     "lastName": "Marinho da Silva",
                     "document": "01234567890",
-                    "documentType": "CPF",
                     "email": "joao_marinho@gmail.com",
                     "phone": "+55 (51) 99999-9999"
              },
@@ -710,7 +704,6 @@ merchantDocument	| Identificador do Marketplace ou Cliente. **Qual enviar?** Se 
 Parameter | Description | Format | Required
 --------- | ----------- | --------- | -----------
 orderID	| Identificador do pedido gerado pelo Marketplace/Cedente	| STRING (200)	| S
-status	| Descrição do status geral do pedido	| STRING (200)	| S
 amount	| Valor bruto total do pedido.	| DECIMAL (15,2)	| S
 installments	| Quantidade de títulos de pagamento selecionados pelo Sacado.	| INTEGER	| S
 merchantDocument	| Identificador do Marketplace ou Cliente. **Qual enviar?** Se a integração se dá através de um Marketplace, deve-se enviar os dados deste. Porém, quando a integração se dá diretamente do e-commerce do Cliente, sem um Marketplace de integração, deve-se enviar os dados do Cliente.	| STRING (30)	| S
@@ -720,17 +713,18 @@ buyer	| Objeto com os dados básicos do Sacado.	| OBJECT| S
 [buyer] firstName	| **Sacado PJ**: Recebe a razão social completa neste parâmetro. **Sacado PF**: Recebe o primeiro nome. | STRING  (200)	| S
 [buyer] lastName	| **Sacado PJ**: Enviar vazio. **Sacado PF**: Sobrenome do Sacado.	| STRING  (200)	| N
 [buyer] document	| Número do documento cadastrado no parceiro (Marketplace/Cedente). 	| STRING (30)	| S
-[buyer] email	| Email de contato do Sacado.	| STRING (200)	| S
 Items	| Lista de items do pedido realizado pelo Sacado.	| LIST| S
 [items] id	| Identificador do item do pedido do Cedente.	| STRING (200)	| S
-[items] tracking	| Descrição do status do pedido no Marketplace/Cedente	| STRING (200)	| S
-idOperation | Identificador da Operação atrelada ao pedido. | INTEGER	| S
-statusOperation	| Descrição do status da Operação atrelada ao pedido.	| STRING (200)	| S
+[items] statusInvoice	| Descrição do status da nota fiscal atrelada ao item do pedido | STRING (200)	| S
 shippingAmount	| Valor bruto total da taxa de entrega.	| DECIMAL (15,2)	| N
 taxAmount	| Valor bruto total de juros do financiamento TrustHub.	| DECIMAL (15,2)	| N
 otherFees | Valor bruto total de outras taxas cobradas no pedido.	| DECIMAL (15,2)	| N
 orderDiscount | Valor bruto total de descontos do pedido.	| DECIMAL (15,2)	| N
 deviceFingerprint	| Identificador antifraude.	| STRING  (200)	| N
+status	| Descrição do status geral do pedido	| STRING (200)	| S
+statusTraking	| Descrição do pedido no Marketplace/E-commerce	| STRING (200)	| S
+idOperation | Identificador da Operação atrelada ao pedido. | INTEGER	| S
+statusOperation	| Descrição do status da Operação atrelada ao pedido.	| STRING (200)	| S
 
 **Status | Monitoramento do Pedido**
 
@@ -740,13 +734,11 @@ PEDIDO | RECEBIDO | Pedido recebido com sucesso. Iniciado processo de verificaç
 PEDIDO | REJEITADO_PESSOA_FISICA| Pedido rejeitado automaticamente: Pessoa Física.
 PEDIDO | REJEITADO_PAIS_DIFERENTE_BRASIL| Pedido rejeitado automaticamente: País do Sacado diferente de Brasil.
 PEDIDO | REJEITADO_DIVERGENCIA_VALORES| Pedido rejeitado automaticamente: Valor calculado do pedido diverge do valor recebido.
-PEDIDO | REJEITADO_CLIENTE_NAO_CADASTRADO | Pedido rejeitado automaticamente: Cliente não cadastrado.
 PEDIDO | AGUARDANDO_APROVACAO | Aguardando a análise do Cedente e Sacado.
 PEDIDO | APROVADO | Cedente e Sacado analisados automaticamente com sucesso.
 PEDIDO | REJEITADO_APROVACAO | Cedente e Sacado analisados, porém com restrições de cadastro ou crédito.
 PEDIDO | AGUARDANDO_APROVACAO_MANUAL | Aguardando a aprovação manual do pedido, por regras de negócio internas da TrustHub.
 PEDIDO | REJEITADO_PARCEIRO| Pedido recebido com sucesso, porém com Marketplace/Cedente ou E-commerce não registrado na base da TrustHub.
-PEDIDO | REJEITADO_CANCELADO_SACADO| Pedido cancelado pelo Sacado. Retorno de confirmação do cancelamento recebido pela TrustHub.
 PEDIDO | REJEITADO_NOTA_FISCAL| Pedido rejeitado por divergências na Nota Fiscal.
 TRACKING | CONFIRMADO | Pedido confirmado. Preparando para entrega.		
 TRACKING | EM_TRANSITO | Pedido em rota de entrega.
@@ -759,45 +751,46 @@ NOTA_FISCAL | NOTA_FISCAL_NAO_AUTORIZADA| Nota Fiscal não autorizada pela SEFAZ
 NOTA_FISCAL | CONCORDANTE| Nota Fiscal concordante(sem divergências). Pedido confirmado. Aguardando para o inicio do processo operacional.
 OPERACAO | INICIADO_PROCESSO_PAGAMENTO | Operação criada. Iniciado o processo operacional.
 OPERACAO | AGUARDANDO_ASSINATURA_CONTRATOS | Aguardando a assinatura dos contratos Operacionais.
-OPERACAO | AGUARDANDO_PAGAMENTO | Aguardando pagamento da Operação.										
+OPERACAO | AGUARDANDO_PAGAMENTO | Aguardando pagamento da Operação.							
 OPERACAO | PEDIDO_PAGO | Operação paga com sucesso.
 
 > Sample Response
 
 ```java
-{   
-    "orderId": "trusthub2018-01",
-    "status" : "",
-    "amount": 4307.23,
-    "installments": 3,
-    "merchantDocument": "88256695000118",
-    "clientDocument": "88256695000118",
-    "miniCart": {
-                   "buyer": {
-                             "firstName": "João",
-                             "lastName": "Marinho da Silva",
-                             "document": "01234567890",
-                             "email": "joao_marinho@gmail.com"
-                            },
-                   "items": [
-                             {
-                              "id": "132981",
-			      "tracking" : ""
-                             },
-                             {
-                               "id": "123242",
-			       "tracking" : ""
-                             }
-                   ],
-    "idOperation" : "",
-    "statusOperation" : "",
-    "shippingAmount": 11.44,
-    "taxAmount": 10.01,
-    "otherFees" : 0,
-    "orderDiscount" : 0,
-    "deviceFingerprint": "1234567890"
+{
+    "responseCode": 200,
+    "responseStatus": "Success",
+    "responseStatusMessage": "Success",
+    "order": {
+        "orderId": "trusthub2018-01",
+        "amount": 110,
+        "installments": 1,
+        "merchantDocument": "88256695000118",
+        "clientDocument": "88256695000118",
+        "miniCart": {
+            "buyer": {
+                "firstName": "João",
+                "lastName": "Marinho da Silva",
+                "document": "01234567890"
+            },
+            "items": [
+                {
+                    "id": "132981",
+                    "statusInvoice": "NOTA_FISCAL_RECEBIDA"
+                }
+            ]
+        },
+        "shippingAmount": 11.44,
+        "taxAmount": 10.01,
+        "otherFees": 0,
+        "orderDiscount": 0,
+        "deviceFingerprint": "1234567890",
+        "status": "APROVADO",
+        "statusTracking": "CONFIRMED",
+        "idOperation": "",
+        "statusOperation": ""
     }
-}   
+}
 ```
 
 ### Enviar Nota Fiscal do Pedido (arquivo)
@@ -930,10 +923,9 @@ Parameter | Description | Format | Required
 --------- | ----------- | --------- | -----------
 orderId	| Identificador do pedido gerado pelo Marketplace/Cedente	| STRING (200)	| S
 merchantDocument	| Identificador do Marketplace ou Cliente. **Qual enviar?** Se a integração se dá através de um Marketplace, deve-se enviar os dados deste. Porém, quando a integração se dá diretamente do e-commerce do Cliente, sem um Marketplace de integração, deve-se enviar os dados do Cliente.	| STRING  (30)	| S
-invoices | Lista de gestão das notas fiscais do pedido.	| LIST | S
-Status	| Status do Marketplace/Cedente. Status permitidos: CONFIRMED, SHIPPED, COMPLETED, DECLINED	| STRING (30)	| S
-Date	| Data/hora da atualização do status	| STRING (aaaa-MM-dd hh:mm)	| S
-complement	| Descrição complementar ao status 	| ARRAY| N
+status	| Status do Marketplace/Cedente. Status permitidos: CONFIRMED, SHIPPED, COMPLETED, DECLINED	| STRING (30)	| S
+date	| Data/hora da atualização do status	| STRING (aaaa-MM-dd hh:mm)	| S
+complement	| Descrição complementar ao status 	| STRING (100)| N
 
 
 > Sample Request
