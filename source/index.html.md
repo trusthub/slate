@@ -620,7 +620,7 @@ deviceFingerprint	| Identificador antifraude.	| STRING  (200)	| N
              "billingAddress": {
                     "country": "BRA",
                     "street": "Travessa Farroupilha",
-                    "number": "1155",
+                    "number": 1155,
                     "complement": "1o. andar",
                     "neighborhood": "Bela Vista",
                     "postalCode": "90450-190",
@@ -630,7 +630,7 @@ deviceFingerprint	| Identificador antifraude.	| STRING  (200)	| N
              "shippingAddress": {
                     "country": "BRA",
                     "street": "Avenida Amazonas",
-                    "number": "2018",
+                    "number": 2018,
                     "complement": "15. andar",
                     "neighborhood": "São Geraldo",
                     "postalCode": "90240-542",
