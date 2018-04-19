@@ -825,16 +825,16 @@ invoices	| Lista de relação para vínculo entre o arquivo e o item.	| ARRAY	| 
 
 ```java
 {
-    "orderId": "trusthub2018-01",
-    "merchantDocument": "88256695000118",
-    "zipName" : "teste.zip",
-    "zipData" : "",
-    "invoices" : [
-					{
-                    "itemId" : "1",
-                    "fileName" : "41170617047083000177550010000246841002246804-nfe.xml"
-                    }
-		]
+  "orderId": "trusthub2018-01",
+  "merchantDocument": "88256695000118",
+  "zipName": "teste.zip",
+  "zipData": "UEsDBBQAAAAAAIFkk0wAAAAAAAAAAAAAAAA0AAAANDExNzA2MTcwNDcwODMwMDAxNzc1NTAwMTAwMDAyNDY4NDEwMDIyNDY4MDQtbmZlLnhtbFBLAQIUABQAAAAAAIFkk0wAAAAAAAAAAAAAAAA0AAAAAAAAAAAAIAAAAAAAAAA0MTE3MDYxNzA0NzA4MzAwMDE3NzU1MDAxMDAwMDI0Njg0MTAwMjI0NjgwNC1uZmUueG1sUEsFBgAAAAABAAEAYgAAAFIAAAAAAA==",
+  "invoices": [
+    {
+      "itemId": "1",
+      "fileName": "41170617047083000177550010000246841002246804-nfe.xml"
+    }
+  ]
 }
 ```
 
