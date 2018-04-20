@@ -588,7 +588,7 @@ Items	| Lista de items do pedido realizado pelo Sacado.	| LIST| S
 [items] quantity	| Quantidade do item.	| INTEGER	| S
 [items] itemDiscount	| Valor bruto de desconto do item.	| DECIMAL (15,2)	| S
 shippingAmount	| Valor bruto total da taxa de entrega.	| DECIMAL (15,2)	| N
-taxAmount	| Valor bruto total de juros do financiamento TrustHub.	| DECIMAL (15,2)	| N
+taxAmount	| Valor bruto total de juros do financiamento TrustHub.	| DECIMAL (15,2)	| S
 otherFees | Valor bruto total de outras taxas cobradas no pedido.	| DECIMAL (15,2)	| N
 orderDiscount | Valor bruto total de descontos do pedido.	| DECIMAL (15,2)	| N
 deviceFingerprint	| Identificador antifraude.	| STRING  (200)	| N
