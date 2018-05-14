@@ -735,11 +735,14 @@ PEDIDO | REJEITADO_PESSOA_FISICA| Pedido rejeitado automaticamente: Pessoa Físi
 PEDIDO | REJEITADO_PAIS_DIFERENTE_BRASIL| Pedido rejeitado automaticamente: País do Sacado diferente de Brasil.
 PEDIDO | REJEITADO_DIVERGENCIA_VALORES| Pedido rejeitado automaticamente: Valor calculado do pedido diverge do valor recebido.
 PEDIDO | AGUARDANDO_APROVACAO | Aguardando a análise do Cedente e Sacado.
-PEDIDO | APROVADO | Cedente e Sacado analisados automaticamente com sucesso.
-PEDIDO | REJEITADO_APROVACAO | Cedente e Sacado analisados, porém com restrições de cadastro ou crédito.
+PEDIDO | APROVADO_MOTOR | Cedente e Sacado analisados automaticamente com sucesso.
+PEDIDO | REJEITADO_MOTOR | Cedente e Sacado analisados, porém com restrições de cadastro ou crédito. Pedido rejeitado.
 PEDIDO | AGUARDANDO_APROVACAO_MANUAL | Aguardando a aprovação manual do pedido, por regras de negócio internas da TrustHub.
+PEDIDO | APROVADO_MANUALMENTE | Pedido aprovado manualmente após reprovação automática do Motor de Aprovações.
+PEDIDO | REJEITADO_MANUALMENTE | Pedido rejeitado manualmente após reprovação automática do Motor de Aprovações.
 PEDIDO | REJEITADO_PARCEIRO| Pedido recebido com sucesso, porém com Marketplace/Cedente ou E-commerce não registrado na base da TrustHub.
 PEDIDO | REJEITADO_NOTA_FISCAL| Pedido rejeitado por divergências na Nota Fiscal.
+PEDIDO | APROVADO_PARCEIRO | Aprovação final do pedido: após aprovação da TrustHub e do Marketplace/Cedente.
 TRACKING | CONFIRMADO | Pedido confirmado. Preparando para entrega.		
 TRACKING | EM_TRANSITO | Pedido em rota de entrega.
 TRACKING | ENTREGUE | Pedido entregue com sucesso.
