@@ -750,7 +750,8 @@ TRACKING | REJEITADO | Pedido cancelado/rejeitado por motivos diversos.
 NOTA_FISCAL | AGUARDANDO_NOTA_FISCAL | Aguardando Nota Fiscal para conferência de dados do pedido.
 NOTA_FISCAL | NOTA_FISCAL_RECEBIDA | Nota Fiscal Recebida. Iniciado o processo de conferência da Nota Fiscal.
 NOTA_FISCAL | NOTA_FISCAL_DIVERGENTE| Nota Fiscal com divergências.							
-NOTA_FISCAL | NOTA_FISCAL_NAO_AUTORIZADA| Nota Fiscal não autorizada pela SEFAZ.		
+NOTA_FISCAL | NOTA_FISCAL_NAO_AUTORIZADA| Nota Fiscal não autorizada pela SEFAZ.
+NOTA_FISCAL | NOTA_FISCAL_PRAZO_EXPIRADO | O prazo de envio da Nota Fiscal foi expirado. Pedido rejeitado automaticamente.
 NOTA_FISCAL | NOTA_FISCAL_CONCORDANTE| Nota Fiscal concordante(sem divergências). Pedido confirmado. Aguardando para o inicio do processo operacional.
 OPERACAO | INICIADO_PROCESSO_PAGAMENTO | Operação criada. Iniciado o processo operacional.
 OPERACAO | AGUARDANDO_ASSINATURA_CONTRATOS | Aguardando a assinatura dos contratos Operacionais.
