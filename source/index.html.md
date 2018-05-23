@@ -905,7 +905,7 @@ responseStatusMessage	| Descrição adicional da TrustHub para o retorno.	| STRI
     "responseStatusMessage": ""
 }
 ```
-### Enviar Chave de Acesso Nota Fiscal por Pedido
+### Enviar Chave de Acesso da Nota Fiscal por Pedido
 Serviço utilizado para o envio da chave de acesso para pedidos onde será gerada apenas uma nota fiscal para ao pedido.
 
 **HTTP Request**
