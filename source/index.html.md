@@ -865,7 +865,7 @@ orderId	| Identificador do pedido gerado pelo Marketplace/Cedente	| STRING (200)
 merchantDocument	| Identificador do Marketplace ou Cliente. **Qual enviar?** Se a integração se dá através de um Marketplace, deve-se enviar os dados deste. Porém, quando a integração se dá diretamente do e-commerce do Cliente, sem um Marketplace de integração, deve-se enviar os dados do Cliente.	| STRING  (30)	| S
 invoices | Lista de gestão das notas fiscais do pedido.	| LIST | S
 [invoices] itemId| Identificador do item do pedido a qual a chave está relacionada.	| STRING (200)	| S
-[invoices] accessKey | Chave de acesso da nota fiscal vinculada ao item do pedido.	| STRING (200)	| S
+[invoices] accessKey | Chave de acesso da nota fiscal vinculada ao item do pedido.	| STRING (44)	| S
 
 > Sample Request
 
@@ -920,7 +920,7 @@ Parameter | Description | Format | Required
 --------- | ----------- | --------- | -----------
 orderId	| Identificador do pedido gerado pelo Marketplace/Cedente	| STRING (200)	| S
 merchantDocument	| Identificador do Marketplace ou Cliente. **Qual enviar?** Se a integração se dá através de um Marketplace, deve-se enviar os dados deste. Porém, quando a integração se dá diretamente do e-commerce do Cliente, sem um Marketplace de integração, deve-se enviar os dados do Cliente.	| STRING  (30)	| S
-accessKey | Chave de acesso da nota fiscal referente a todos os items do pedido.	| STRING (200)	| S
+accessKey | Chave de acesso da nota fiscal referente a todos os items do pedido.	| STRING (44)	| S
 
 > Sample Request
 
