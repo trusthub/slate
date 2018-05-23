@@ -587,7 +587,7 @@ Items	| Lista de items do pedido realizado pelo Sacado.	| LIST| S
 [items] price	| Valor bruto unitário do item.	| DECIMAL (15,2)	| S
 [items] quantity	| Quantidade do item.	| INTEGER	| S
 [items] itemDiscount	| Valor bruto de desconto do item.	| DECIMAL (15,2)	| S
-shippingAmount	| Valor bruto total da taxa de entrega.	| DECIMAL (15,2)	| N
+shippingAmount	| Valor bruto total da entrega.	| DECIMAL (15,2)	| N
 taxAmount	| Valor bruto total de juros do financiamento TrustHub.	| DECIMAL (15,2)	| S
 otherFees | Valor bruto total de outras taxas cobradas no pedido.	| DECIMAL (15,2)	| N
 orderDiscount | Valor bruto total de descontos do pedido.	| DECIMAL (15,2)	| N
@@ -796,13 +796,12 @@ OPERACAO | PEDIDO_PAGO | Operação paga com sucesso.
     }
 }
 ```
-
-### Enviar Nota Fiscal do Pedido (arquivo)
-Serviço utilizado para o envio dos arquivos xml das notas fiscais do pedido.
+### Atualizar Status Tracking
+O serviço de atualização do status Tracking é responsável pelo recebimento da atualização de status do pedido no Marketplace/Cedente.
 
 **HTTP Request**
 
-`POST  https://api-hom.trusthub.com.br/integration/order/v1/invoice/file`
+`POST  https://api-hom.trusthub.com.br/integration/order/v1/tracking`
 
 **Parâmetros de Entrada**
 
@@ -812,26 +811,20 @@ Parameter | Description | Format | Required
 --------- | ----------- | --------- | -----------
 orderId	| Identificador do pedido gerado pelo Marketplace/Cedente	| STRING (200)	| S
 merchantDocument	| Identificador do Marketplace ou Cliente. **Qual enviar?** Se a integração se dá através de um Marketplace, deve-se enviar os dados deste. Porém, quando a integração se dá diretamente do e-commerce do Cliente, sem um Marketplace de integração, deve-se enviar os dados do Cliente.	| STRING  (30)	| S
-zipName	| Nome do arquivo com a(s) nota(s) fiscal(is).	| STRING (200)	| S
-zipData	| Arquivo zip convertido em STRING BASE64.	| STRING Base64	| S
-invoices	| Lista de relação para vínculo entre o arquivo e o item.	| ARRAY	| S
-[invoice] itemId |  Identificador do item do pedido.	| STRING (200)	| S
-[invoice] fileName| Nome do arquivo xml contido dentro do arquivo zip.	| STRING (200)	| S
+status	| Status do Marketplace/Cedente. Status permitidos: CONFIRMED, SHIPPED, COMPLETED, DECLINED	| STRING (30)	| S
+date	| Data/hora da atualização do status	| STRING (aaaa-MM-dd hh:mm)	| S
+complement	| Descrição complementar ao status 	| STRING (100)| N
+
 
 > Sample Request
 
 ```java
 {
-  "orderId": "trusthub2018-01",
+  "orderId" : "trusthub2018-01",
   "merchantDocument": "88256695000118",
-  "zipName": "teste.zip",
-  "zipData": "UEsDBBQAAAAAAIFkk0wAAAAAAAAAAAAAAAA0AAAANDExNzA2MTcwNDcwODMwMDAxNzc1NTAwMTAwMDAyNDY4NDEwMDIyNDY4MDQtbmZlLnhtbFBLAQIUABQAAAAAAIFkk0wAAAAAAAAAAAAAAAA0AAAAAAAAAAAAIAAAAAAAAAA0MTE3MDYxNzA0NzA4MzAwMDE3NzU1MDAxMDAwMDI0Njg0MTAwMjI0NjgwNC1uZmUueG1sUEsFBgAAAAABAAEAYgAAAFIAAAAAAA==",
-  "invoices": [
-    {
-      "itemId": "1",
-      "fileName": "41170617047083000177550010000246841002246804-nfe.xml"
-    }
-  ]
+  "status" : "CONFIRMED",
+  "date" : "2018-01-10",
+  "complement" : ""
 }
 ```
 
@@ -854,8 +847,9 @@ responseStatusMessage	| Descrição adicional da TrustHub para o retorno.	| STRI
     "responseStatusMessage": ""
 }
 ```
-### Enviar Nota Fiscal do Pedido (chave de acesso)
-Serviço utilizado para o envio da chave de acesso das notas fiscais do pedido.
+
+### Enviar Chave de Acesso da Nota Fiscal por Item do Pedido
+Serviço utilizado para envio da chave de acesso por item do pedido, para casos onde um pedido terá mais de uma nota fiscal.
 
 **HTTP Request**
 
@@ -870,7 +864,7 @@ Parameter | Description | Format | Required
 orderId	| Identificador do pedido gerado pelo Marketplace/Cedente	| STRING (200)	| S
 merchantDocument	| Identificador do Marketplace ou Cliente. **Qual enviar?** Se a integração se dá através de um Marketplace, deve-se enviar os dados deste. Porém, quando a integração se dá diretamente do e-commerce do Cliente, sem um Marketplace de integração, deve-se enviar os dados do Cliente.	| STRING  (30)	| S
 invoices | Lista de gestão das notas fiscais do pedido.	| LIST | S
-[invoices] itemId| Identificador do item do pedido.	| STRING (200)	| S
+[invoices] itemId| Identificador do item do pedido a qual a chave está relacionada.	| STRING (200)	| S
 [invoices] accessKey | Chave de acesso da nota fiscal vinculada ao item do pedido.	| STRING (200)	| S
 
 > Sample Request
@@ -911,13 +905,12 @@ responseStatusMessage	| Descrição adicional da TrustHub para o retorno.	| STRI
     "responseStatusMessage": ""
 }
 ```
-
-### Atualizar Status Tracking
-O serviço de atualização do status Tracking é responsável pelo recebimento da atualização de status do pedido no Marketplace/Cedente.
+### Enviar Chave de Acesso Nota Fiscal por Pedido
+Serviço utilizado para o envio da chave de acesso para pedidos onde será gerada apenas uma nota fiscal para ao pedido.
 
 **HTTP Request**
 
-`POST  https://api-hom.trusthub.com.br/integration/order/v1/tracking`
+`POST  https://api-hom.trusthub.com.br/integration/order/v1/invoice/key/order`
 
 **Parâmetros de Entrada**
 
@@ -927,20 +920,73 @@ Parameter | Description | Format | Required
 --------- | ----------- | --------- | -----------
 orderId	| Identificador do pedido gerado pelo Marketplace/Cedente	| STRING (200)	| S
 merchantDocument	| Identificador do Marketplace ou Cliente. **Qual enviar?** Se a integração se dá através de um Marketplace, deve-se enviar os dados deste. Porém, quando a integração se dá diretamente do e-commerce do Cliente, sem um Marketplace de integração, deve-se enviar os dados do Cliente.	| STRING  (30)	| S
-status	| Status do Marketplace/Cedente. Status permitidos: CONFIRMED, SHIPPED, COMPLETED, DECLINED	| STRING (30)	| S
-date	| Data/hora da atualização do status	| STRING (aaaa-MM-dd hh:mm)	| S
-complement	| Descrição complementar ao status 	| STRING (100)| N
-
+accessKey | Chave de acesso da nota fiscal referente a todos os items do pedido.	| STRING (200)	| S
 
 > Sample Request
 
 ```java
 {
-  "orderId" : "trusthub2018-01",
+    "orderId": "trusthub2018-01",
+    "merchantDocument": "88256695000118",
+    "accessKey" : "85975556546132321110000021500002465620244515"
+}
+```
+
+**Parâmetros de Saída**
+
+**URL Parameters**
+
+Parameter | Description | Format | Required
+--------- | ----------- | --------- | -----------
+responseCode	| Código de saída da requisição.	| INTEGER	| S
+responseStatus	| Descrição do código de saída da requisição.	| STRING (200)	| S
+responseStatusMessage	| Descrição adicional da TrustHub para o retorno.	| STRING (200)	| S
+
+> Sample Response
+
+```java
+{
+    "responseCode": 200,
+    "responseStatus": "Success",
+    "responseStatusMessage": ""
+}
+```
+
+### Enviar Arquivo da Nota Fiscal por Item do Pedido 
+Serviço utilizado para o envio dos arquivos xml das notas fiscais por item do pedido, ou seja, para pedidos onde será gerada mais de uma nota fiscal para o mesmo.
+
+**HTTP Request**
+
+`POST  --`
+
+**Parâmetros de Entrada**
+
+**URL Parameters**
+
+Parameter | Description | Format | Required
+--------- | ----------- | --------- | -----------
+orderId	| Identificador do pedido gerado pelo Marketplace/Cedente	| STRING (200)	| S
+merchantDocument	| Identificador do Marketplace ou Cliente. **Qual enviar?** Se a integração se dá através de um Marketplace, deve-se enviar os dados deste. Porém, quando a integração se dá diretamente do e-commerce do Cliente, sem um Marketplace de integração, deve-se enviar os dados do Cliente.	| STRING  (30)	| S
+zipName	| Nome do arquivo com a(s) nota(s) fiscal(is).	| STRING (200)	| S
+zipData	| Arquivo zip convertido em STRING BASE64.	| STRING Base64	| S
+invoices	| Lista de relação para vínculo entre o arquivo e o item.	| ARRAY	| S
+[invoice] itemId |  Identificador do item do pedido.	| STRING (200)	| S
+[invoice] fileName| Nome do arquivo xml contido dentro do arquivo zip.	| STRING (200)	| S
+
+> Sample Request
+
+```java
+{
+  "orderId": "trusthub2018-01",
   "merchantDocument": "88256695000118",
-  "status" : "CONFIRMED",
-  "date" : "2018-01-10",
-  "complement" : ""
+  "zipName": "teste.zip",
+  "zipData": "UEsDBBQAAAAAAIFkk0wAAAAAAAAAAAAAAAA0AAAANDExNzA2MTcwNDcwODMwMDAxNzc1NTAwMTAwMDAyNDY4NDEwMDIyNDY4MDQtbmZlLnhtbFBLAQIUABQAAAAAAIFkk0wAAAAAAAAAAAAAAAA0AAAAAAAAAAAAIAAAAAAAAAA0MTE3MDYxNzA0NzA4MzAwMDE3NzU1MDAxMDAwMDI0Njg0MTAwMjI0NjgwNC1uZmUueG1sUEsFBgAAAAABAAEAYgAAAFIAAAAAAA==",
+  "invoices": [
+    {
+      "itemId": "1",
+      "fileName": "41170617047083000177550010000246841002246804-nfe.xml"
+    }
+  ]
 }
 ```
 
