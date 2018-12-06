@@ -149,15 +149,15 @@ Parameter | Description | Format | Required
 responseCode	| Código de identificação do status da requisição do serviço.	| INTEGER	| S
 responseStatus	|  Descrição do código de identificação do status.	| STRING (200)	| S
 responseStatusMessage	| Descrição adicional da TrustHub para o retorno.	| STRING (200)	| S
-simulation	| Lista com os dados de simulação: taxa de juros, valor bruto total (sem juros), condições de parcelamento possíveis, valor total atualizado (com juros). | ARRAY	| S
-[simulation] taxAmount | Valor calculado do juros a aplicar sobre o valor bruto(amount) do pedido. | DECIMAL(15,2) | S  
-[simulation] amount | Valor bruto do pedido, sem juros. | DECIMAL(15,2)|S
-[simulation] amountWithTax | Valor bruto final do pedido, com juros. | DECIMAL(15,2)|S
-[simulation] installments | Lista com as simulações de pagamento do pedido. Cada ID contém os seus dados individuais de parcelamento e valores respectivos. | ARRAY	| S
-[installments] ID* | Índice da(s) condição(ões) de pagamento(s) geradas(s) através de regras internas da TrustHub. | INTEGER | S
-[installments] installment	| Identificador do título(parcela).	| INTEGER	| S
-[installments] amount	| Valor bruto total do título(parcela).	| DECIMAL (15,2)	| S
-
+simulation	| Lista com os dados de simulação contendo: valor original do pedido e uma lista com as condições de pagamento envolvendo: o valor de juros a pagar pelo parcelamento, o valor atualizado do pedido(com juros), a quantidade de parcela(s) e o valor respectivo de cada uma. | ARRAY	| S
+[simulation] amount | Valor original do pedido.  | DECIMAL(15,2)|S
+[simulation] paymentConditions | Lista com as condições de pagamento. | ARRAY | S
+[paymentConditions] ID* | Índice da(s) condição(ões) de pagamento(s) geradas(s) através de regras internas da TrustHub. | INTEGER | S
+[ID*]  taxAmount | Valor de juros a pagar pela condição de parcelamento. Calculado aplicando a taxa interna da TrustHub sobre o valor original do pedido: **amount**. | DECIMAL(15,2) | S  
+[ID*] amountWithTax | Valor final do pedido. Calculado da seguinte forma: **amount** + **taxAmount**. | DECIMAL(15,2) | S
+[ID*] installments | Lista da(s) parcela(s) gerada(s) e o valor respectivo de cada. | INTEGER | S
+[installments] installment	| Identificador da parcela(título).	| INTEGER	| S
+[installments] amount	| Valor da parcela(título).	| DECIMAL (15,2)	| S
 
 > Sample Response
 
@@ -168,369 +168,107 @@ simulation	| Lista com os dados de simulação: taxa de juros, valor bruto total
     "responseStatusMessage": "",
     "simulation": [
         {
-            "taxAmount": 20.05,
             "amount": 200.52,
-            "amountWithTax": 220.57,
-            "installments": [
+            "paymentConditions": [
                 {
-                    "1": [
-                        {
-                            "installment": 1,
-                            "amount": 220.57
-                        }
-                    ]
+                    "1": {
+                        "taxAmount": 3.61,
+                        "amountWithTax": 204.13,
+                        "installments": [
+                            {
+                                "installment": 1,
+                                "amount": 204.13
+                            }
+                        ]
+                    }
                 },
                 {
-                    "2": [
-                        {
-                            "installment": 1,
-                            "amount": 110.29
-                        },
-                        {
-                            "installment": 2,
-                            "amount": 110.28
-                        }
-                    ]
+                    "2": {
+                        "taxAmount": 7.28,
+                        "amountWithTax": 207.8,
+                        "installments": [
+                            {
+                                "installment": 1,
+                                "amount": 103.9
+                            },
+                            {
+                                "installment": 2,
+                                "amount": 103.9
+                            }
+                        ]
+                    }
                 },
                 {
-                    "3": [
-                        {
-                            "installment": 1,
-                            "amount": 73.53
-                        },
-                        {
-                            "installment": 2,
-                            "amount": 73.52
-                        },
-                        {
-                            "installment": 3,
-                            "amount": 73.52
-                        }
-                    ]
+                    "3": {
+                        "taxAmount": 11.02,
+                        "amountWithTax": 211.54,
+                        "installments": [
+                            {
+                                "installment": 1,
+                                "amount": 70.52
+                            },
+                            {
+                                "installment": 2,
+                                "amount": 70.51
+                            },
+                            {
+                                "installment": 3,
+                                "amount": 70.51
+                            }
+                        ]
+                    }
                 },
                 {
-                    "4": [
-                        {
-                            "installment": 1,
-                            "amount": 55.15
-                        },
-                        {
-                            "installment": 2,
-                            "amount": 55.14
-                        },
-                        {
-                            "installment": 3,
-                            "amount": 55.14
-                        },
-                        {
-                            "installment": 4,
-                            "amount": 55.14
-                        }
-                    ]
+                    "4": {
+                        "taxAmount": 14.83,
+                        "amountWithTax": 215.35,
+                        "installments": [
+                            {
+                                "installment": 1,
+                                "amount": 53.86
+                            },
+                            {
+                                "installment": 2,
+                                "amount": 53.83
+                            },
+                            {
+                                "installment": 3,
+                                "amount": 53.83
+                            },
+                            {
+                                "installment": 4,
+                                "amount": 53.83
+                            }
+                        ]
+                    }
                 },
                 {
-                    "5": [
-                        {
-                            "installment": 1,
-                            "amount": 44.13
-                        },
-                        {
-                            "installment": 2,
-                            "amount": 44.11
-                        },
-                        {
-                            "installment": 3,
-                            "amount": 44.11
-                        },
-                        {
-                            "installment": 4,
-                            "amount": 44.11
-                        },
-                        {
-                            "installment": 5,
-                            "amount": 44.11
-                        }
-                    ]
-                },
-                {
-                    "6": [
-                        {
-                            "installment": 1,
-                            "amount": 36.77
-                        },
-                        {
-                            "installment": 2,
-                            "amount": 36.76
-                        },
-                        {
-                            "installment": 3,
-                            "amount": 36.76
-                        },
-                        {
-                            "installment": 4,
-                            "amount": 36.76
-                        },
-                        {
-                            "installment": 5,
-                            "amount": 36.76
-                        },
-                        {
-                            "installment": 6,
-                            "amount": 36.76
-                        }
-                    ]
-                },
-                {
-                    "7": [
-                        {
-                            "installment": 1,
-                            "amount": 31.51
-                        },
-                        {
-                            "installment": 2,
-                            "amount": 31.51
-                        },
-                        {
-                            "installment": 3,
-                            "amount": 31.51
-                        },
-                        {
-                            "installment": 4,
-                            "amount": 31.51
-                        },
-                        {
-                            "installment": 5,
-                            "amount": 31.51
-                        },
-                        {
-                            "installment": 6,
-                            "amount": 31.51
-                        },
-                        {
-                            "installment": 7,
-                            "amount": 31.51
-                        }
-                    ]
-                },
-                {
-                    "8": [
-                        {
-                            "installment": 1,
-                            "amount": 27.58
-                        },
-                        {
-                            "installment": 2,
-                            "amount": 27.57
-                        },
-                        {
-                            "installment": 3,
-                            "amount": 27.57
-                        },
-                        {
-                            "installment": 4,
-                            "amount": 27.57
-                        },
-                        {
-                            "installment": 5,
-                            "amount": 27.57
-                        },
-                        {
-                            "installment": 6,
-                            "amount": 27.57
-                        },
-                        {
-                            "installment": 7,
-                            "amount": 27.57
-                        },
-                        {
-                            "installment": 8,
-                            "amount": 27.57
-                        }
-                    ]
-                },
-                {
-                    "9": [
-                        {
-                            "installment": 1,
-                            "amount": 24.57
-                        },
-                        {
-                            "installment": 2,
-                            "amount": 24.5
-                        },
-                        {
-                            "installment": 3,
-                            "amount": 24.5
-                        },
-                        {
-                            "installment": 4,
-                            "amount": 24.5
-                        },
-                        {
-                            "installment": 5,
-                            "amount": 24.5
-                        },
-                        {
-                            "installment": 6,
-                            "amount": 24.5
-                        },
-                        {
-                            "installment": 7,
-                            "amount": 24.5
-                        },
-                        {
-                            "installment": 8,
-                            "amount": 24.5
-                        },
-                        {
-                            "installment": 9,
-                            "amount": 24.5
-                        }
-                    ]
-                },
-                {
-                    "10": [
-                        {
-                            "installment": 1,
-                            "amount": 22.12
-                        },
-                        {
-                            "installment": 2,
-                            "amount": 22.05
-                        },
-                        {
-                            "installment": 3,
-                            "amount": 22.05
-                        },
-                        {
-                            "installment": 4,
-                            "amount": 22.05
-                        },
-                        {
-                            "installment": 5,
-                            "amount": 22.05
-                        },
-                        {
-                            "installment": 6,
-                            "amount": 22.05
-                        },
-                        {
-                            "installment": 7,
-                            "amount": 22.05
-                        },
-                        {
-                            "installment": 8,
-                            "amount": 22.05
-                        },
-                        {
-                            "installment": 9,
-                            "amount": 22.05
-                        },
-                        {
-                            "installment": 10,
-                            "amount": 22.05
-                        }
-                    ]
-                },
-                {
-                    "11": [
-                        {
-                            "installment": 1,
-                            "amount": 20.07
-                        },
-                        {
-                            "installment": 2,
-                            "amount": 20.05
-                        },
-                        {
-                            "installment": 3,
-                            "amount": 20.05
-                        },
-                        {
-                            "installment": 4,
-                            "amount": 20.05
-                        },
-                        {
-                            "installment": 5,
-                            "amount": 20.05
-                        },
-                        {
-                            "installment": 6,
-                            "amount": 20.05
-                        },
-                        {
-                            "installment": 7,
-                            "amount": 20.05
-                        },
-                        {
-                            "installment": 8,
-                            "amount": 20.05
-                        },
-                        {
-                            "installment": 9,
-                            "amount": 20.05
-                        },
-                        {
-                            "installment": 10,
-                            "amount": 20.05
-                        },
-                        {
-                            "installment": 11,
-                            "amount": 20.05
-                        }
-                    ]
-                },
-                {
-                    "12": [
-                        {
-                            "installment": 1,
-                            "amount": 18.39
-                        },
-                        {
-                            "installment": 2,
-                            "amount": 18.38
-                        },
-                        {
-                            "installment": 3,
-                            "amount": 18.38
-                        },
-                        {
-                            "installment": 4,
-                            "amount": 18.38
-                        },
-                        {
-                            "installment": 5,
-                            "amount": 18.38
-                        },
-                        {
-                            "installment": 6,
-                            "amount": 18.38
-                        },
-                        {
-                            "installment": 7,
-                            "amount": 18.38
-                        },
-                        {
-                            "installment": 8,
-                            "amount": 18.38
-                        },
-                        {
-                            "installment": 9,
-                            "amount": 18.38
-                        },
-                        {
-                            "installment": 10,
-                            "amount": 18.38
-                        },
-                        {
-                            "installment": 11,
-                            "amount": 18.38
-                        },
-                        {
-                            "installment": 12,
-                            "amount": 18.38
-                        }
-                    ]
+                    "5": {
+                        "taxAmount": 18.71,
+                        "amountWithTax": 219.23,
+                        "installments": [
+                            {
+                                "installment": 1,
+                                "amount": 43.87
+                            },
+                            {
+                                "installment": 2,
+                                "amount": 43.84
+                            },
+                            {
+                                "installment": 3,
+                                "amount": 43.84
+                            },
+                            {
+                                "installment": 4,
+                                "amount": 43.84
+                            },
+                            {
+                                "installment": 5,
+                                "amount": 43.84
+                            }
+                        ]
+                    }
                 }
             ]
         }
