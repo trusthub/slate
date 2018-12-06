@@ -149,12 +149,12 @@ Parameter | Description | Format | Required
 responseCode	| Código de identificação do status da requisição do serviço.	| INTEGER	| S
 responseStatus	|  Descrição do código de identificação do status.	| STRING (200)	| S
 responseStatusMessage	| Descrição adicional da TrustHub para o retorno.	| STRING (200)	| S
-simulation	| Lista com os dados de simulação contendo: valor original do pedido e uma lista com as condições de pagamento envolvendo: o valor de juros a pagar pelo parcelamento, o valor atualizado do pedido(com juros), a quantidade de parcela(s) e o valor respectivo de cada uma. | ARRAY	| S
+simulation	| Lista com os dados de simulação contendo: valor original do pedido e uma lista com as condições de pagamento envolvendo: o valor de juros a pagar pelo parcelamento, o valor final do pedido(com juros), a quantidade de parcela(s) e o valor respectivo de cada uma. | ARRAY	| S
 [simulation] amount | Valor original do pedido.  | DECIMAL(15,2)|S
 [simulation] paymentConditions | Lista com as condições de pagamento. | ARRAY | S
 [paymentConditions] ID* | Índice da(s) condição(ões) de pagamento(s) geradas(s) através de regras internas da TrustHub. | INTEGER | S
 [ID*]  taxAmount | Valor de juros a pagar pela condição de parcelamento. Calculado aplicando a taxa interna da TrustHub sobre o valor original do pedido: **amount**. | DECIMAL(15,2) | S  
-[ID*] amountWithTax | Valor final do pedido. Calculado da seguinte forma: **amount** + **taxAmount**. | DECIMAL(15,2) | S
+[ID*] amountWithTax | Valor final do pedido. Calculado através da soma dos atributos: **amount** e **taxAmount**. | DECIMAL(15,2) | S
 [ID*] installments | Lista da(s) parcela(s) gerada(s) e o valor respectivo de cada. | INTEGER | S
 [installments] installment	| Identificador da parcela(título).	| INTEGER	| S
 [installments] amount	| Valor da parcela(título).	| DECIMAL (15,2)	| S
