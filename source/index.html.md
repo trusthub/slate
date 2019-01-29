@@ -877,8 +877,7 @@ respondeCode| responseStatus | responseStatusMessage | currentCreditLimit |  Des
 --------- | ----------- | --------- | ---------  | --------- 
 200 | Success | Credit limit found. | <LimiteCreditoCalculado>| Pedido atualizado com sucesso.
 200 | Success | Payer not registered. Only upon receipt of an order will your credit limit be checked and made available. | 0 | Sacado não encontrado.
-200 | Success |  "buyerDocument": "LENGTH_MISSMATCH",
-        "buyerDocumentType": "LENGTH_MISSMATCH" | -- |  Consulta sem retorno. Revisar os parâmetros enviados.
+200 | Success |  "buyerDocument": "LENGTH_MISSMATCH", "buyerDocumentType": "LENGTH_MISSMATCH" | -- |  Consulta sem retorno. Revisar os parâmetros enviados.
 
 
 ## Envio de Notas Fiscais 
