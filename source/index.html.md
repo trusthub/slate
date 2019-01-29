@@ -275,6 +275,18 @@ simulation	| Lista com os dados de simulação contendo: valor original do pedid
     ]
 }
 ```
+**Parâmetros de Saída | Retornos do Serviço**
+
+respondeCode| responseStatus | responseStatusMessage | Descrição
+--------- | ----------- | --------- | --------- 
+200 | Success | -- | Simulação processada com sucesso.
+401 | Unauthorized -- Requires HTTP authentication | Unidentified document: @merchantDocument | Parceiro não cadastrado. 
+406| Not Acceptable | Unregistered ClientDocument: :clientDocument*. Please contact the TrustHub sales area to register the seller. | Parceiro cadastrado. Lastro do Parceiro com o Seller não cadastrado.
+406 | Not Acceptable | Invalid simulation value: amount: @amount | Parâmetros não atendem aos requisitos do serviço. 
+406 | Not Acceptable | Invalid simulation value: @clients.amount, client : @clients.clientDocument | Parâmetros não atendem a estrutura do serviço. 
+406 | Not Acceptable | Divergence of values. Please review the amount parameters. | Revisar valores divergentes para lista de client.
+406 | Not Acceptable | Simulation e-commerce: must contain only one clientDocument. | Revisar os parâmetros de entrada. Simulação e-commerce deve conter apenas um client na lista.
+
 
 ### Registrar Pedido
 O serviço de registro de pedidos é responsável por registrar a requisição de compra dentro da TrustHub. Os dados do Sacado, bem como do pedido do mesmo, são recebidos, registrados e, em cima destes, é feito uma análise detalhada que, posteriormente retornará ao Marketplace/Cedente a confirmação do pedido, ou seja, o aceite do financiamento e a liberação de crédito para o Sacado efetuar sua compra com sucesso.
@@ -413,6 +425,16 @@ responseStatusMessage	| Descrição adicional da TrustHub para o retorno.	| STRI
     "responseStatusMessage": ""
 }
 ```
+**Parâmetros de Saída | Retornos do Serviço**
+
+respondeCode| responseStatus | responseStatusMessage | Descrição
+--------- | ----------- | --------- | --------- 
+200 | Success | Order received. | Pedido registrado. Dados recebidos com sucesso. Aguarde processamento.
+406| Not Acceptable | Invalid data type in parameter: <nomeParâmetro*>. | Pedido não registrado. Revisar parâmetro(s) enviado(s). Requisitos não atendidos.
+406| Not Acceptable | Order already exists. | Pedido não registrado. Pedido já existente/duplicado. Desconsiderado pela API, não será processado.
+406| Not Acceptable | Unregistered ClientDocument: :clientDocument*. Please contact the TrustHub sales area to register the seller. | Pedido não registrado. Parceiro cadastrado. Lastro do Parceiro com o Seller não cadastrado.
+406| Not Acceptable | Only CNPJ documents are accepted. | Pedido não registrado. Pedido desconsiderado. Não será processado. Parâmetro: merchantDocumentType, clientDocumentType e/ou miniCart.buyer.documentType recebido com valor diferente de CNPJ.
+
 
 ### Consultar Pedido
 O serviço de Consulta é responsável pelo envio do status atual do pedido que está sendo analisado pela TrustHub. 
@@ -576,6 +598,7 @@ responseCode	| Código de saída da requisição.	| INTEGER	| S
 responseStatus	| Descrição do código de saída da requisição.	| STRING (200)	| S
 responseStatusMessage	| Descrição adicional da TrustHub para o retorno.	| STRING (200)	| S
 
+
 > Sample Response
 
 ```java
@@ -585,6 +608,22 @@ responseStatusMessage	| Descrição adicional da TrustHub para o retorno.	| STRI
     "responseStatusMessage": ""
 }
 ```
+**Parâmetros de Saída | Retornos do Serviço**
+
+respondeCode| responseStatus | responseStatusMessage | Descrição
+--------- | ----------- | --------- | --------- 
+200 | Success | Order status updated. | Pedido atualizado com sucesso.
+401 | Unauthorized -- Requires HTTP authentication | Unidentified document: @merchantDocument | Pedido não atualizado. Parceiro não cadastrado. 
+406| Not Acceptable | Invalid data type in parameter: <nomeParâmetro*>. |  Pedido não atualizado. Revisar parâmetro(s) enviado(s). Requisitos não atendidos.
+406| Not Acceptable | Invalid data type in parameter: status. |  Pedido não atualizado. Status não aceito. Revisar valor enviado.
+406| Not Acceptable |This orderId was rejected. |  Pedido não atualizado. O pedido encontra-se rejeitado.	
+406| Not Acceptable |Order not processed yet. |  Pedido não atualizado. Pedido ainda não aprovado pela Trusthub. Aguarde aprovação para atualização do status.
+406| Not Acceptable |Invalid data type in parameter: status. Allowed only: CONFIRMED, SHIPPED, COMPLETED or DECLINED | Pedido não atualizado. Revisar valor enviado no parâmetro status. 
+406| Not Acceptable |Order not yet confirmed. Please send the confirmation before the other tracking updates.| Pedido não atualizado. Revisar a hierarquia dos status enviados para atualização. 
+
+**Tracking | Hierarquia de Status**
+
+
 
 ### Enviar Chave de Acesso da Nota Fiscal por Item do Pedido
 Serviço utilizado para envio da chave de acesso por item do pedido, para casos onde um pedido terá mais de uma nota fiscal.
@@ -643,6 +682,21 @@ responseStatusMessage	| Descrição adicional da TrustHub para o retorno.	| STRI
     "responseStatusMessage": ""
 }
 ```
+**Parâmetros de Saída | Retornos do Serviço**
+
+respondeCode| responseStatus | responseStatusMessage | Descrição
+--------- | ----------- | --------- | --------- 
+200 | Success | Access key received. | Pedido atualizado com sucesso.
+401 | Unauthorized -- Requires HTTP authentication | Unidentified document: @merchantDocument | Pedido não atualizado. Parceiro não cadastrado. 
+406| Not Acceptable | Invalid data type in parameter: <nomeParâmetro*>. |  Pedido não atualizado. Revisar parâmetro(s) enviado(s). Requisitos não atendidos.
+406| Not Acceptable | Request pending approval. The Invoice will only be accepted after approval. |  Pedido não atualizado. Aguardar a aprovação da TrustHub para envio da Chave de Acesso.
+406| Not Acceptable | Update not allowed. This request was rejected. |  Pedido não atualizado. Este pedido foi rejeitado.
+406| Not Acceptable | "accessKey": "LENGTH_MISSMATCH" |  Pedido não atualizado. Não atende ao requisito mínimo de 44 caracteres. Revisar e reenviar a chave correta.
+406| Not Acceptable | Access key already received for the item(s): itemId. In update case, use the Invoice Resend Service.|  Pedido não atualizado. Chave de acesso já recebida para esse item do pedido.
+406| Not Acceptable | Order not yet processed. Could not save key(s).|  Pedido não atualizado. Pedido não recebido ou ainda não processado pela TrustHub.
+500| Internal Server Error | Could not save file, please try again. | Pedido não atualizado. Erro interno Trusthub, contatar equipe de suporte.
+
+
 ### Enviar Chave de Acesso da Nota Fiscal por Pedido
 Serviço utilizado para o envio da chave de acesso para pedidos onde será gerada apenas uma nota fiscal para ao pedido.
 
@@ -689,6 +743,20 @@ responseStatusMessage	| Descrição adicional da TrustHub para o retorno.	| STRI
     "responseStatusMessage": ""
 }
 ```
+**Parâmetros de Saída | Retornos do Serviço**
+
+respondeCode| responseStatus | responseStatusMessage | Descrição
+--------- | ----------- | --------- | --------- 
+200 | Success | Access key received. | Pedido atualizado com sucesso.
+401 | Unauthorized -- Requires HTTP authentication | Unidentified document: @merchantDocument | Pedido não atualizado. Parceiro não cadastrado. 
+406| Not Acceptable | Invalid data type in parameter: <nomeParâmetro*>. |  Pedido não atualizado. Revisar parâmetro(s) enviado(s). Requisitos não atendidos.
+406| Not Acceptable | "accessKey": "LENGTH_MISSMATCH" |  Pedido não atualizado. Não atende ao requisito mínimo de 44 caracteres. Revisar e reenviar a chave correta.
+406| Not Acceptable | Request pending approval. The Invoice will only be accepted after approval. |  Pedido não atualizado. Aguardar a aprovação da TrustHub para envio da Chave de Acesso.
+406| Not Acceptable | Update not allowed. This request was rejected. |  Pedido não atualizado. Este pedido foi rejeitado.
+406| Not Acceptable | Access key already received for this order. |  Pedido não atualizado. Chave de acesso já recebida para esse pedido.
+406| Not Acceptable | Order not yet processed. Could not save key(s).|  Pedido não atualizado. Pedido não recebido ou ainda não processado pela TrustHub.
+500| Internal Server Error | Could not save file, please try again. | Pedido não atualizado. Erro interno Trusthub, contatar equipe de suporte.
+
 
 ### Enviar Arquivo da Nota Fiscal por Item do Pedido 
 Serviço utilizado para o envio dos arquivos xml das notas fiscais por item do pedido, ou seja, para pedidos onde será gerada mais de uma nota fiscal para o mesmo.
@@ -747,6 +815,17 @@ responseStatusMessage	| Descrição adicional da TrustHub para o retorno.	| STRI
     "responseStatusMessage": ""
 }
 ```
+**Parâmetros de Saída | Retornos do Serviço**
+
+respondeCode| responseStatus | responseStatusMessage | Descrição
+--------- | ----------- | --------- | --------- 
+200 | Success | Invoice received. | Pedido atualizado com sucesso.
+401 | Unauthorized -- Requires HTTP authentication | Unidentified document: @merchantDocument | Pedido não atualizado. Parceiro não cadastrado. 
+406| Not Acceptable | Invalid data type in parameter: <nomeParâmetro*>. |  Pedido não atualizado. Revisar parâmetro(s) enviado(s). Requisitos não atendidos.
+406| Not Acceptable | Only .zip extension is accepted. | Pedido não atualizado. Extensão recebida do arquivo não permitida.
+406| Not Acceptable | Only .xml extension is accepted. | Pedido não atualizado. Extensão recebida do arquivo não permitida.
+500| Internal Server Error | Could not save file, please try again. | Pedido não atualizado. Erro interno Trusthub, contatar equipe de suporte.
+
 
 ### Consultar Limite de Crédito Sacado
 Serviço utilizado para recebimento do limite de crédito atual disponível para o Sacado.
@@ -794,6 +873,13 @@ currentCreditLimit | Valor do limite de crédito atual do Sacado.	| DECIMAL (15,
     "currentCreditLimit": 10000
 }
 ```
+respondeCode| responseStatus | responseStatusMessage | currentCreditLimit |  Descrição
+--------- | ----------- | --------- | ---------  | --------- 
+200 | Success | Credit limit found. | <LimiteCreditoCalculado>| Pedido atualizado com sucesso.
+200 | Success | Payer not registered. Only upon receipt of an order will your credit limit be checked and made available. | 0 | Sacado não encontrado.
+200 | Success |  "buyerDocument": "LENGTH_MISSMATCH",
+        "buyerDocumentType": "LENGTH_MISSMATCH" | -- |  Consulta sem retorno. Revisar os parâmetros enviados.
+
 
 ## Envio de Notas Fiscais 
 
