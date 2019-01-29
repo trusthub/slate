@@ -280,12 +280,12 @@ simulation	| Lista com os dados de simulação contendo: valor original do pedid
 respondeCode| responseStatus | responseStatusMessage | Descrição
 --------- | ----------- | --------- | --------- 
 200 | Success | -- | Simulação processada com sucesso.
-401 | Unauthorized -- Requires HTTP authentication | Unidentified document: @merchantDocument | Parceiro não cadastrado. 
-406| Not Acceptable | Unregistered ClientDocument: :clientDocument*. Please contact the TrustHub sales area to register the seller. | Parceiro cadastrado. Lastro do Parceiro com o Seller não cadastrado.
-406 | Not Acceptable | Invalid simulation value: amount: @amount | Parâmetros não atendem aos requisitos do serviço. 
-406 | Not Acceptable | Invalid simulation value: @clients.amount, client : @clients.clientDocument | Parâmetros não atendem a estrutura do serviço. 
-406 | Not Acceptable | Divergence of values. Please review the amount parameters. | Revisar valores divergentes para lista de client.
-406 | Not Acceptable | Simulation e-commerce: must contain only one clientDocument. | Revisar os parâmetros de entrada. Simulação e-commerce deve conter apenas um client na lista.
+401 | Unauthorized -- Requires HTTP authentication | Unidentified document: @merchantDocument | Simulação não realizada. Parceiro não cadastrado. 
+406| Not Acceptable | Unregistered ClientDocument: :clientDocument*. Please contact the TrustHub sales area to register the seller. | Simulação não realizada. Parceiro cadastrado. Lastro do Parceiro com o Seller não cadastrado.
+406 | Not Acceptable | Invalid simulation value: amount: @amount | Simulação não realizada. Parâmetros não atendem aos requisitos do serviço. 
+406 | Not Acceptable | Invalid simulation value: @clients.amount, client : @clients.clientDocument | Simulação não realizada. Parâmetros não atendem a estrutura do serviço. 
+406 | Not Acceptable | Divergence of values. Please review the amount parameters. | Simulação não realizada. Revisar valores divergentes para lista de client.
+406 | Not Acceptable | Simulation e-commerce: must contain only one clientDocument. | Simulação não realizada. Revisar os parâmetros de entrada. Simulação e-commerce deve conter apenas um client na lista.
 
 
 ### Registrar Pedido
