@@ -509,6 +509,8 @@ TRACKING | ENTREGUE | Pedido entregue com sucesso.
 TRACKING | REJEITADO | Pedido cancelado/rejeitado por motivos diversos.
 NOTA_FISCAL | AGUARDANDO_NOTA_FISCAL | Aguardando Nota Fiscal para conferência de dados do pedido.
 NOTA_FISCAL | NOTA_FISCAL_RECEBIDA | Nota Fiscal Recebida. Iniciado o processo de conferência da Nota Fiscal.
+NOTA_FISCAL | NOTA_FISCAL_INVALIDA | Nota Fiscal com chave de acesso inválida. Aguardando reenvio da chave correta da Nota Fiscal..							
+NOTA_FISCAL | NOTA_FISCAL_FALHA_CONEXAO | Foram realizadas três tentativas de validação da chave recebida e, por motivos diversos, agora a Nota Fiscal deve ser processada manualmente ou reenviada novamente para fila de processamento.
 NOTA_FISCAL | NOTA_FISCAL_DIVERGENTE| Nota Fiscal com divergências.							
 NOTA_FISCAL | NOTA_FISCAL_NAO_AUTORIZADA| Nota Fiscal não autorizada pela SEFAZ.
 NOTA_FISCAL | NOTA_FISCAL_PRAZO_EXPIRADO | O prazo de envio da Nota Fiscal foi expirado. Pedido rejeitado automaticamente.
@@ -627,6 +629,7 @@ respondeCode| responseStatus | responseStatusMessage | Descrição
 
 ### Enviar Chave de Acesso da Nota Fiscal por Item do Pedido
 Serviço utilizado para envio da chave de acesso por item do pedido, para casos onde um pedido terá mais de uma nota fiscal.
+Este serviço aceita reenvio/substituição da Nota Fiscal quando o status da mesma for igual a: NOTA_FISCAL_INVALIDA.
 
 **HTTP Request**
 
@@ -699,6 +702,8 @@ respondeCode| responseStatus | responseStatusMessage | Descrição
 
 ### Enviar Chave de Acesso da Nota Fiscal por Pedido
 Serviço utilizado para o envio da chave de acesso para pedidos onde será gerada apenas uma nota fiscal para ao pedido.
+Este serviço aceita reenvio/substituição da Nota Fiscal quando o status da mesma for igual a: NOTA_FISCAL_INVALIDA.
+
 
 **HTTP Request**
 
@@ -760,6 +765,8 @@ respondeCode| responseStatus | responseStatusMessage | Descrição
 
 ### Enviar Arquivo da Nota Fiscal por Item do Pedido 
 Serviço utilizado para o envio dos arquivos xml das notas fiscais por item do pedido, ou seja, para pedidos onde será gerada mais de uma nota fiscal para o mesmo.
+Este serviço aceita reenvio/substituição da Nota Fiscal quando o status da mesma for igual a: NOTA_FISCAL_INVALIDA.
+
 
 **HTTP Request**
 
